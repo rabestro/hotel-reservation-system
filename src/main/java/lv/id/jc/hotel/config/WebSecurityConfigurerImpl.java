@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.config;
 
+import lv.id.jc.hotel.model.Role;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,7 +21,7 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
                 .inMemoryAuthentication()
                 .withUser("admin")
                 .password(adminPassword)
-                .roles("ADMIN")
+                .roles(Role.ADMIN.name())
                 .and()
                 .passwordEncoder(getEncoder());
     }
