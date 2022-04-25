@@ -40,4 +40,3 @@ Authorization: Basic warren.trent@hotel.com Pr0pR1et0r!
 
 ### Example 3-3: GET /employee request without authentication
 GET {{host}}/employee
-Authorization: None
