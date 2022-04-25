@@ -93,6 +93,10 @@ public class User implements UserDetails {
         this.password = password;
     }
 
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
     public String getEmail() {
         return email;
     }
