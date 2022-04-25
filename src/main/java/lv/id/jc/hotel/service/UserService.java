@@ -4,6 +4,7 @@ import lv.id.jc.hotel.dto.Credentials;
 import lv.id.jc.hotel.model.User;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserService {
     /**
@@ -35,4 +36,5 @@ public interface UserService {
      */
     List<User> findEmployees();
 
+    Optional<User> findByEmail(String email);
 }

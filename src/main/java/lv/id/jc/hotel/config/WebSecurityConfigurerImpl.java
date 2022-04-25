@@ -1,13 +1,13 @@
 package lv.id.jc.hotel.config;
 
 import lv.id.jc.hotel.model.Role;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
@@ -15,28 +15,30 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
 
     @Value("${wandoo.hotel.admin.password}")
     private String adminPassword;
+    @Autowired
+    private UserDetailsService userDetailsService;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth
+        auth.userDetailsService(userDetailsService)
+                .passwordEncoder(passwordEncoder)
+                .and()
                 .inMemoryAuthentication()
                 .withUser("admin")
                 .password(adminPassword)
                 .roles(Role.ADMIN.name())
                 .and()
-                .passwordEncoder(getEncoder());
+                .passwordEncoder(passwordEncoder);
     }
 
-    @Bean
-    public PasswordEncoder getEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/admin").hasRole(Role.ADMIN.name())
-                .mvcMatchers("/user").hasAnyRole("ADMIN", "USER")
+                .mvcMatchers("/employee")
+                .hasAnyRole(Role.ADMIN.name(), Role.EMPLOYEE.name())
                 .mvcMatchers("/", "/public", "/register").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -44,8 +46,8 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .and()
-                .logout();
-
-        http.csrf().disable();
+                .logout()
+                .and()
+                .csrf().disable();
     }
 }
