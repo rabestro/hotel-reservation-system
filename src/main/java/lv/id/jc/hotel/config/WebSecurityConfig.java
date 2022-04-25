@@ -3,6 +3,7 @@ package lv.id.jc.hotel.config;
 import lv.id.jc.hotel.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -11,7 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
-public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Value("${wandoo.hotel.admin.password}")
     private String adminPassword;
@@ -39,7 +40,9 @@ public class WebSecurityConfigurerImpl extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .mvcMatchers("/employee")
                 .hasAnyRole(Role.ADMIN.name(), Role.EMPLOYEE.name())
-                .mvcMatchers("/", "/public", "/register").permitAll()
+                .mvcMatchers(HttpMethod.POST, "/register")
+                .permitAll()
+                .mvcMatchers("/", "/public").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()
