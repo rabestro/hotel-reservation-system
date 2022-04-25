@@ -1,0 +1,13 @@
+# Example 1: POST /registration request without authentication
+#
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "name": "Albert Wells",
+  "email": "albert.wells@guest.com",
+  "password": "ag1ngH0T@Lguest"
+}
+
+###
+
