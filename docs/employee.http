@@ -1,4 +1,5 @@
-### Example 1: POST /employee/new request without authentication
+# Example 1: POST /employee/new request without authentication
+
 POST {{host}}/employee/new
 Content-Type: application/json
 
@@ -8,7 +9,10 @@ Content-Type: application/json
   "password": "maNAger02!"
 }
 
-### Example 2-1: POST /employee/new request with admin authentication
+###
+
+# Example 2-1: POST /employee/new request with admin authentication
+
 POST {{host}}/employee/new
 Authorization: Basic admin password
 Content-Type: application/json
@@ -28,6 +32,19 @@ Content-Type: application/json
   "name": "Peter McDermott",
   "email": "Peter.McDermott@hotel.com",
   "password": "maNAger02!"
+}
+
+###
+
+# Example 2-3: POST /employee/new request with employee authentication
+POST {{host}}/employee/new
+Authorization: Basic warren.trent@hotel.com Pr0pR1et0r!
+Content-Type: application/json
+
+{
+  "name": "Christine Francis",
+  "email": "christine.francis@hotel.com",
+  "password": "S@cre+arY01"
 }
 
 ### Example 3: GET /employee request with admin authentication

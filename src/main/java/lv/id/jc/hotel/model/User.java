@@ -1,24 +1,30 @@
 package lv.id.jc.hotel.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.EntityListeners;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 
+@Data
+@EqualsAndHashCode(callSuper = true)
+@ToString(callSuper = true)
 @Entity
 @Table(name = "USERS")
-public class User {
-    @Id
-    @Column(name = "id", nullable = false)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+@EntityListeners(AuditingEntityListener.class)
+public class User extends AbstractPersistable<Long> {
 
     @NotBlank
     private String name;
@@ -33,36 +39,7 @@ public class User {
     @JsonIgnore
     private String password;
 
-    public Role getRole() {
-        return role;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public void setRole(Role role) {
-        this.role = role;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getName() {
-        return name;
-    }
+    @CreatedDate
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date createdDate;
 }
