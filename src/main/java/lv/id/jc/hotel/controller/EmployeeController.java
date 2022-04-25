@@ -8,9 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
-public class AdminController {
+public class EmployeeController {
 
-    @PostMapping("/admin/employee/new")
+    @PostMapping("/employee/new")
     public void register(@RequestBody @Valid Credentials credentials) {
+
     }
 }
