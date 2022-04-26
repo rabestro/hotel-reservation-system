@@ -8,19 +8,29 @@ client.test("Request executed successfully", function() {
 %}
 ###
 
-# Example 2: GET /room request with admin authentication
+# GET /room request with admin authentication should be forbidden
 GET {{host}}/room
 Authorization: Basic admin {{admin_pass}}
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 403, "Response status is not 403 (Forbidden)");
+});
+%}
 ###
 
-# Example 3: GET /room request with user authentication
+# GET /room request with user authentication
 GET {{host}}/room
 Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
 ###
 
-# Example 3: GET /room request with employee authentication
+# GET /room request with employee authentication
 GET {{host}}/room
-Authorization: Basic warren.trent@hotel.com Pr0pR1et0r!
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
 ###
 
+# GET /room request with employee authentication
+GET {{host}}/room/12
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+###
 

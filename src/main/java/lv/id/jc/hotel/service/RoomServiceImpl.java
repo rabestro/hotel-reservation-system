@@ -5,6 +5,7 @@ import lv.id.jc.hotel.repository.RoomRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public record RoomServiceImpl(RoomRepository roomRepository) implements RoomService {
@@ -17,5 +18,10 @@ public record RoomServiceImpl(RoomRepository roomRepository) implements RoomServ
     @Override
     public List<Room> findAll() {
         return roomRepository().findAll();
+    }
+
+    @Override
+    public Optional<Room> findById(Long id) {
+        return roomRepository().findById(id);
     }
 }
