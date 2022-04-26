@@ -11,8 +11,8 @@ import java.util.Optional;
 public record RoomServiceImpl(RoomRepository roomRepository) implements RoomService {
 
     @Override
-    public void save(Room room) {
-        roomRepository().save(room);
+    public Room save(Room room) {
+        return roomRepository().save(room);
     }
 
     @Override
@@ -28,7 +28,5 @@ public record RoomServiceImpl(RoomRepository roomRepository) implements RoomServ
     @Override
     public void delete(Long id) {
         roomRepository().deleteById(id);
-//        var recipe = roomRepository().findById(id).orElseThrow(NoSuchElementException::new);
-//        roomRepository().delete(recipe);
     }
 }

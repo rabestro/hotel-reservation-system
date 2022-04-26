@@ -16,7 +16,7 @@ public interface RoomService {
      * @return the saved room entity; will never be {@literal null}.
      * @throws IllegalArgumentException in case the given {@literal room entity} is {@literal null}.
      */
-    void save(Room room);
+    Room save(Room room);
 
     /**
      * Returns all rooms.
@@ -41,4 +41,5 @@ public interface RoomService {
      * @throws IllegalArgumentException in case the given {@literal id} is {@literal null}
      */
     void delete(Long id);
+
 }

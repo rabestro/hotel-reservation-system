@@ -1,14 +1,14 @@
-# Example 1: GET /room request without authentication
+### should deny /room request without authentication
 GET {{host}}/room
+Authorization:
 
 > {%
-client.test("Request executed successfully", function() {
-  client.assert(response.status === 401, "Response status is not 401 (Deny)");
-});
+client.test("Request executed successfully", () =>
+  client.assert(response.status === 401, "Response status is not 401 (Deny)")
+);
 %}
-###
 
-# GET /room request with admin authentication should be forbidden
+### should forbidden /room request with admin authentication
 GET {{host}}/room
 Authorization: Basic admin {{admin_pass}}
 
@@ -17,20 +17,21 @@ client.test("Request executed successfully", function() {
   client.assert(response.status === 403, "Response status is not 403 (Forbidden)");
 });
 %}
-###
 
-# GET /room request with user authentication
+### /room request with user authentication
 GET {{host}}/room
 Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
-###
 
-# GET /room request with employee authentication
+### GET /room request with employee authentication
 GET {{host}}/room
 Authorization: Basic warren.trent@hotel.com {{warren_pass}}
-###
 
-# GET /room request with employee authentication
-GET {{host}}/room/12
+### GET /room request with employee authentication
+GET {{host}}/room/14
 Authorization: Basic warren.trent@hotel.com {{warren_pass}}
-###
 
+### DELETE /room request with employee authentication
+DELETE {{host}}/room/12
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+
+###
