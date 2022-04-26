@@ -1,5 +1,6 @@
-# Example 1: POST /registration request without authentication
-#
+#@name RegCustomer_Albert_Wells
+# Example 1: POST /register request without authentication
+
 POST {{host}}/register
 Content-Type: application/json
 

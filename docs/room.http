@@ -1,10 +1,16 @@
 # Example 1: GET /room request without authentication
 GET {{host}}/room
+
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 401, "Response status is not 401 (Deny)");
+});
+%}
 ###
 
 # Example 2: GET /room request with admin authentication
 GET {{host}}/room
-Authorization: Basic admin password
+Authorization: Basic admin {{admin_pass}}
 ###
 
 # Example 3: GET /room request with user authentication
@@ -12,7 +18,7 @@ GET {{host}}/room
 Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
 ###
 
-# Example 3: GET /room request with user authentication
+# Example 3: GET /room request with employee authentication
 GET {{host}}/room
 Authorization: Basic warren.trent@hotel.com Pr0pR1et0r!
 ###

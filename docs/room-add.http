@@ -1,0 +1,11 @@
+# Add new room request with employee authentication
+POST {{host}}/room/add
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "number": "101",
+  "description": "Superior Double Room"
+}
+
+###

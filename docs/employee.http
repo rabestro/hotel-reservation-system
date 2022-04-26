@@ -9,8 +9,15 @@ Content-Type: application/json
   "password": "maNAger02!"
 }
 
+> {%
+client.test("Request executed successfully", function() {
+  client.assert(response.status === 401, "Response status is not 401 (Deny)");
+});
+%}
+
 ###
 
+#@name RegEmployee_Warren_Trent
 # Example 2-1: POST /employee/new request with admin authentication
 
 POST {{host}}/employee/new
@@ -20,14 +27,26 @@ Content-Type: application/json
 {
   "name": "Warren Trent",
   "email": "warren.trent@hotel.com",
-  "password": "Pr0pR1et0r!"
+  "password": "{{warren_pass}}"
 }
 
 ###
 
 # Example 2-2: POST /employee/new request with employee authentication
 POST {{host}}/employee/new
-Authorization: Basic admin password
+Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
+Content-Type: application/json
+
+{
+  "name": "Peter McDermott",
+  "email": "Peter.McDermott@hotel.com",
+  "password": "maNAger02!"
+}
+
+###
+# Example 2-2: POST /employee/new request with employee authentication
+POST {{host}}/employee/new
+Authorization: Basic admin {{admin_pass}}
 Content-Type: application/json
 
 {
@@ -38,9 +57,9 @@ Content-Type: application/json
 
 ###
 
-# Example 2-3: POST /employee/new request with employee authentication
+# Example 2-3: POST /employee/new request with admin authentication
 POST {{host}}/employee/new
-Authorization: Basic admin password
+Authorization: Basic admin {{admin_pass}}
 Content-Type: application/json
 
 {
@@ -51,11 +70,11 @@ Content-Type: application/json
 
 ### Example 3: GET /employee request with admin authentication
 GET {{host}}/employee
-Authorization: Basic admin password
+Authorization: Basic admin {{admin_pass}}
 
 ### Example 3-2: GET /employee request with employee authentication
 GET {{host}}/employee
-Authorization: Basic warren.trent@hotel.com Pr0pR1et0r!
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
 
 ### Example 3-3: GET /employee request without authentication
 GET {{host}}/employee

@@ -11,7 +11,7 @@ public record RoomServiceImpl(RoomRepository roomRepository) implements RoomServ
 
     @Override
     public void add(Room room) {
-
+        roomRepository().save(room);
     }
 
     @Override
