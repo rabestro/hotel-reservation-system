@@ -34,12 +34,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .passwordEncoder(passwordEncoder);
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers("/employee")
-                .hasAnyRole(Role.ADMIN.name(), Role.EMPLOYEE.name())
+                .hasAnyRole(Role.ADMIN.name())
+                .mvcMatchers("/room")
+                .hasAnyRole(Role.EMPLOYEE.name())
                 .mvcMatchers(HttpMethod.POST, "/register")
                 .permitAll()
                 .mvcMatchers("/", "/public").permitAll()
