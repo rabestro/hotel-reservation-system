@@ -1,6 +1,7 @@
 package lv.id.jc.hotel.service;
 
 import lv.id.jc.hotel.model.Room;
+import lv.id.jc.hotel.validator.RoomNumber;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -24,6 +25,15 @@ public interface RoomService {
      * @return all rooms entities
      */
     List<Room> findAll();
+
+    /**
+     * Retrieves a room by its number.
+     *
+     * @param number must not be {@literal null}.
+     * @return the room entity with the given id or {@literal Optional#empty()} if none found.
+     * @throws IllegalArgumentException if {@literal id} is {@literal null}.
+     */
+    Optional<Room> findByNumber(String number);
 
     /**
      * Retrieves a room by its id.

@@ -18,7 +18,7 @@ Authorization: Basic warren.trent@hotel.com {{warren_pass}}
 Content-Type: application/json
 
 {
-  "number": "102",
+  "number": "104",
   "description": "Double Room"
 }
 

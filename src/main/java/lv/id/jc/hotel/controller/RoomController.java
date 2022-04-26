@@ -23,6 +23,11 @@ public record RoomController(RoomService roomService) {
 
     @PostMapping("/add")
     public void add(@RequestBody @Valid RoomDetails details) {
+        roomService().findByNumber(details.number())
+                .ifPresent(room -> {
+                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                            "The room with number " + room.getNumber() + " already exists");
+                });
         updateRoom(new Room(), details);
     }
 

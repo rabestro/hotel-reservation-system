@@ -27,11 +27,23 @@ GET {{host}}/room
 Authorization: Basic warren.trent@hotel.com {{warren_pass}}
 
 ### GET /room request with employee authentication
-GET {{host}}/room/14
+GET {{host}}/room/{{id}}
 Authorization: Basic warren.trent@hotel.com {{warren_pass}}
 
 ### DELETE /room request with employee authentication
-DELETE {{host}}/room/12
+DELETE {{host}}/room/15
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+
+### room request with employee authentication
+GET {{host}}/room/{{id}}
 Authorization: Basic warren.trent@hotel.com {{warren_pass}}
 
 ###
+PUT {{host}}/room/{{id}}
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "number": "103",
+  "description": "Double Room"
+}

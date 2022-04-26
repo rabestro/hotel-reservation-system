@@ -14,12 +14,14 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Documented
 @Retention(RUNTIME)
 @Constraint(validatedBy = {})
-@Target( { METHOD, FIELD })
+@Target({PARAMETER, METHOD, FIELD})
 @NotNull
 @Size(min = 1, max = 20)
 public @interface RoomNumber {
     String message() default "Room number can contain from 1 to 20 characters";
+
     Class<?>[] groups() default {};
+
     Class<? extends Payload>[] payload() default {};
 }
 

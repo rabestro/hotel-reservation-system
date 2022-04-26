@@ -35,7 +35,7 @@ public record UserServiceImpl(UserRepository userRepository, PasswordEncoder enc
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return userRepository().findByEmail(email).stream().findFirst();
+        return userRepository().findFirstByEmail(email);
     }
 
     private void createUser(Credentials credentials, Role role) {

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+import lv.id.jc.hotel.validator.StrongPassword;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -35,8 +36,8 @@ public class User extends AbstractPersistable<Long> {
     @Column(unique=true)
     private String email;
 
-    @NotBlank
     @JsonIgnore
+    @StrongPassword
     private String password;
 
     @CreatedDate
