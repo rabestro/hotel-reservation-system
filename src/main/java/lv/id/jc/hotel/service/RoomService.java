@@ -1,7 +1,6 @@
 package lv.id.jc.hotel.service;
 
 import lv.id.jc.hotel.model.Room;
-import lv.id.jc.hotel.validator.RoomNumber;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
