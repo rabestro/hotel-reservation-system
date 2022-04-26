@@ -1,0 +1,20 @@
+# Example 1: GET /room request without authentication
+
+GET {{host}}/employee
+
+###
+
+# Example 2: GET /room request with admin authentication
+
+GET {{host}}/employee
+Authorization: Basic admin password
+
+###
+
+# Example 3: GET /room request with user authentication
+
+GET {{host}}/employee
+Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
+
+###
+

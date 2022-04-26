@@ -23,9 +23,11 @@ Content-Type: application/json
   "password": "Pr0pR1et0r!"
 }
 
-### Example 2-2: POST /employee/new request with employee authentication
+###
+
+# Example 2-2: POST /employee/new request with employee authentication
 POST {{host}}/employee/new
-Authorization: Basic warren.trent@hotel.com Pr0pR1et0r!
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
@@ -38,7 +40,7 @@ Content-Type: application/json
 
 # Example 2-3: POST /employee/new request with employee authentication
 POST {{host}}/employee/new
-Authorization: Basic warren.trent@hotel.com Pr0pR1et0r!
+Authorization: Basic admin password
 Content-Type: application/json
 
 {
