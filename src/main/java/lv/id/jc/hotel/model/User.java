@@ -8,9 +8,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
-import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.Email;
@@ -22,7 +22,6 @@ import java.util.Date;
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-@Table(name = "USERS")
 @EntityListeners(AuditingEntityListener.class)
 public class User extends AbstractPersistable<Long> {
 
@@ -33,6 +32,7 @@ public class User extends AbstractPersistable<Long> {
     private Role role;
 
     @Email
+    @Column(unique=true)
     private String email;
 
     @NotBlank
