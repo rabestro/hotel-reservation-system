@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller;
 
+import lv.id.jc.hotel.dto.RoomDetails;
 import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.service.RoomService;
 import org.springframework.http.HttpStatus;
@@ -14,19 +15,20 @@ import java.util.List;
 public record RoomController(RoomService roomService) {
 
     @GetMapping
-    List<Room> rooms() {
-        return roomService().findAll();
+    List<RoomDetails> rooms() {
+        return roomService().findAll().stream()
+                .map(room -> new RoomDetails(room.getNumber(), room.getDescription()))
+                .toList();
     }
 
     @PostMapping("/add")
-    public void add(@RequestBody @Valid Room room) {
-        roomService().save(room);
+    public void add(@RequestBody @Valid RoomDetails details) {
+        updateRoom(new Room(), details);
     }
 
     @GetMapping("{id}")
     public Room get(@PathVariable Long id) {
-        return roomService().get(id)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
+        return getRoom(id);
     }
 
     @DeleteMapping("{id}")
@@ -35,4 +37,20 @@ public record RoomController(RoomService roomService) {
         roomService().delete(id);
     }
 
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void update(@RequestBody @Valid RoomDetails details, @PathVariable Long id) {
+        updateRoom(getRoom(id), details);
+    }
+
+    private Room getRoom(Long id) {
+        return roomService().get(id)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
+    }
+
+    private void updateRoom(Room room, RoomDetails details) {
+        room.setNumber(details.number());
+        room.setDescription(details.description());
+        roomService().save(room);
+    }
 }
