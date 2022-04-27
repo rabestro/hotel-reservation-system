@@ -1,0 +1,13 @@
+### view room with employee authentication
+GET {{host}}/room/{{id}}
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+
+### update room information with employee authentication
+PUT {{host}}/room/{{id}}
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "number": "103",
+  "description": "Double Room"
+}

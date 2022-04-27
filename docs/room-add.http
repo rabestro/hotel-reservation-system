@@ -1,25 +1,33 @@
-# Add new room request with employee authentication
+### Add new room request with employee authentication
 
 POST {{host}}/room/add
 Authorization: Basic warren.trent@hotel.com {{warren_pass}}
 Content-Type: application/json
 
 {
-  "number": "101",
+  "number": "108",
   "description": "Superior Double Room"
 }
 
-###
-
-# Add new room request with employee authentication
+### Add new room request with employee authentication
 
 POST {{host}}/room/add
-Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Authorization: Basic christine.francis@hotel.com S@cre+arY01
 Content-Type: application/json
 
 {
-  "number": "104",
+  "number": "202",
   "description": "Double Room"
 }
 
-###
+### Add new room request with employee authentication
+
+POST {{host}}/room/add
+Authorization: Basic Peter.McDermott@hotel.com {{peter_pass}}
+Content-Type: application/json
+
+{
+  "number": "203",
+  "description": "Quadruple Room"
+}
+

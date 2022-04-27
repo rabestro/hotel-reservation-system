@@ -40,7 +40,7 @@ Content-Type: application/json
 {
   "name": "Peter McDermott",
   "email": "Peter.McDermott@hotel.com",
-  "password": "maNAger02!"
+  "password": "{{peter_pass}}"
 }
 
 ###
@@ -52,7 +52,7 @@ Content-Type: application/json
 {
   "name": "Peter McDermott",
   "email": "Peter.McDermott@hotel.com",
-  "password": "maNAger02!"
+  "password": "{{peter_pass}}"
 }
 
 ###

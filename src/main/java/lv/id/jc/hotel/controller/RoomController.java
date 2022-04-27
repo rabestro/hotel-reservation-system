@@ -22,13 +22,13 @@ public record RoomController(RoomService roomService) {
     }
 
     @PostMapping("/add")
-    public void add(@RequestBody @Valid RoomDetails details) {
+    public Room add(@RequestBody @Valid RoomDetails details) {
         roomService().findByNumber(details.number())
                 .ifPresent(room -> {
                     throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
                             "The room with number " + room.getNumber() + " already exists");
                 });
-        updateRoom(new Room(), details);
+        return updateRoom(new Room(), details);
     }
 
     @GetMapping("{id}")
@@ -53,9 +53,9 @@ public record RoomController(RoomService roomService) {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
     }
 
-    private void updateRoom(Room room, RoomDetails details) {
+    private Room updateRoom(Room room, RoomDetails details) {
         room.setNumber(details.number());
         room.setDescription(details.description());
-        roomService().save(room);
+        return roomService().save(room);
     }
 }

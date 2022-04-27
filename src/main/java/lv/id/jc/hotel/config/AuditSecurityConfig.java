@@ -1,7 +1,6 @@
 package lv.id.jc.hotel.config;
 
 import lv.id.jc.hotel.model.User;
-import lv.id.jc.hotel.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
@@ -17,20 +16,17 @@ import java.util.Optional;
 @EnableJpaAuditing
 @EnableTransactionManagement
 public class AuditSecurityConfig {
-
     /**
      * Lookup User instance corresponding to logged-in user
      *
-     * @param userService user service implementation
-     * @return Optional user
+     * @return Currently logged-in user or {@literal Optional#empty()} if none found.
      */
     @Bean
-    AuditorAware<User> auditorAware(UserService userService) {
-
+    AuditorAware<User> auditorAware() {
         return () -> Optional.ofNullable(SecurityContextHolder.getContext())
                 .map(SecurityContext::getAuthentication)
                 .filter(Authentication::isAuthenticated)
-                .map(Authentication::getName)
-                .flatMap(userService::findByEmail);
+                .map(Authentication::getPrincipal)
+                .map(User.class::cast);
     }
 }
