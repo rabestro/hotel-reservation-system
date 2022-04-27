@@ -22,13 +22,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Size(min = 8)
 @Pattern(regexp = "^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*\\d.*\\d)(?=.*[a-z].*[a-z].*[a-z]).+$")
 public @interface StrongPassword {
-    String message() default """
-            The password should be at least 8 characters length and it should include:
-            2 letters in Upper Case
-            1 Special Character (!@#$&*)
-            2 numerals (0-9)
-            3 letters in Lower Case
-            """;
+    String message() default "{password.error}";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

@@ -21,7 +21,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @NotNull
 @Length(min = 1, max = 20)
 public @interface RoomNumber {
-    String message() default "Room number can contain from 1 to 20 characters";
+    String message() default "{room.number.error}";
 
     Class<?>[] groups() default {};
 
