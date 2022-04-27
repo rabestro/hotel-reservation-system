@@ -23,7 +23,7 @@ public record RoomServiceImpl(RoomRepository roomRepository) implements RoomServ
 
     @Override
     public Optional<Room> findByNumber(String number) {
-        Objects.requireNonNull(number);
+//        Objects.requireNonNull(number);
         return roomRepository().findFirstByNumber(number);
     }
 
@@ -33,7 +33,7 @@ public record RoomServiceImpl(RoomRepository roomRepository) implements RoomServ
     }
 
     @Override
-    public void delete(Long id) {
-        roomRepository().deleteById(id);
+    public void delete(Room room) {
+        roomRepository().delete(room);
     }
 }

@@ -39,13 +39,12 @@ public record RoomController(RoomService roomService) {
     @DeleteMapping("{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable Long id) {
-        roomService().delete(id);
+        roomService().delete(getRoom(id));
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void update(@RequestBody @Valid RoomDetails details, @PathVariable Long id) {
-        updateRoom(getRoom(id), details);
+    public Room update(@RequestBody @Valid RoomDetails details, @PathVariable Long id) {
+        return updateRoom(getRoom(id), details);
     }
 
     private Room getRoom(Long id) {
