@@ -1,5 +1,8 @@
 package lv.id.jc.hotel.validator;
 
+import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.ScriptAssert;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.constraints.NotNull;
@@ -16,7 +19,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = {})
 @Target({PARAMETER, METHOD, FIELD})
 @NotNull
-@Size(min = 1, max = 20)
+@Length(min = 1, max = 20)
 public @interface RoomNumber {
     String message() default "Room number can contain from 1 to 20 characters";
 

@@ -1,8 +1,6 @@
 package lv.id.jc.hotel.model;
 
-import lombok.Data;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.hibernate.Hibernate;
@@ -13,6 +11,9 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.AssertTrue;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.FutureOrPresent;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -30,9 +31,16 @@ public class Reservation extends AbstractAuditable<User, Long> {
     @JoinColumn(name = "guest_id")
     private User guest;
 
+    @FutureOrPresent
     private LocalDate checkIn;
 
+    @Future
     private LocalDate checkOut;
+
+    @AssertTrue
+    private boolean isValidReservation() {
+        return checkIn.isBefore(checkOut);
+    }
 
     @Override
     public boolean equals(Object o) {
