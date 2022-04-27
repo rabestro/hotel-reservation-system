@@ -44,11 +44,11 @@ public interface RoomService {
     Optional<Room> get(Long id);
 
     /**
-     * Deletes the room with the given id.
+     * Deletes the given room.
      *
-     * @param id must not be {@literal null}.
-     * @throws IllegalArgumentException in case the given {@literal id} is {@literal null}
+     * @param room must not be {@literal null}.
+     * @throws IllegalArgumentException in case the given {@literal room} is {@literal null}
      */
-    void delete(Long id);
+    void delete(Room room);
 
 }
