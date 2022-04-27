@@ -39,10 +39,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .mvcMatchers("/employee")
                 .hasAnyRole(Role.ADMIN.name())
+
                 .mvcMatchers("/room")
                 .hasAnyRole(Role.EMPLOYEE.name())
+
                 .mvcMatchers(HttpMethod.POST, "/register")
                 .permitAll()
+
+                .mvcMatchers(HttpMethod.POST, "/book")
+                .hasAnyRole(Role.EMPLOYEE.name(), Role.CUSTOMER.name())
+
                 .mvcMatchers("/", "/public").permitAll()
                 .anyRequest().authenticated()
                 .and()
