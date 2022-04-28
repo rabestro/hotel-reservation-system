@@ -1,0 +1,70 @@
+### Should DENY executing a request without authentication
+
+POST {{host}}/employee
+Content-Type: application/json
+
+{
+  "name": "Peter McDermott",
+  "email": "peter.mcdermott@hotel.com",
+  "password": "{{peter_pass}}"
+}
+
+> {%
+client.test("Should deny executed a request without admin authentication", () => {
+  client.assert(response.status === 401, "Response status is not 401 (Deny)");
+});
+%}
+
+
+### Add Warren Trent (proprietor) with admin authentication
+
+POST {{host}}/employee
+Authorization: Basic admin {{admin_pass}}
+Content-Type: application/json
+
+{
+  "name": "Warren Trent",
+  "email": "warren.trent@hotel.com",
+  "password": "{{trent_pass}}"
+}
+
+### Add Peter McDermott (manager)
+
+POST {{host}}/employee
+Authorization: Basic admin {{admin_pass}}
+Content-Type: application/json
+
+{
+  "name": "Peter McDermott",
+  "email": "peter.mcdermott@hotel.com",
+  "password": "{{peter_pass}}"
+}
+
+### Add Aloysius Royce (administrative assistant to Warren Trent)
+
+POST {{host}}/employee
+Authorization: Basic admin {{admin_pass}}
+Content-Type: application/json
+
+{
+  "name": "Aloysius Royce",
+  "email": "aloysius.royce@hotel.com",
+  "password": "{{royce_pass}}"
+}
+
+### Add Christine Francis, secretary to Warren Trent
+
+POST {{host}}/employee
+Authorization: Basic admin {{admin_pass}}
+Content-Type: application/json
+
+{
+  "name": "Christine Francis",
+  "email": "christine.francis@hotel.com",
+  "password": "{{chris_pass}}"
+}
+
+### List all employees with admin authentication
+GET {{host}}/employee
+Authorization: Basic admin {{admin_pass}}
+
