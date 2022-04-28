@@ -1,7 +1,8 @@
-package lv.id.jc.hotel.service;
+package lv.id.jc.hotel.service.impl;
 
 import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.repository.RoomRepository;
+import lv.id.jc.hotel.service.RoomService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

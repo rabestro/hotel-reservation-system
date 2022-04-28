@@ -1,9 +1,10 @@
-package lv.id.jc.hotel.service;
+package lv.id.jc.hotel.service.impl;
 
 import lv.id.jc.hotel.dto.Credentials;
 import lv.id.jc.hotel.model.Role;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.repository.UserRepository;
+import lv.id.jc.hotel.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
