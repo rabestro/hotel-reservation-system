@@ -17,7 +17,7 @@ public class EmployeeRegistrationController extends AbstractRegistrationControll
         super(userService);
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public void register(@RequestBody @Valid Credentials credentials) {
         checkEmailExists(credentials);
         getUserService().createEmployee(credentials);

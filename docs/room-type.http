@@ -1,0 +1,33 @@
+### Add Single Room type with Warren Trent (proprietor) authentication
+
+POST {{host}}/type
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "name": "Single Room",
+  "description": "Room size: 15 m², 1 single bed. Features a fridge and a private bathroom."
+}
+
+### Add Double Room type with Peter McDermott (manager) authentication
+
+POST {{host}}/type
+Authorization: Basic peter.mcdermott@hotel.com {{peter_pass}}
+Content-Type: application/json
+
+{
+  "name": "Double Room",
+  "description": "Room size: 20 m², 1 large double bed. Classic room with a private bathroom and satellite TV."
+}
+
+### Add Deluxe Double Room type with Peter McDermott (manager) authentication
+
+POST {{host}}/type
+Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
+Content-Type: application/json
+
+{
+  "name": "Deluxe Double Room",
+  "description": "Room size: 20 m², 1 extra-large double bed. This room features a round bed, an electric kettle and a refrigerator."
+}
+
