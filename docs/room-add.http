@@ -1,33 +1,48 @@
-### Add new room request with employee authentication
+### Add Single Room with employee authentication
 
-POST {{host}}/room/add
+POST {{host}}/room
 Authorization: Basic warren.trent@hotel.com {{warren_pass}}
 Content-Type: application/json
 
 {
-  "number": "108",
-  "description": "Superior Double Room"
+  "number": "101",
+  "typeId": 1
+}
+
+### Add Single Room with employee authentication
+
+POST {{host}}/room
+Authorization: Basic christine.francis@hotel.com {{chris_pass}}
+Content-Type: application/json
+
+{
+  "number": "102",
+  "typeId": 1
+}
+
+### Add Double Room with employee authentication
+
+POST {{host}}/room
+Authorization: Basic christine.francis@hotel.com {{chris_pass}}
+Content-Type: application/json
+
+{
+  "number": "103",
+  "typeId": 2
 }
 
 ### Add new room request with employee authentication
 
-POST {{host}}/room/add
-Authorization: Basic christine.francis@hotel.com S@cre+arY01
+POST {{host}}/room
+Authorization: Basic peter.mcdermott@hotel.com {{peter_pass}}
 Content-Type: application/json
 
 {
-  "number": "202",
-  "description": "Double Room"
+  "number": "201",
+  "typeId": 3
 }
 
-### Add new room request with employee authentication
+### List all rooms
 
-POST {{host}}/room/add
-Authorization: Basic Peter.McDermott@hotel.com {{peter_pass}}
-Content-Type: application/json
-
-{
-  "number": "203",
-  "description": "Quadruple Room"
-}
-
+GET {{host}}/room
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}

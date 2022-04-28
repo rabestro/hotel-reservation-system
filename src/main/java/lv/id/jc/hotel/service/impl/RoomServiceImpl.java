@@ -1,6 +1,6 @@
 package lv.id.jc.hotel.service.impl;
 
-import lv.id.jc.hotel.dto.RoomDetails;
+import lv.id.jc.hotel.dto.RoomRequest;
 import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.repository.RoomRepository;
 import lv.id.jc.hotel.repository.RoomTypeRepository;
@@ -21,7 +21,7 @@ public record RoomServiceImpl(
     }
 
     @Override
-    public Room add(RoomDetails details) {
+    public Room add(RoomRequest details) {
         var room = new Room();
         room.setNumber(details.number());
         var type = typeRepository().getById(details.typeId());
@@ -30,7 +30,7 @@ public record RoomServiceImpl(
     }
 
     @Override
-    public Room update(Long id, RoomDetails details) {
+    public Room update(Long id, RoomRequest details) {
         var room = roomRepository().getById(id);
         var type = typeRepository().getById(details.typeId());
         room.setNumber(details.number());
