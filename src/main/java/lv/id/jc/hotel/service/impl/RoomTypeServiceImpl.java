@@ -6,6 +6,8 @@ import lv.id.jc.hotel.repository.RoomTypeRepository;
 import lv.id.jc.hotel.service.RoomTypeService;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public record RoomTypeServiceImpl(RoomTypeRepository repository) implements RoomTypeService {
 
@@ -15,5 +17,10 @@ public record RoomTypeServiceImpl(RoomTypeRepository repository) implements Room
         roomType.setName(details.name());
         roomType.setDescription(details.description());
         return repository().save(roomType);
+    }
+
+    @Override
+    public List<RoomType> findAll() {
+        return repository().findAll();
     }
 }

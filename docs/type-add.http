@@ -31,3 +31,7 @@ Content-Type: application/json
   "description": "Room size: 20 m², 1 extra-large double bed. This room features a round bed, an electric kettle and a refrigerator."
 }
 
+### List all room types
+
+GET {{host}}/type
+Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
