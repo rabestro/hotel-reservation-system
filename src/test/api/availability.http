@@ -26,8 +26,8 @@ GET {{host}}/check/type
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
-< availability-request-01.json
-> availability-request-01.js
+< booking-request-01.json
+> status-200-json.js
 
 ### Find all available rooms of a certain type for a given period of time
 # @no-log
@@ -35,5 +35,5 @@ GET {{host}}/check
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
-< availability-request-01.json
-> availability-request-01.js
+< booking-request-01.json
+> status-200-json.js
