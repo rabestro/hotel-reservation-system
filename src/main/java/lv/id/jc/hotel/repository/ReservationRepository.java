@@ -42,5 +42,29 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             @Param("roomId") Long roomId,
             @Param("arrivingDate") LocalDate arrivingDate,
             @Param("departureDate") LocalDate departureDate);
+
+    @Query("""
+               SELECT COUNT(rm) > 0
+               FROM Room rm
+               WHERE rm.type.id = :typeId AND rm.id NOT IN (
+                   SELECT distinct r.room.id
+                   FROM Reservation r
+                   WHERE r.room.type.id = :typeId AND
+                   (
+                      r.checkIn <= :arrivingDate AND r.checkOut > :arrivingDate
+                      OR
+                      r.checkIn < :departureDate AND r.checkOut >= :departureDate
+                      OR
+                      r.checkIn <= :arrivingDate AND r.checkOut >= :departureDate
+                      OR
+                      r.checkIn > :arrivingDate AND r.checkOut < :departureDate
+                   )
+               )
+            """)
+    boolean isRoomTypeAvailable(
+            @Param("typeId") Long typeId,
+            @Param("arrivingDate") LocalDate arrivingDate,
+            @Param("departureDate") LocalDate departureDate);
+
 }
 

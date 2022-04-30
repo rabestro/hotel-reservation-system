@@ -1,6 +1,6 @@
 package lv.id.jc.hotel.controller;
 
-import lv.id.jc.hotel.dto.Credentials;
+import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,7 +1,7 @@
 package lv.id.jc.hotel.controller;
 
-import lv.id.jc.hotel.dto.RoomRequest;
-import lv.id.jc.hotel.dto.RoomResponse;
+import lv.id.jc.hotel.model.dto.RoomRequest;
+import lv.id.jc.hotel.model.dto.RoomResponse;
 import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.service.RoomService;
 import org.springframework.http.HttpStatus;

@@ -1,10 +1,9 @@
 package lv.id.jc.hotel.controller;
 
-import lv.id.jc.hotel.dto.RoomTypeRequest;
-import lv.id.jc.hotel.dto.RoomTypeResponse;
+import lv.id.jc.hotel.model.dto.RoomTypeRequest;
+import lv.id.jc.hotel.model.dto.RoomTypeResponse;
 import lv.id.jc.hotel.service.RoomTypeService;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

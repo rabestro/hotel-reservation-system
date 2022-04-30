@@ -1,6 +1,6 @@
 package lv.id.jc.hotel.service.impl;
 
-import lv.id.jc.hotel.dto.RoomRequest;
+import lv.id.jc.hotel.model.dto.RoomRequest;
 import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.repository.RoomRepository;
 import lv.id.jc.hotel.repository.RoomTypeRepository;

@@ -1,6 +1,6 @@
 package lv.id.jc.hotel.service;
 
-import lv.id.jc.hotel.dto.BookingRequest;
+import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.Reservation;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -12,6 +12,4 @@ public interface ReservationService {
     boolean isRoomBooked(Long roomId, LocalDate date);
 
     boolean isRoomAvailable(Long roomId, LocalDate date);
-
-    boolean isRoomAvailable(Long roomId, LocalDate arrivingDate, LocalDate departureDate);
 }

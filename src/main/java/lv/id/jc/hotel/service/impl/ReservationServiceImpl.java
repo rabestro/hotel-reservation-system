@@ -1,8 +1,7 @@
 package lv.id.jc.hotel.service.impl;
 
-import lv.id.jc.hotel.dto.BookingRequest;
+import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.Reservation;
-import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.repository.ReservationRepository;
 import lv.id.jc.hotel.service.ReservationService;
 import lv.id.jc.hotel.service.RoomService;
@@ -32,8 +31,4 @@ public record ReservationServiceImpl(UserService userService, RoomService roomSe
         return repository().isRoomAvailableByDate(roomId, date);
     }
 
-    @Override
-    public boolean isRoomAvailable(Long roomId, LocalDate arrivingDate, LocalDate departureDate) {
-        return repository().isRoomAvailable(roomId, arrivingDate, departureDate);
-    }
 }

@@ -1,7 +1,7 @@
 package lv.id.jc.hotel.controller;
 
-import lv.id.jc.hotel.dto.BookingRequest;
-import lv.id.jc.hotel.dto.CheckRequest;
+import lv.id.jc.hotel.model.dto.BookingRequest;
+import lv.id.jc.hotel.model.dto.CheckRequest;
 import lv.id.jc.hotel.model.Reservation;
 import lv.id.jc.hotel.service.ReservationService;
 import lv.id.jc.hotel.service.UserService;

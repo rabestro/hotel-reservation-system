@@ -1,6 +1,6 @@
 package lv.id.jc.hotel.service.impl;
 
-import lv.id.jc.hotel.dto.Credentials;
+import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.model.Role;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.repository.UserRepository;

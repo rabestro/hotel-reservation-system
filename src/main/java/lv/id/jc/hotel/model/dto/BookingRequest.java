@@ -1,4 +1,4 @@
-package lv.id.jc.hotel.dto;
+package lv.id.jc.hotel.model.dto;
 
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;

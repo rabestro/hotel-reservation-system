@@ -1,6 +1,6 @@
 package lv.id.jc.hotel.service;
 
-import lv.id.jc.hotel.dto.RoomRequest;
+import lv.id.jc.hotel.model.dto.RoomRequest;
 import lv.id.jc.hotel.model.Room;
 import org.springframework.stereotype.Service;
 
