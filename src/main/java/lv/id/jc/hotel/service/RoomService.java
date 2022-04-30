@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public interface RoomService {
     /**
      * Save a given room. Use the returned instance for further operations as the

@@ -1,12 +1,15 @@
 package lv.id.jc.hotel.repository;
 
 import lv.id.jc.hotel.model.Reservation;
+import lv.id.jc.hotel.model.Room;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
@@ -66,5 +69,27 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             @Param("arrivingDate") LocalDate arrivingDate,
             @Param("departureDate") LocalDate departureDate);
 
+    @Query("""
+               SELECT rm
+               FROM Room rm
+               WHERE rm.type.id = :typeId AND rm.id NOT IN (
+                   SELECT distinct r.room.id
+                   FROM Reservation r
+                   WHERE r.room.type.id = :typeId AND
+                   (
+                      r.checkIn <= :arrivingDate AND r.checkOut > :arrivingDate
+                      OR
+                      r.checkIn < :departureDate AND r.checkOut >= :departureDate
+                      OR
+                      r.checkIn <= :arrivingDate AND r.checkOut >= :departureDate
+                      OR
+                      r.checkIn > :arrivingDate AND r.checkOut < :departureDate
+                   )
+               )
+            """)
+    Streamable<Room> findAvailableRooms(
+            @Param("typeId") Long typeId,
+            @Param("arrivingDate") LocalDate arrivingDate,
+            @Param("departureDate") LocalDate departureDate);
 }
 
