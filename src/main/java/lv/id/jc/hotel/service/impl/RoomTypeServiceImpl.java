@@ -13,9 +13,9 @@ public record RoomTypeServiceImpl(RoomTypeRepository repository) implements Room
 
     @Override
     public RoomType createRoomType(RoomTypeRequest request) {
-        var roomType = new RoomType();
-        roomType.setName(request.name());
-        roomType.setDescription(request.description());
+        var roomType = new RoomType()
+                .setName(request.name())
+                .setDescription(request.description());
         return repository().save(roomType);
     }
 
