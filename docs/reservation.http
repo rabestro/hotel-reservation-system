@@ -26,3 +26,8 @@ Content-Type: application/json
   "room": 5,
   "date": "2022-04-28"
 }
+
+### Check reservation with employee authentication
+GET {{host}}/reservation/check?roomId=6&arrivingDate=2022-01-22&departureDate=2022-02-01
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+

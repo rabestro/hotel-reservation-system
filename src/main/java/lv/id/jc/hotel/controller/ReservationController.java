@@ -7,7 +7,12 @@ import lv.id.jc.hotel.service.ReservationService;
 import lv.id.jc.hotel.service.UserService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -25,16 +30,13 @@ public record ReservationController(UserService userService, ReservationService 
     }
 
     @GetMapping("check1")
-    public boolean isReserved(
-            @RequestParam Long room,
-            @RequestParam(required = false) LocalDate date) {
-        System.out.println(room);
-        return service().isBooked(room, date);
+    public boolean isReserved(@RequestParam Long room, @RequestParam LocalDate date) {
+        return service().isRoomBooked(room, date);
     }
 
     @GetMapping("check2")
     public boolean check(@RequestBody @Valid CheckRequest request) {
-        return service().isBooked(request.room(), request.date());
+        return service().isRoomBooked(request.room(), request.date());
 
     }
 
@@ -43,5 +45,6 @@ public record ReservationController(UserService userService, ReservationService 
         return service().isRoomAvailable(request.room(), request.date());
 
     }
+
 
 }

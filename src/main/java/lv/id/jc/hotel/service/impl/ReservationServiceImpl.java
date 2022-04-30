@@ -22,12 +22,18 @@ public record ReservationServiceImpl(UserService userService, RoomService roomSe
     }
 
     @Override
-    public boolean isBooked(Long roomId, LocalDate date) {
+    public boolean isRoomBooked(Long roomId, LocalDate date) {
         return repository().existsReservationByRoomAndDate(roomId, date);
     }
 
     @Override
     public boolean isRoomAvailable(Long roomId, LocalDate date) {
+
         return repository().isRoomAvailableByDate(roomId, date);
+    }
+
+    @Override
+    public boolean isRoomAvailable(Long roomId, LocalDate arrivingDate, LocalDate departureDate) {
+        return repository().isRoomAvailable(roomId, arrivingDate, departureDate);
     }
 }
