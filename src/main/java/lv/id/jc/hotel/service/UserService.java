@@ -1,6 +1,6 @@
 package lv.id.jc.hotel.service;
 
-import lv.id.jc.hotel.dto.Credentials;
+import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.model.User;
 
 import java.util.List;

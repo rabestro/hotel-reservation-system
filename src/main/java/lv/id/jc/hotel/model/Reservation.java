@@ -3,6 +3,7 @@ package lv.id.jc.hotel.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.experimental.Accessors;
 import org.hibernate.Hibernate;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,6 +22,7 @@ import java.util.Objects;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Accessors(chain = true)
 @ToString(callSuper = true)
 public class Reservation extends AbstractAuditable<User, Long> {
     @ManyToOne

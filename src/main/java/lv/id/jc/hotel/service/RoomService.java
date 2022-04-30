@@ -1,12 +1,12 @@
 package lv.id.jc.hotel.service;
 
+import lv.id.jc.hotel.model.dto.RoomRequest;
 import lv.id.jc.hotel.model.Room;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
-@Service
 public interface RoomService {
     /**
      * Save a given room. Use the returned instance for further operations as the
@@ -18,6 +18,9 @@ public interface RoomService {
      */
     Room save(Room room);
 
+    Room add(RoomRequest details);
+
+    Room update(Long id, RoomRequest details);
     /**
      * Returns all rooms.
      *

@@ -1,4 +1,4 @@
-package lv.id.jc.hotel.service;
+package lv.id.jc.hotel.service.impl;
 
 import lv.id.jc.hotel.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

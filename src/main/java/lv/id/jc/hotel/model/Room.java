@@ -7,11 +7,8 @@ import lv.id.jc.hotel.validator.RoomNumber;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @Entity
@@ -25,5 +22,7 @@ public class Room extends AbstractAuditable<User, Long> {
     @RoomNumber
     private String number;
 
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "typeId")
+    private RoomType type;
 }

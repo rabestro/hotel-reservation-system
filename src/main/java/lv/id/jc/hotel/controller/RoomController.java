@@ -1,9 +1,11 @@
 package lv.id.jc.hotel.controller;
 
-import lv.id.jc.hotel.dto.RoomDetails;
+import lv.id.jc.hotel.model.dto.RoomRequest;
+import lv.id.jc.hotel.model.dto.RoomResponse;
 import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.service.RoomService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -15,20 +17,16 @@ import java.util.List;
 public record RoomController(RoomService roomService) {
 
     @GetMapping
-    List<RoomDetails> rooms() {
+    List<RoomResponse> rooms() {
         return roomService().findAll().stream()
-                .map(room -> new RoomDetails(room.getNumber(), room.getDescription()))
+                .map(RoomResponse::new)
                 .toList();
     }
 
-    @PostMapping("/add")
-    public Room add(@RequestBody @Valid RoomDetails details) {
-        roomService().findByNumber(details.number())
-                .ifPresent(room -> {
-                    throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
-                            "The room with number " + room.getNumber() + " already exists");
-                });
-        return updateRoom(new Room(), details);
+    @PostMapping
+    public ResponseEntity<RoomResponse> add(@RequestBody @Valid RoomRequest details) {
+        var response = new RoomResponse(roomService().add(details));
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
     @GetMapping("{id}")
@@ -43,8 +41,8 @@ public record RoomController(RoomService roomService) {
     }
 
     @PutMapping("{id}")
-    public Room update(@RequestBody @Valid RoomDetails details, @PathVariable Long id) {
-        return updateRoom(getRoom(id), details);
+    public Room update(@RequestBody @Valid RoomRequest details, @PathVariable Long id) {
+        return roomService().update(id, details);
     }
 
     private Room getRoom(Long id) {
@@ -52,9 +50,4 @@ public record RoomController(RoomService roomService) {
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Not found"));
     }
 
-    private Room updateRoom(Room room, RoomDetails details) {
-        room.setNumber(details.number());
-        room.setDescription(details.description());
-        return roomService().save(room);
-    }
 }

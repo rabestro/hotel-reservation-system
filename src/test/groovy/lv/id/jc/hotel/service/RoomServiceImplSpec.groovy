@@ -2,6 +2,7 @@ package lv.id.jc.hotel.service
 
 import lv.id.jc.hotel.model.Room
 import lv.id.jc.hotel.repository.RoomRepository
+import lv.id.jc.hotel.service.impl.RoomServiceImpl
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Title

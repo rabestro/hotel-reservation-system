@@ -1,6 +1,6 @@
 package lv.id.jc.hotel.controller;
 
-import lv.id.jc.hotel.dto.Credentials;
+import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.service.UserService;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +17,7 @@ public class EmployeeRegistrationController extends AbstractRegistrationControll
         super(userService);
     }
 
-    @PostMapping("/new")
+    @PostMapping
     public void register(@RequestBody @Valid Credentials credentials) {
         checkEmailExists(credentials);
         getUserService().createEmployee(credentials);

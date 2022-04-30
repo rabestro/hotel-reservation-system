@@ -1,0 +1,31 @@
+### Add Single Room type with Warren Trent (proprietor) authentication
+
+POST {{host}}/type
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+< content/single-room.json
+> test/status-200-json.js
+
+### Add Double Room type with Peter McDermott (manager) authentication
+
+POST {{host}}/type
+Authorization: Basic peter.mcdermott@hotel.com {{peter_pass}}
+Content-Type: application/json
+
+< content/double-room.json
+> test/status-200-json.js
+
+### Add Deluxe Double Room type with Aloysius Royce authentication
+
+POST {{host}}/type
+Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
+Content-Type: application/json
+
+< content/deluxe-room.json
+> test/status-200-json.js
+
+### List all room types
+
+GET {{host}}/type
+Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}

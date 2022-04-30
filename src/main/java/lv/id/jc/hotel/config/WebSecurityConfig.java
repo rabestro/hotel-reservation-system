@@ -2,7 +2,6 @@ package lv.id.jc.hotel.config;
 
 import lv.id.jc.hotel.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -13,9 +12,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
-    @Value("${wandoo.hotel.admin.password}")
-    private String adminPassword;
     @Autowired
     private UserDetailsService userDetailsService;
     @Autowired
@@ -24,13 +20,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService)
-                .passwordEncoder(passwordEncoder)
-                .and()
-                .inMemoryAuthentication()
-                .withUser("admin")
-                .password(adminPassword)
-                .roles(Role.ADMIN.name())
-                .and()
                 .passwordEncoder(passwordEncoder);
     }
 
@@ -38,11 +27,26 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers("/employee")
-                .hasAnyRole(Role.ADMIN.name())
+                .hasRole(Role.ADMIN.name())
+
+                .mvcMatchers("/type")
+                .hasRole(Role.EMPLOYEE.name())
+
                 .mvcMatchers("/room")
-                .hasAnyRole(Role.EMPLOYEE.name())
+                .hasRole(Role.EMPLOYEE.name())
+
                 .mvcMatchers(HttpMethod.POST, "/register")
                 .permitAll()
+
+                .mvcMatchers(HttpMethod.POST, "/reservation")
+                .hasAnyRole(Role.EMPLOYEE.name(), Role.CUSTOMER.name())
+
+                .mvcMatchers(HttpMethod.GET, "/reservation/check")
+                .hasRole(Role.EMPLOYEE.name())
+
+                .mvcMatchers(HttpMethod.GET, "/check")
+                .hasRole(Role.EMPLOYEE.name())
+
                 .mvcMatchers("/", "/public").permitAll()
                 .anyRequest().authenticated()
                 .and()
@@ -52,6 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .and()
-                .csrf().disable();
+                .csrf().disable()
+                .headers().frameOptions().disable();
     }
 }
