@@ -26,8 +26,8 @@ GET {{host}}/check/type
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
-< booking-request-01.json
-> status-200-json.js
+< content/booking-request-01.json
+> test/status-200-json.js
 
 ### Find all available rooms of a certain type for a given period of time
 # @no-log
@@ -37,3 +37,36 @@ Content-Type: application/json
 
 < booking-request-01.json
 > status-200-json.js
+
+### Invalid request with checkOut before checkIn
+GET {{host}}/check/type
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "typeId": 1,
+  "checkIn": "2022-12-01",
+  "checkOut": "2022-11-01"
+}
+> status-200-json.js
+
+### Invalid request with checkOut before checkIn
+GET {{host}}/check/type
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "typeId": 1,
+  "checkIn": "1897-12-01",
+  "checkOut": "1897-11-01"
+}
+> status-200-json.js
+
+### Find all available rooms of a certain type for a given period of time
+GET {{host}}/check
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+< content/booking-double-may-01-12.json
+> test/status-200-json.js
+
