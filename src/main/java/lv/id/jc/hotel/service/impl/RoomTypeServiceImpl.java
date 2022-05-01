@@ -1,7 +1,8 @@
 package lv.id.jc.hotel.service.impl;
 
-import lv.id.jc.hotel.model.dto.RoomTypeRequest;
 import lv.id.jc.hotel.model.RoomType;
+import lv.id.jc.hotel.model.dto.RoomTypeRequest;
+import lv.id.jc.hotel.model.dto.RoomTypeResponse;
 import lv.id.jc.hotel.repository.RoomTypeRepository;
 import lv.id.jc.hotel.service.RoomTypeService;
 import org.springframework.stereotype.Service;
@@ -20,7 +21,9 @@ public record RoomTypeServiceImpl(RoomTypeRepository repository) implements Room
     }
 
     @Override
-    public List<RoomType> findAll() {
-        return repository().findAll();
+    public List<RoomTypeResponse> findAll() {
+        return repository().findAll().stream()
+                .map(RoomTypeResponse::new)
+                .toList();
     }
 }

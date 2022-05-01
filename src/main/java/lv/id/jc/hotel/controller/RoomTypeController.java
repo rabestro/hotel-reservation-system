@@ -18,7 +18,6 @@ import java.util.List;
 @RequestMapping("/type")
 public record RoomTypeController(RoomTypeService service) {
 
-
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public RoomTypeResponse add(@RequestBody @Valid RoomTypeRequest request) {
@@ -27,9 +26,7 @@ public record RoomTypeController(RoomTypeService service) {
 
     @GetMapping
     public List<RoomTypeResponse> findAll() {
-        return service().findAll().stream()
-                .map(RoomTypeResponse::new)
-                .toList();
+        return service().findAll();
     }
 
 }

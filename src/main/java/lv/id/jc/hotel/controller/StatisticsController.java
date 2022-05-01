@@ -1,8 +1,8 @@
 package lv.id.jc.hotel.controller;
 
-import lv.id.jc.hotel.model.dto.ScheduleRequest;
-import lv.id.jc.hotel.model.dto.ScheduleResponse;
-import lv.id.jc.hotel.service.ScheduleService;
+import lv.id.jc.hotel.model.dto.DailyStatistics;
+import lv.id.jc.hotel.model.dto.StatisticsRequest;
+import lv.id.jc.hotel.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -13,14 +13,14 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/schedule")
-public class ScheduleController {
+@RequestMapping("/statistics")
+public class StatisticsController {
     @Autowired
-    ScheduleService service;
+    StatisticsService service;
 
     @GetMapping
-    public List<ScheduleResponse> getRoomSchedule(@RequestBody @Valid ScheduleRequest request) {
-        return service.getSchedule(request);
+    public List<DailyStatistics> getStatistics(@RequestBody @Valid StatisticsRequest request) {
+        return service.getStatistics(request);
     }
 
 }
