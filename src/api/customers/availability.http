@@ -1,0 +1,47 @@
+### Checks the availability of a certain type of hotel room for a given period of time
+
+GET {{host}}/check/type
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "typeId": 2,
+  "checkIn": "2022-11-01",
+  "checkOut": "2022-12-01"
+}
+
+### Checks the availability of Single Room
+
+GET {{host}}/check/type
+Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
+Content-Type: application/json
+
+{
+  "typeId": 1,
+  "checkIn": "2022-05-15",
+  "checkOut": "2022-05-16"
+}
+
+### Checks the availability of Single Room
+
+GET {{host}}/check/type
+Authorization: Basic ogilvie@guest.com Pa55w@Rd
+Content-Type: application/json
+
+{
+  "typeId": 1,
+  "checkIn": "2022-05-16",
+  "checkOut": "2022-05-18"
+}
+
+### Checks the availability of Single Room
+
+GET {{host}}/check/type
+Authorization: Basic ogilvie@guest.com Pa55w@Rd
+Content-Type: application/json
+
+{
+  "typeId": 1,
+  "checkIn": "2022-05-19",
+  "checkOut": "2022-05-23"
+}
