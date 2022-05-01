@@ -34,7 +34,6 @@ public class User extends AbstractPersistable<Long> implements UserDetails {
     private String email;
 
     @JsonIgnore
-    @StrongPassword
     private String password;
 
     @Override

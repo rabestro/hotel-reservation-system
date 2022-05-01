@@ -1,7 +1,19 @@
 ### Request schedule for a room
 
-POST {{host}}/schedule
+GET {{host}}/schedule
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
-< booking-request-01.json
+< json/schedule-single-room-01.json
+
+### Request schedule for a room 1
+
+GET {{host}}/schedule
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "roomId": 4,
+  "startDate": "2022-05-15",
+  "endDate": "2022-05-29"
+}

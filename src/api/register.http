@@ -1,4 +1,4 @@
-### Send request with not valid parameters
+### Send request with invalid parameters
 POST {{host}}/register
 Content-Type: application/json
 
@@ -8,7 +8,7 @@ Content-Type: application/json
   "password": "simple"
 }
 
-### Example 1: POST /register request without authentication
+### Albert Wells
 
 POST {{host}}/register
 Content-Type: application/json
@@ -19,5 +19,14 @@ Content-Type: application/json
   "password": "ag1ngH0T@Lguest"
 }
 
-###
+### Curtis O'Keefe
+
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "name": "Curtis O'Keefe",
+  "email": "curtis@guest.com",
+  "password": "Chain&O57"
+}
 

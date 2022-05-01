@@ -14,7 +14,31 @@ Authorization: Basic marsha@guest.com {{marsha_pass}}
 Content-Type: application/json
 
 {
-  "typeId": 2,
-  "checkIn": "2022-05-01",
-  "checkOut": "2022-05-12"
+  "typeId": 1,
+  "checkIn": "2022-05-07",
+  "checkOut": "2022-05-23"
+}
+
+### Book Single Room by Curtis O'Keefe
+
+POST {{host}}/book
+Authorization: Basic curtis@guest.com Chain&O57
+Content-Type: application/json
+
+{
+  "typeId": 1,
+  "checkIn": "2022-05-22",
+  "checkOut": "2022-05-23"
+}
+
+### Book Single Room by Albert Wells
+
+POST {{host}}/book
+Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
+Content-Type: application/json
+
+{
+  "typeId": 1,
+  "checkIn": "2022-05-24",
+  "checkOut": "2022-05-27"
 }

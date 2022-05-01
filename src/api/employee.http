@@ -70,7 +70,7 @@ Content-Type: application/json
 
 ### Example 3: GET /employee request with admin authentication
 GET {{host}}/employee
-Authorization: Basic admin {{admin_pass}}
+Authorization: Basic admin@hotel.com {{admin_pass}}
 
 ### Example 3-2: GET /employee request with employee authentication
 GET {{host}}/employee
