@@ -42,3 +42,15 @@ Content-Type: application/json
   "checkIn": "2022-05-24",
   "checkOut": "2022-05-27"
 }
+
+### Book Single Room by Warren Trent
+
+POST {{host}}/book
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "typeId": 1,
+  "checkIn": "2022-05-12",
+  "checkOut": "2022-05-14"
+}

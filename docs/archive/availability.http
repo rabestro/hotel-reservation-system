@@ -9,15 +9,15 @@ GET {{host}}/check/type/2?arrivingDate=2022-01-22&departureDate=2022-02-01
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 ### Checks the availability of a certain type of hotel room for a given period of time
-# @no-log
+
 GET {{host}}/check/type
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
 {
   "typeId": 2,
-  "arrivingDate": "2022-11-01",
-  "departureDate": "2022-12-01"
+  "checkIn": "2022-11-01",
+  "checkOut": "2022-12-01"
 }
 
 ### Checks the availability of a certain type of hotel room for a given period of time

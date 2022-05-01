@@ -30,3 +30,14 @@ Content-Type: application/json
   "password": "Chain&O57"
 }
 
+### Ogilvie
+
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "name": "ogilvie",
+  "email": "ogilvie@guest.com",
+  "password": "Pa55w@Rd"
+}
+
