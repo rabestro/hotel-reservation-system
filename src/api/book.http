@@ -4,7 +4,7 @@ POST {{host}}/book
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
-< content/booking-request-01.json
+< json/booking-request-01.json
 > test/status-200-json.js
 
 ### Book Double Room with Customer authentication

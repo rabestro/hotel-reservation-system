@@ -1,0 +1,7 @@
+### Request schedule for a room
+
+POST {{host}}/schedule
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+< booking-request-01.json
