@@ -17,6 +17,9 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
     @Query("SELECT r FROM Reservation r WHERE r.room.id = :roomId AND r.checkIn <= :date AND r.checkOut > :date")
     Optional<Reservation> findReservation(@Param("roomId") Long roomId, @Param("date") LocalDate date);
 
+    @Query("SELECT count(DISTINCT r.room) FROM Reservation r WHERE r.checkIn <= :date AND r.checkOut > :date")
+    long countBusyRooms(@Param("date") LocalDate date);
+
     @Query("""
                SELECT CASE WHEN COUNT(r) > 0 THEN TRUE ELSE FALSE END
                FROM Reservation r
