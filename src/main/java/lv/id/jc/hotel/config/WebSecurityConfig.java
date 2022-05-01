@@ -27,12 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .mvcMatchers("/employee")
-                .hasRole(Role.ADMIN.name())
+                .hasAnyRole(Role.ADMIN.name(), Role.EMPLOYEE.name())
 
-                .mvcMatchers("/type")
-                .hasRole(Role.EMPLOYEE.name())
-
-                .mvcMatchers("/room")
+                .mvcMatchers("/type", "/room", "/schedule")
                 .hasRole(Role.EMPLOYEE.name())
 
                 .mvcMatchers(HttpMethod.POST, "/register")
@@ -47,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers(HttpMethod.GET, "/check")
                 .hasRole(Role.EMPLOYEE.name())
 
-                .mvcMatchers("/", "/public").permitAll()
+                .mvcMatchers("/", "/public", "/hello").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .httpBasic()

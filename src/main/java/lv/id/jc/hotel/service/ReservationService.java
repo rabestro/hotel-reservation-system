@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.service;
 
+import lv.id.jc.hotel.model.Reservation;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
@@ -7,6 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 public interface ReservationService {
     ReservationDetails book(UserDetails userDetails, BookingRequest bookingRequest);

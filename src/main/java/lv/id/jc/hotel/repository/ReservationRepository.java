@@ -9,10 +9,14 @@ import org.springframework.data.util.Streamable;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
-import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
+
+    @Query("SELECT r FROM Reservation r WHERE r.room.id = :roomId AND r.checkIn <= :date AND r.checkOut > :date")
+    Optional<Reservation> findReservation(@Param("roomId") Long roomId, @Param("date") LocalDate date);
+
     @Query("""
                SELECT CASE WHEN COUNT(r) > 0 THEN TRUE ELSE FALSE END
                FROM Reservation r
