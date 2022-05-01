@@ -15,7 +15,6 @@ import java.util.List;
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {
-
     @Autowired
     ScheduleService service;
 

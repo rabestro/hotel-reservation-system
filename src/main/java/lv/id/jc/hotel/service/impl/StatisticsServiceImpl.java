@@ -34,7 +34,6 @@ public class StatisticsServiceImpl implements StatisticsService {
     private DailyStatistics getDailyStatistics(LocalDate date) {
         var busy = reservationRepository.countBusyRooms(date);
         var free = roomRepository.count() - busy;
-
-        return new DailyStatistics(date, free, busy, List.of());
+        return new DailyStatistics(date, free, busy);
     }
 }

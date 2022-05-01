@@ -1,8 +1,7 @@
 package lv.id.jc.hotel.service;
 
-import lv.id.jc.hotel.model.dto.RoomRequest;
 import lv.id.jc.hotel.model.Room;
-import org.springframework.stereotype.Service;
+import lv.id.jc.hotel.model.dto.RoomRequest;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,6 +20,7 @@ public interface RoomService {
     Room add(RoomRequest details);
 
     Room update(Long id, RoomRequest details);
+
     /**
      * Returns all rooms.
      *

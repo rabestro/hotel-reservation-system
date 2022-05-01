@@ -1,10 +1,7 @@
 package lv.id.jc.hotel.service;
 
-import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.RoomResponse;
-import org.springframework.data.util.Streamable;
-import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -17,8 +14,8 @@ public interface AvailabilityService {
     /**
      * Checks the availability of a hotel room for a given period of time.
      *
-     * @param roomId hotel room id
-     * @param arrivingDate a guest arriving date
+     * @param roomId        hotel room id
+     * @param arrivingDate  a guest arriving date
      * @param departureDate a guest departure date
      * @return true if the room is available for the period
      */
