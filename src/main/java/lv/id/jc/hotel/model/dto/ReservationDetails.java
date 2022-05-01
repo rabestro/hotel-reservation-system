@@ -4,10 +4,10 @@ import lv.id.jc.hotel.model.Reservation;
 
 import java.time.LocalDate;
 
-public record ReservationConfirmation(Long id, String guest, String email,
-                                      String room, String type, String description,
-                                      LocalDate checkIn, LocalDate checkOut) {
-    public ReservationConfirmation(Reservation reservation) {
+public record ReservationDetails(Long id, String guest, String email,
+                                 String room, String type, String description,
+                                 LocalDate checkIn, LocalDate checkOut) {
+    public ReservationDetails(Reservation reservation) {
         this(
                 reservation.getId(),
                 reservation.getGuest().getName(),

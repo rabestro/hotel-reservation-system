@@ -2,7 +2,7 @@ package lv.id.jc.hotel.controller;
 
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.CheckRequest;
-import lv.id.jc.hotel.model.dto.ReservationConfirmation;
+import lv.id.jc.hotel.model.dto.ReservationDetails;
 import lv.id.jc.hotel.service.ReservationService;
 import lv.id.jc.hotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,7 +27,7 @@ public class ReservationController {
     ReservationService service;
 
     @PostMapping
-    public ReservationConfirmation book(
+    public ReservationDetails book(
             @AuthenticationPrincipal UserDetails userDetails,
             @RequestBody @Valid BookingRequest bookingRequest) {
 

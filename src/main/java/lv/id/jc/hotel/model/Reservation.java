@@ -12,7 +12,6 @@ import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.AssertTrue;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
 import java.time.LocalDate;
@@ -38,11 +37,6 @@ public class Reservation extends AbstractAuditable<User, Long> {
 
     @Future
     private LocalDate checkOut;
-
-    @AssertTrue
-    private boolean isValidReservation() {
-        return checkIn.isBefore(checkOut);
-    }
 
     @Override
     public boolean equals(Object o) {
