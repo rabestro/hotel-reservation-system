@@ -14,7 +14,7 @@ import java.util.Optional;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
-    @Query("SELECT r FROM Reservation r WHERE r.room.id = :roomId AND r.checkIn <= :date AND r.checkOut > :date")
+    @Query("FROM Reservation r WHERE r.room.id = :roomId AND r.checkIn <= :date AND r.checkOut > :date")
     Optional<Reservation> findReservation(@Param("roomId") Long roomId, @Param("date") LocalDate date);
 
     @Query("SELECT count(DISTINCT r.room) FROM Reservation r WHERE r.checkIn <= :date AND r.checkOut > :date")
@@ -77,7 +77,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             @Param("departureDate") LocalDate departureDate);
 
     @Query("""
-               SELECT rm
                FROM Room rm
                WHERE rm.type.id = :typeId AND rm.id NOT IN (
                    SELECT distinct r.room.id
