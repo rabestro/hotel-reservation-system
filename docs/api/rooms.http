@@ -1,0 +1,99 @@
+#
+# Examples of requests to /api/rooms
+#
+# Hotel administrators should be able to manage rooms:
+# – view
+# - add
+# - remove
+# - edit
+#
+### should forbid request with no authentication
+GET {{host}}/api/rooms
+Authorization: Basic admin@hotel.com {{admin_pass}}
+
+> test-forbidden.js
+
+### should forbid request with admin authentication
+GET {{host}}/api/rooms
+Authorization: Basic admin@hotel.com {{admin_pass}}
+
+> test-forbidden.js
+
+### should execute request with employee authentication
+GET {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-successful.js
+
+### should add new room
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "number": "104",
+  "typeId": 2
+}
+> test-successful.js
+
+### should reject adding a room with duplicated room number
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "number": "104",
+  "typeId": 2
+}
+> test-conflict.js
+
+### should view the added room
+GET {{host}}/api/rooms/21
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-successful.js
+
+### should edit the room
+PUT {{host}}/api/rooms/21
+Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
+Content-Type: application/json
+
+{
+  "number": "202",
+  "typeId": 3
+}
+> test-no-content.js
+
+### should edit a specific field of the room entity
+PATCH {{host}}/api/rooms/21
+Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
+Content-Type: application/json
+
+{
+  "typeId": 2
+}
+> test-no-content.js
+
+### should view the edited room
+GET {{host}}/api/rooms/21
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-successful.js
+
+### should view a user who created the room
+{{host}}/api/rooms/21/createdBy
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-successful.js
+
+### should view the last user who modified the room
+{{host}}/api/rooms/21/lastModifiedBy
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-successful.js
+
+### should delete the room
+DELETE {{host}}/api/rooms/21
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-no-content.js

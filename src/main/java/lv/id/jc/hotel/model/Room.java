@@ -14,11 +14,11 @@ import javax.persistence.*;
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "NUMBER"))
+//@Table(uniqueConstraints = @UniqueConstraint(columnNames = "NUMBER"))
 public class Room extends AbstractAuditable<User, Long> {
 
-    @Column(unique = true)
     @RoomNumber
+    @Column(unique = true, length = 20, nullable = false)
     private String number;
 
     @ManyToOne

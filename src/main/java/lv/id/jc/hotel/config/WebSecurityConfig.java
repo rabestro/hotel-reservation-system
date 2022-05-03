@@ -29,7 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/employee")
                 .hasAnyRole(Role.ADMIN.name(), Role.EMPLOYEE.name())
 
-                .mvcMatchers("/type", "/room", "/schedule", "/statistics")
+                .mvcMatchers("/api/**", "/type", "/room", "/schedule", "/statistics")
                 .hasRole(Role.EMPLOYEE.name())
 
                 .mvcMatchers(HttpMethod.GET, "/check/type")
