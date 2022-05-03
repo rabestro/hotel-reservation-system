@@ -11,6 +11,4 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
 
     Optional<Room> findFirstByNumber(String number);
 
-//    Optional<Room> findFirstByTypeAnd
-
 }
