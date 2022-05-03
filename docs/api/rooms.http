@@ -75,6 +75,7 @@ Content-Type: application/json
 > test-no-content.js
 
 ### should view the edited room
+# Retrieves a room by its id
 GET {{host}}/api/rooms/21
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
@@ -93,6 +94,7 @@ Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 > test-successful.js
 
 ### should delete the room
+# Delete a room by its id
 DELETE {{host}}/api/rooms/21
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
