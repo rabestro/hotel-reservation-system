@@ -31,10 +31,9 @@ Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
 {
-  "number": "104",
-  "typeId": 2
+  "number": "105",
+  "typeId": 3
 }
-> test-successful.js
 
 ### should reject adding a room with duplicated room number
 POST {{host}}/api/rooms

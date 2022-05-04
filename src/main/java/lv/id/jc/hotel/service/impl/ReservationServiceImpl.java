@@ -6,7 +6,6 @@ import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
 import lv.id.jc.hotel.repository.ReservationRepository;
 import lv.id.jc.hotel.service.ReservationService;
-import lv.id.jc.hotel.service.RoomService;
 import lv.id.jc.hotel.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +18,6 @@ import java.util.List;
 public class ReservationServiceImpl implements ReservationService {
     @Autowired
     UserService userService;
-    @Autowired
-    RoomService roomService;
     @Autowired
     ReservationRepository repository;
 
