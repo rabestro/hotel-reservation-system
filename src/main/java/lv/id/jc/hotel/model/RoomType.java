@@ -11,9 +11,9 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.Lob;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotBlank;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
@@ -23,9 +23,9 @@ import javax.validation.constraints.NotBlank;
 @EntityListeners(AuditingEntityListener.class)
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 public class RoomType extends AbstractAuditable<User, Long> {
-    @Column(unique = true)
     @RoomTypeName
+    @Column(unique = true, length = 40, nullable = false)
     private String name;
-    @NotBlank
+    @Lob
     private String description;
 }
