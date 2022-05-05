@@ -35,6 +35,7 @@ Content-Type: application/json
   "typeId": 3
 }
 
+
 ### should reject adding a room with duplicated room number
 POST {{host}}/api/rooms
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}

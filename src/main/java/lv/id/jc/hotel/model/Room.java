@@ -13,8 +13,8 @@ import javax.persistence.*;
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 @EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
-//@Table(uniqueConstraints = @UniqueConstraint(columnNames = "NUMBER"))
+@ToString
+@Table(name = "ROOM", uniqueConstraints = @UniqueConstraint(columnNames = "NUMBER"))
 public class Room extends AbstractAuditable<User, Long> {
 
     @RoomNumber
@@ -22,6 +22,6 @@ public class Room extends AbstractAuditable<User, Long> {
     private String number;
 
     @ManyToOne
-    @JoinColumn(name = "typeId")
+    @JoinColumn(name = "TYPE_ID")
     private RoomType type;
 }
