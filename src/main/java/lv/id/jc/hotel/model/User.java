@@ -23,13 +23,15 @@ import java.util.List;
 public class User extends AbstractPersistable<Long> implements UserDetails {
 
     @NotBlank
+    @Column(nullable = false)
     private String name;
 
     @NotNull
+    @Column(nullable = false)
     private Role role;
 
     @Email
-    @Column(unique = true)
+    @Column(unique = true, nullable = false)
     private String email;
 
     @JsonIgnore
