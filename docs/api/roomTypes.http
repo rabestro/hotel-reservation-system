@@ -1,0 +1,26 @@
+#
+# Examples of requests to /api/roomTypes
+#
+# Hotel administrators should be able to manage types of hotel rooms:
+# – view
+# - add
+# - remove
+# - edit
+#
+### should forbid request with no authentication
+GET {{host}}/api/roomTypes
+Authorization: Basic admin@hotel.com {{admin_pass}}
+
+> test-forbidden.js
+
+### should forbid request with admin authentication
+GET {{host}}/api/roomTypes
+Authorization: Basic admin@hotel.com {{admin_pass}}
+
+> test-forbidden.js
+
+### should execute request with employee authentication
+GET {{host}}/api/roomTypes
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-successful.js
