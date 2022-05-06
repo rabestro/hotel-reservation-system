@@ -25,16 +25,27 @@ Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 > test-successful.js
 
+### should list available search options
+GET {{host}}/api/rooms/search
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-successful.js
+
 ### should add new room
 POST {{host}}/api/rooms
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
 {
-  "number": "105",
-  "typeId": 3
+  "number": "104",
+  "typeId": 2
 }
 
+### should execute search by room number
+GET {{host}}/api/rooms/search/findFirstByNumber?number=104
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test-find-by-number.js
 
 ### should reject adding a room with duplicated room number
 POST {{host}}/api/rooms
