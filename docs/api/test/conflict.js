@@ -5,5 +5,5 @@ client.test("Should return status 409 (Conflict)", () => {
     client.assert(type === "application/json", "Expected 'application/json' but received '" + type + "'");
 
     // client.log("Look, I can log!");
-    // client.assert(response.body.json.message.startsWith("could not execute statement"));
+    // client.assert(response.body.message.startsWith("could not execute statement"));
 });

@@ -11,16 +11,16 @@
 GET {{host}}/api/roomTypes
 Authorization: Basic admin@hotel.com {{admin_pass}}
 
-> test-forbidden.js
+> test/forbidden.js
 
 ### should forbid request with admin authentication
 GET {{host}}/api/roomTypes
 Authorization: Basic admin@hotel.com {{admin_pass}}
 
-> test-forbidden.js
+> test/forbidden.js
 
 ### should execute request with employee authentication
 GET {{host}}/api/roomTypes
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> test-successful.js
+> test/successful.js

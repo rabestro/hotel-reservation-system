@@ -11,30 +11,29 @@
 GET {{host}}/api/rooms
 Authorization: Basic admin@hotel.com {{admin_pass}}
 
-> test-forbidden.js
+> test/forbidden.js
 
 ### should forbid request with admin authentication
 GET {{host}}/api/rooms
 Authorization: Basic admin@hotel.com {{admin_pass}}
 
-> test-forbidden.js
+> test/forbidden.js
 
-### should execute request with employee authentication
+### List all rooms (with employee authentication)
 GET {{host}}/api/rooms
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> test-successful.js
+> test/successful.js
 
-### should list available search options
+### Room representation profile
+GET {{host}}/api/profile/rooms
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+### Search options
 GET {{host}}/api/rooms/search
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> {%
-    // set a room number for the following requests
-    client.global.set("room_number", "Pantry");
-%}
-
-### should add new room
+### Add a new room
 POST {{host}}/api/rooms
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
@@ -43,15 +42,15 @@ Content-Type: application/json
   "number": "{{room_number}}",
   "typeId": 2
 }
-> test-add-room.js
+> test/room-add.js
 
-### should execute search by room number
+### Search by room number
 GET {{host}}/api/rooms/search/byNumber?number={{room_number}}
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> test-find-by-number.js
+> test/room-find-by-number.js
 
-### should reject adding a room with duplicated room number
+### Reject adding a room with duplicated room number
 POST {{host}}/api/rooms
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
@@ -60,15 +59,15 @@ Content-Type: application/json
   "number": "{{room_number}}",
   "typeId": 2
 }
-> test-conflict.js
+> test/conflict.js
 
-### should view the added room
+### View the added room
 GET {{host}}/api/rooms/{{room_id}}
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> test-successful.js
+> test/successful.js
 
-### should edit the room
+### Edit the room
 PUT {{host}}/api/rooms/{{room_id}}
 Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
 Content-Type: application/json
@@ -77,9 +76,9 @@ Content-Type: application/json
   "number": "larder",
   "typeId": 3
 }
-> test-no-content.js
+> test/no-content.js
 
-### should edit a specific field of the room entity
+### Edit a specific field of the room entity
 PATCH {{host}}/api/rooms/{{room_id}}
 Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
 Content-Type: application/json
@@ -87,30 +86,29 @@ Content-Type: application/json
 {
   "typeId": 2
 }
-> test-no-content.js
+> test/no-content.js
 
-### should view the edited room
+### View the edited room
 # Retrieves a room by its id
 GET {{host}}/api/rooms/{{room_id}}
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> test-successful.js
+> test/successful.js
 
-### should view a user who created the room
+### View a user who created the room
 {{host}}/api/rooms/{{room_id}}/createdBy
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> test-successful.js
+> test/successful.js
 
-### should view the last user who modified the room
+### View the last user who modified the room
 {{host}}/api/rooms/{{room_id}}/lastModifiedBy
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> test-successful.js
+> test/successful.js
 
-### should delete the room
-# Delete a room by its id
+### Delete the room
 DELETE {{host}}/api/rooms/{{room_id}}
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
-> test-no-content.js
+> test/no-content.js
