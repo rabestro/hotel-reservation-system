@@ -19,8 +19,19 @@ Authorization: Basic admin@hotel.com {{admin_pass}}
 
 > test/forbidden.js
 
-### should execute request with employee authentication
+### List room types (with employee authentication)
 GET {{host}}/api/roomTypes
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 > test/successful.js
+
+### Room Type representation profile
+GET {{host}}/api/profile/roomTypes
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+### Search options for room types (not found)
+GET {{host}}/api/roomTypes/search
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/not-found.js
+
