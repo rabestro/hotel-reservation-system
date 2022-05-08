@@ -4,6 +4,7 @@ import lv.id.jc.hotel.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(securedEnabled = true, prePostEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserDetailsService userDetailsService;
@@ -29,7 +31,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/employee")
                 .hasAnyRole(Role.ADMIN.name(), Role.EMPLOYEE.name())
 
-                .mvcMatchers("/api/**", "/room", "/schedule", "/statistics")
+                .mvcMatchers("/api/**", "/schedule", "/statistics")
                 .hasRole(Role.EMPLOYEE.name())
 
                 .mvcMatchers(HttpMethod.GET, "/check/type")

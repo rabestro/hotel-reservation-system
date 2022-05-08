@@ -5,12 +5,19 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.Optional;
 
+/**
+ * A repository to manage {@link Room}s.
+ *
+ * @author Jegors Čemisovs
+ */
 @Repository
+@PreAuthorize("hasRole('ROLE_EMPLOYEE')")
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
     @RestResource(path = "byNumber")
