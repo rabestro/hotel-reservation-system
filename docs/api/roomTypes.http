@@ -7,15 +7,9 @@
 # - remove
 # - edit
 #
-### should forbid request with no authentication
+### should forbid request with USER authentication
 GET {{host}}/api/roomTypes
-Authorization: Basic admin@hotel.com {{admin_pass}}
-
-> test/forbidden.js
-
-### should forbid request with admin authentication
-GET {{host}}/api/roomTypes
-Authorization: Basic admin@hotel.com {{admin_pass}}
+Authorization: Basic marsha@guest.com {{marsha_pass}}
 
 > test/forbidden.js
 

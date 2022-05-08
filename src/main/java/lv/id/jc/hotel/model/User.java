@@ -6,6 +6,7 @@ import lombok.EqualsAndHashCode;
 import lombok.ToString;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
@@ -22,20 +23,32 @@ import java.util.List;
 @Entity
 public class User extends AbstractPersistable<Long> implements UserDetails {
 
+    public enum Role {
+        EMPLOYEE, CUSTOMER;
+
+        GrantedAuthority authority() {
+            return new SimpleGrantedAuthority("ROLE_" + name());
+        }
+    }
+
     @NotBlank
     @Column(nullable = false)
     private String name;
 
     @NotNull
     @Column(nullable = false)
-    private Role role;
+    private User.Role role;
 
     @Email
     @Column(unique = true, nullable = false)
     private String email;
 
     @JsonIgnore
+    @Column(columnDefinition = "CHAR(60)")
     private String password;
+
+    @Column(nullable = false, columnDefinition = "BOOLEAN default TRUE")
+    private boolean enabled;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
@@ -62,8 +75,12 @@ public class User extends AbstractPersistable<Long> implements UserDetails {
         return true;
     }
 
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
     @Override
     public boolean isEnabled() {
-        return true;
+        return enabled;
     }
 }

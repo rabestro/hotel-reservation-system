@@ -1,0 +1,59 @@
+### 101 - Single Room
+
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "number": "101",
+  "typeId": "95"
+}
+
+### 102 - Single Room
+
+POST {{host}}/api/rooms
+Authorization: Basic christine.francis@hotel.com {{chris_pass}}
+Content-Type: application/json
+
+{
+  "number": "102",
+  "typeId": 95
+}
+
+### 103 - Double Room
+
+POST {{host}}/api/rooms
+Authorization: Basic christine.francis@hotel.com {{chris_pass}}
+Content-Type: application/json
+
+{
+  "number": "103",
+  "typeId": "98"
+}
+
+### 104 - Double Room
+
+POST {{host}}/api/rooms
+Authorization: Basic christine.francis@hotel.com {{chris_pass}}
+Content-Type: application/json
+
+{
+  "number": "104",
+  "typeId": 98
+}
+
+### 201 - Deluxe Double Room
+
+POST {{host}}/api/rooms
+Authorization: Basic peter.mcdermott@hotel.com {{peter_pass}}
+Content-Type: application/json
+
+{
+  "number": "201",
+  "typeId": 97
+}
+
+### List all rooms
+
+GET {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}

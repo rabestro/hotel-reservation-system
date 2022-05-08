@@ -15,7 +15,6 @@ import java.util.Optional;
 /**
  * A repository to manage {@link Reservation}s.
  *
- * @author Jegors Čemisovs
  */
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {

@@ -21,12 +21,12 @@ public record UserServiceImpl(UserRepository userRepository, PasswordEncoder enc
 
     @Override
     public void createEmployee(Credentials credentials) {
-        createUser(credentials, Role.EMPLOYEE);
+        createUser(credentials, User.Role.EMPLOYEE);
     }
 
     @Override
     public void createCustomer(Credentials credentials) {
-        createUser(credentials, Role.CUSTOMER);
+        createUser(credentials, User.Role.CUSTOMER);
     }
 
     @Override
@@ -39,12 +39,13 @@ public record UserServiceImpl(UserRepository userRepository, PasswordEncoder enc
         return userRepository().findFirstByEmail(email);
     }
 
-    private void createUser(Credentials credentials, Role role) {
+    private void createUser(Credentials credentials, User.Role role) {
         var user = new User();
         user.setName(credentials.name());
         user.setEmail(credentials.email());
         user.setPassword(encoder().encode(credentials.password()));
         user.setRole(role);
+        user.setEnabled(true);
         userRepository().save(user);
     }
 }

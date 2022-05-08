@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Data
 @Entity
@@ -24,4 +25,7 @@ public class Room extends AbstractAuditable<User, Long> {
     @ManyToOne
     @JoinColumn(name = "TYPE_ID")
     private RoomType type;
+
+    @OneToMany(mappedBy = "room", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Reservation> reservations;
 }

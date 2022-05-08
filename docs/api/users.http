@@ -10,23 +10,22 @@
 
 ### should forbid request with no authentication
 GET {{host}}/api/users
-Authorization: Basic admin@hotel.com {{admin_pass}}
 
 > test/forbidden.js
 
-### should forbid request with admin authentication
+### should forbid request with USER authentication
 GET {{host}}/api/users
-Authorization: Basic admin@hotel.com {{admin_pass}}
+Authorization: Basic marsha@guest.com {{marsha_pass}}
 
 > test/forbidden.js
 
-### List all rooms (with employee authentication)
+### List all users (with employee authentication)
 GET {{host}}/api/users
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 > test/successful.js
 
-### Room representation profile
+### User representation profile
 GET {{host}}/api/profile/users
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
