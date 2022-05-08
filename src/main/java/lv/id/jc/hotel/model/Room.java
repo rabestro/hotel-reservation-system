@@ -8,6 +8,7 @@ import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Data
@@ -23,7 +24,7 @@ public class Room extends AbstractAuditable<User, Long> {
     private String number;
 
     @ManyToOne
-    @JoinColumn(name = "type_id")
+    @JoinColumn(name = "type_id", nullable = false)
     private RoomType type;
 
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)

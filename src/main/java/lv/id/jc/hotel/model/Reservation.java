@@ -23,11 +23,11 @@ import java.time.LocalDate;
 @EntityListeners(AuditingEntityListener.class)
 public class Reservation extends AbstractAuditable<User, Long> {
     @ManyToOne
-    @JoinColumn(name = "room_id")
+    @JoinColumn(name = "room_id", nullable = false)
     private Room room;
 
     @ManyToOne
-    @JoinColumn(name = "guest_id")
+    @JoinColumn(name = "guest_id", nullable = false)
     private User guest;
 
     @FutureOrPresent
