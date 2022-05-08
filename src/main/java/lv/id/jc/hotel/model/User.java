@@ -4,24 +4,27 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.util.Collection;
 import java.util.List;
+import java.util.Set;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
 @ToString(callSuper = true)
 @Entity
-public class User extends AbstractPersistable<Long> implements UserDetails {
+public class User extends AbstractAuditable<User, Long> implements UserDetails {
 
     public enum Role {
         EMPLOYEE, CUSTOMER;
@@ -49,6 +52,9 @@ public class User extends AbstractPersistable<Long> implements UserDetails {
 
     @Column(nullable = false, columnDefinition = "BOOLEAN default TRUE")
     private boolean enabled;
+
+    @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
+    private Set<Reservation> reservations;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
