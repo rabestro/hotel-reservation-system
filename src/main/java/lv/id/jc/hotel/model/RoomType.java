@@ -1,23 +1,21 @@
 package lv.id.jc.hotel.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import lv.id.jc.hotel.validator.RoomTypeName;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
+@Getter
+@Setter
 @Entity
 @Accessors(chain = true)
 @EntityListeners(AuditingEntityListener.class)
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Table(name = "ROOM_TYPE", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 public class RoomType extends AbstractAuditable<User, Long> {
     @RoomTypeName
     @Column(unique = true, length = 40, nullable = false)
@@ -26,6 +24,12 @@ public class RoomType extends AbstractAuditable<User, Long> {
     @Lob
     private String description;
 
+    @OrderBy("number")
     @OneToMany(mappedBy = "type")
-    private Set<Room> rooms;
+    private List<Room> rooms;
+
+    @Override
+    public String toString() {
+        return "RoomType{name='" + name + '\'' + '}';
+    }
 }

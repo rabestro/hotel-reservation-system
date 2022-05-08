@@ -1,9 +1,8 @@
 package lv.id.jc.hotel.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,15 +15,17 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
+import java.io.Serial;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
+@Getter
+@Setter
 @Entity
 public class User extends AbstractAuditable<User, Long> implements UserDetails {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     public enum Role {
         EMPLOYEE, CUSTOMER;

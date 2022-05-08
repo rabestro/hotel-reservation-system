@@ -7,6 +7,7 @@ import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.JoinColumn;
@@ -31,8 +32,10 @@ public class Reservation extends AbstractAuditable<User, Long> {
     private User guest;
 
     @FutureOrPresent
+    @Column(nullable = false)
     private LocalDate checkIn;
 
     @Future
+    @Column(nullable = false)
     private LocalDate checkOut;
 }

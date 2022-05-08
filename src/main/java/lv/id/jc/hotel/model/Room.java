@@ -1,21 +1,21 @@
 package lv.id.jc.hotel.model;
 
 import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.ToString;
 import lv.id.jc.hotel.validator.RoomNumber;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
 //@EqualsAndHashCode(callSuper = true)
-@ToString
 @Table(name = "ROOM", uniqueConstraints = @UniqueConstraint(columnNames = "NUMBER"))
 public class Room extends AbstractAuditable<User, Long> {
 
@@ -27,6 +27,12 @@ public class Room extends AbstractAuditable<User, Long> {
     @JoinColumn(name = "type_id", nullable = false)
     private RoomType type;
 
+    @OrderBy("checkIn")
     @OneToMany(mappedBy = "room", fetch = FetchType.LAZY)
-    private Set<Reservation> reservations;
+    private List<Reservation> reservations;
+
+    @Override
+    public String toString() {
+        return "Room{" + "number='" + number + '\'' + ", type=" + type.getName() + '}';
+    }
 }

@@ -1,6 +1,5 @@
 package lv.id.jc.hotel.service.impl;
 
-import lv.id.jc.hotel.model.Role;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.repository.UserRepository;
@@ -31,12 +30,12 @@ public record UserServiceImpl(UserRepository userRepository, PasswordEncoder enc
 
     @Override
     public List<User> findEmployees() {
-        return userRepository().findByRole(Role.EMPLOYEE);
+        return userRepository().findByRole(User.Role.EMPLOYEE);
     }
 
     @Override
     public Optional<User> findByEmail(String email) {
-        return userRepository().findFirstByEmail(email);
+        return userRepository().findFirstByEmailIgnoreCase(email);
     }
 
     private void createUser(Credentials credentials, User.Role role) {

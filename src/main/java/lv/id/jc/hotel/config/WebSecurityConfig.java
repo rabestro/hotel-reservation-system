@@ -1,6 +1,5 @@
 package lv.id.jc.hotel.config;
 
-import lv.id.jc.hotel.model.Role;
 import lv.id.jc.hotel.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
