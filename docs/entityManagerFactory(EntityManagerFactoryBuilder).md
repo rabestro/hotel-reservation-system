@@ -35,4 +35,4 @@ Room "0..*" <--> "0..1" RoomType
 RoomType  --|>  AbstractAuditable 
 User  --|>  AbstractAuditable 
 User "0..1" <--> "0..*" Reservation 
-```mermaind
+```
