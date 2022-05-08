@@ -18,7 +18,7 @@ class UserRepositorySpec extends Specification {
 
     @Sql("/users.sql")
     def 'should find a user by email'() {
-        when: 'we search a user by email'
+        when: 'we search a user by wrong_email'
         def user = userRepository.findFirstByEmailIgnoreCase(email)
 
         then: 'the user is found'
@@ -30,12 +30,24 @@ class UserRepositorySpec extends Specification {
             it.role == role
         }
 
-        where:
-        email                       | name              | role
-        'peter.mcdermott@hotel.com' | 'Peter McDermott' | User.Role.EMPLOYEE
-        'Peter.McDermott@hotel.com' | 'Peter McDermott' | User.Role.EMPLOYEE
+        where: "user data as"
+        email                       | name               | role
+        'peter.mcdermott@hotel.com' | 'Peter McDermott'  | User.Role.EMPLOYEE
+        'Peter.McDermott@hotel.com' | 'Peter McDermott'  | User.Role.EMPLOYEE
+        'marsha@guest.com'          | 'Marsha Preyscott' | User.Role.CUSTOMER
+        'MARSHA@GUEST.COM'          | 'Marsha Preyscott' | User.Role.CUSTOMER
     }
 
-    def "FindByRole"() {
+    @Sql("/users.sql")
+    def 'should return an empty object for wrong email'() {
+        when: 'we search a user by wrong email'
+        def user = userRepository.findFirstByEmailIgnoreCase(wrong_email)
+
+        then: 'the user is not found'
+        user.isEmpty()
+
+        where: 'wrong emails'
+        wrong_email << ['peter.mcdermott', 'peter@hotel.com', 'marsha@guest']
     }
+
 }

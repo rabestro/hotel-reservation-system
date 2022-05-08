@@ -15,6 +15,7 @@ import java.util.Optional;
 /**
  * A repository to manage {@link Room}s.
  *
+ * @author Jegors Čemisovs
  */
 @Repository
 @PreAuthorize("hasRole('ROLE_EMPLOYEE')")

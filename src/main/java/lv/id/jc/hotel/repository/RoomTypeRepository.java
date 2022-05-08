@@ -11,6 +11,7 @@ import java.util.Optional;
 /**
  * A repository to manage {@link RoomType} instances.
  *
+ * @author Jegors Čemisovs
  */
 @Repository
 @PreAuthorize("hasRole('ROLE_EMPLOYEE')")
