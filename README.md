@@ -1,4 +1,18 @@
 # Small Hotel Reservation System
+## Story
+
+Develop a small hotel reservation system. The application will use two types of users – hotel employees and customers.
+
+Hotel administrators should be able to:
+
+- Manage rooms – view / add / remove / edit
+- See the schedule for each room
+- See hotel availability statistics (how many rooms are free/busy) for a specified period
+
+Customers should be able to:
+
+- Check availability on the specified period
+- Make a reservation
 
 ## Model UML diagram
 
