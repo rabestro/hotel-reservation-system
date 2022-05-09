@@ -1,0 +1,98 @@
+#
+# Examples of requests to /api/rooms
+#
+# Hotel employees should be able to manage rooms:
+# – view
+# - add
+# - remove
+# - edit
+#
+
+### Logout
+GET {{host}}/logout
+
+### should reject request with no authentication
+GET {{host}}/api/rooms
+
+> test/unauthorized.js
+
+### List all rooms (with employee authentication)
+GET {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/successful.js
+
+### Room representation profile
+GET {{host}}/api/profile/rooms
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+### Search options
+GET {{host}}/api/rooms/search
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+### Add a new room
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "number": "{{room_number}}"
+}
+> test/room-add-successful.js
+
+### Search by room number
+GET {{host}}/api/rooms/search/byNumber?number={{room_number}}
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/room-find-by-number.js
+
+### Reject adding a room with duplicated room number
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "number": "{{room_number}}"
+}
+> test/conflict.js
+
+### View the added room
+GET {{host}}/api/rooms/{{last_room_id}}
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/successful.js
+
+### Edit the room
+PUT {{host}}/api/rooms/{{last_room_id}}
+Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
+Content-Type: application/json
+
+{
+  "number": "Larder"
+}
+> test/no-content.js
+
+### View the edited room
+# Retrieves a room by its id
+GET {{host}}/api/rooms/{{last_room_id}}
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/successful.js
+
+### View a user who created the room
+{{host}}/api/rooms/{{last_room_id}}/createdBy
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/successful.js
+
+### View the last user who modified the room
+{{host}}/api/rooms/{{last_room_id}}/lastModifiedBy
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/successful.js
+
+### Delete the room
+DELETE {{host}}/api/rooms/{{last_room_id}}
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/no-content.js

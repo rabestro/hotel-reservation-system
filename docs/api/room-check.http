@@ -1,0 +1,4 @@
+
+GET {{host}}/api/rooms/search/isRoomAvailableByDate?id=1&date=2022-05-09
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+

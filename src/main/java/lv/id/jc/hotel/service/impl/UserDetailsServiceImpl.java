@@ -12,7 +12,7 @@ public record UserDetailsServiceImpl(UserRepository userRepository) implements U
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository()
-                .findFirstByEmail(username)
+                .findFirstByEmailIgnoreCase(username)
                 .orElseThrow(() -> new UsernameNotFoundException("Not found: " + username));
     }
 }

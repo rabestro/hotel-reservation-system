@@ -2,6 +2,7 @@ package lv.id.jc.hotel.repository;
 
 import lv.id.jc.hotel.model.Reservation;
 import lv.id.jc.hotel.model.Room;
+import lv.id.jc.hotel.model.RoomType;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -11,6 +12,11 @@ import org.springframework.stereotype.Repository;
 import java.time.LocalDate;
 import java.util.Optional;
 
+/**
+ * A repository to manage {@link Reservation}s.
+ *
+ * @author Jegors Čemisovs
+ */
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 

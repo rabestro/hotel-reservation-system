@@ -1,0 +1,35 @@
+#
+# Examples of requests to /api/users
+#
+# Hotel administrators should be able to manage rooms:
+# – view
+# - add
+# - remove
+# - edit
+#
+
+### should forbid request with no authentication
+GET {{host}}/api/users
+
+> test/forbidden.js
+
+### should forbid request with USER authentication
+GET {{host}}/api/users
+Authorization: Basic marsha@guest.com {{marsha_pass}}
+
+> test/forbidden.js
+
+### List all users (with employee authentication)
+GET {{host}}/api/users
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/successful.js
+
+### User representation profile
+GET {{host}}/api/profile/users
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+### Search options
+GET {{host}}/api/users/search
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+

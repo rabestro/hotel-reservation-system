@@ -13,6 +13,13 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.*;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
+/**
+ * Input Limits
+
+ * bcrypt has a maximum length input length of 72 bytes for most implementations.
+ * To protect against this issue, a maximum password length of 72 bytes (or less
+ * if the implementation in use has smaller limits) should be enforced when using bcrypt.
+ */
 @Documented
 @Retention(RUNTIME)
 @Constraint(validatedBy = {})

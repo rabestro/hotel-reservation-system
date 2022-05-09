@@ -1,31 +1,34 @@
 package lv.id.jc.hotel.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.Getter;
+import lombok.Setter;
 import lombok.experimental.Accessors;
 import lv.id.jc.hotel.validator.RoomTypeName;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
-import javax.validation.constraints.NotBlank;
+import javax.persistence.*;
+import java.util.Set;
 
-@Data
-@EqualsAndHashCode(callSuper = true)
-@ToString(callSuper = true)
+@Getter
+@Setter
 @Entity
 @Accessors(chain = true)
 @EntityListeners(AuditingEntityListener.class)
-@Table(uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
+@Table(name = "ROOM_TYPE", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 public class RoomType extends AbstractAuditable<User, Long> {
-    @Column(unique = true)
     @RoomTypeName
+    @Column(unique = true, length = 40, nullable = false)
     private String name;
-    @NotBlank
+
+    @Lob
     private String description;
+
+    @OneToMany(mappedBy = "type")
+    private Set<Room> rooms;
+
+    @Override
+    public String toString() {
+        return "RoomType{name='" + name + '\'' + '}';
+    }
 }

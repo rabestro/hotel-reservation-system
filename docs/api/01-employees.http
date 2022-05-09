@@ -1,0 +1,38 @@
+### Peter McDermott (manager)
+
+POST {{host}}/api/users
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "name": "Peter McDermott",
+  "email": "peter.mcdermott@hotel.com",
+  "password": "{{peter_pass}}"
+}
+
+### Aloysius Royce
+# administrative assistant to Warren Trent
+
+POST {{host}}/api/users
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "name": "Aloysius Royce",
+  "email": "aloysius.royce@hotel.com",
+  "password": "{{royce_pass}}"
+}
+
+### Christine Francis
+# secretary to Warren Trent
+
+POST {{host}}/api/users
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "name": "Christine Francis",
+  "email": "christine.francis@hotel.com",
+  "password": "{{chris_pass}}"
+}
+
