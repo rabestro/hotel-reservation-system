@@ -8,7 +8,7 @@ import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -24,9 +24,8 @@ public class RoomType extends AbstractAuditable<User, Long> {
     @Lob
     private String description;
 
-    @OrderBy("number")
     @OneToMany(mappedBy = "type")
-    private List<Room> rooms;
+    private Set<Room> rooms;
 
     @Override
     public String toString() {

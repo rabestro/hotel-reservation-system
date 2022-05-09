@@ -7,17 +7,14 @@
 # - remove
 # - edit
 #
-### should forbid request with no authentication
+
+### Logout
+GET {{host}}/logout
+
+### should reject request with no authentication
 GET {{host}}/api/rooms
-Authorization: Basic admin@hotel.com {{admin_pass}}
 
-> test/forbidden.js
-
-### should forbid request with admin authentication
-GET {{host}}/api/rooms
-Authorization: Basic admin@hotel.com {{admin_pass}}
-
-> test/forbidden.js
+> test/unauthorized.js
 
 ### List all rooms (with employee authentication)
 GET {{host}}/api/rooms
@@ -39,10 +36,9 @@ Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
 {
-  "number": "{{room_number}}",
-  "typeId": 2
+  "number": "{{room_number}}"
 }
-> test/room-add.js
+> test/room-add-successful.js
 
 ### Search by room number
 GET {{host}}/api/rooms/search/byNumber?number={{room_number}}
@@ -56,59 +52,47 @@ Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 Content-Type: application/json
 
 {
-  "number": "{{room_number}}",
-  "typeId": 2
+  "number": "{{room_number}}"
 }
 > test/conflict.js
 
 ### View the added room
-GET {{host}}/api/rooms/{{room_id}}
+GET {{host}}/api/rooms/{{last_room_id}}
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 > test/successful.js
 
 ### Edit the room
-PUT {{host}}/api/rooms/{{room_id}}
+PUT {{host}}/api/rooms/{{last_room_id}}
 Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
 Content-Type: application/json
 
 {
-  "number": "larder",
-  "typeId": 3
-}
-> test/no-content.js
-
-### Edit a specific field of the room entity
-PATCH {{host}}/api/rooms/{{room_id}}
-Authorization: Basic aloysius.royce@hotel.com {{royce_pass}}
-Content-Type: application/json
-
-{
-  "typeId": 2
+  "number": "Larder"
 }
 > test/no-content.js
 
 ### View the edited room
 # Retrieves a room by its id
-GET {{host}}/api/rooms/{{room_id}}
+GET {{host}}/api/rooms/{{last_room_id}}
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 > test/successful.js
 
 ### View a user who created the room
-{{host}}/api/rooms/{{room_id}}/createdBy
+{{host}}/api/rooms/{{last_room_id}}/createdBy
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 > test/successful.js
 
 ### View the last user who modified the room
-{{host}}/api/rooms/{{room_id}}/lastModifiedBy
+{{host}}/api/rooms/{{last_room_id}}/lastModifiedBy
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 > test/successful.js
 
 ### Delete the room
-DELETE {{host}}/api/rooms/{{room_id}}
+DELETE {{host}}/api/rooms/{{last_room_id}}
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
 > test/no-content.js

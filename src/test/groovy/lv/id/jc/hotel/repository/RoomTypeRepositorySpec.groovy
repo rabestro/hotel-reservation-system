@@ -20,7 +20,7 @@ class RoomTypeRepositorySpec extends Specification {
         when: "we search the room type by name"
         def roomType = repository.findFirstByName(type_name)
 
-        then: "we found the roomType"
+        then: "we found the room's type"
         roomType.isPresent()
 
         and: "the room's type name as we expect"

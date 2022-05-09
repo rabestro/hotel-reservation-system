@@ -7,6 +7,7 @@
 # - remove
 # - edit
 #
+
 ### should forbid request with USER authentication
 GET {{host}}/api/roomTypes
 Authorization: Basic marsha@guest.com {{marsha_pass}}

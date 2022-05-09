@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 
@@ -22,11 +23,13 @@ import java.util.Optional;
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
     @RestResource(path = "byNumber")
-    Optional<Room> findFirstByNumber(String number);
+    Optional<Room> findByNumber(String number);
 
-    long countRoomByTypeId(Long typeId);
+    long countRoomsByType(RoomType type);
 
     @Query("SELECT COUNT(r) = 0 FROM Reservation r WHERE r.room.id = :id AND r.checkIn <= :date AND r.checkOut > :date")
-    boolean isRoomAvailableByDate(@Param("id") Long roomId, @Param("date") LocalDate date);
+    boolean isRoomAvailableByDate(
+            @Param("id") Long roomId,
+            @Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date);
 
 }

@@ -24,7 +24,7 @@ public class Room extends AbstractAuditable<User, Long> {
     private String number;
 
     @ManyToOne
-    @JoinColumn(name = "type_id", nullable = false)
+    @JoinColumn(name = "type_id")
     private RoomType type;
 
     @OrderBy("checkIn")
