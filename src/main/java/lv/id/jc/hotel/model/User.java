@@ -12,6 +12,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -44,18 +46,24 @@ public class User extends AbstractAuditable<User, Long> implements UserDetails {
     private User.Role role;
 
     @Email
-    @Column(unique = true, nullable = false)
+    @Column(unique = true, nullable = false, length = 320, columnDefinition = "varchar_ignorecase(320)")
     private String email;
 
     @JsonIgnore
-    @Column(columnDefinition = "CHAR(60)")
+    @Column(length = 60, columnDefinition = "char(60)")
     private String password;
 
-    @Column(nullable = false, columnDefinition = "BOOLEAN default TRUE")
+    @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean enabled;
 
     @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
     private Set<Reservation> reservations;
+
+    @PreUpdate
+    @PrePersist
+    private void prepare() {
+        email = email.toLowerCase();
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

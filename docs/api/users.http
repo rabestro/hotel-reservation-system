@@ -7,6 +7,8 @@
 # - remove
 # - edit
 #
+### Logout
+GET {{host}}/logout
 
 ### should forbid request with no authentication
 GET {{host}}/api/users
@@ -33,3 +35,31 @@ Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 GET {{host}}/api/users/search
 Authorization: Basic warren.trent@hotel.com {{trent_pass}}
 
+### Julius "Keycase" Milne, hotel thief
+
+POST {{host}}/api/users
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "name": "Julius Milne",
+  "email": "keycase@thief.com",
+  "password": "x5Yj0@iudTf"
+}
+
+### Julius "Keycase" Milne, hotel thief
+
+POST {{host}}/api/users
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "name": "Julius Milne",
+  "email": "KEYcase@THIEF.com",
+  "password": "x5Yj0@iudTf"
+}
+
+### delete Julius Milne
+
+DELETE {{host}}/api/users/2
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
