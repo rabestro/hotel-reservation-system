@@ -50,4 +50,5 @@ class UserRepositorySpec extends Specification {
         wrong_email << ['peter.mcdermott', 'peter@hotel.com', 'marsha@guest']
     }
 
+
 }
