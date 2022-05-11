@@ -27,6 +27,7 @@ public class AuditSecurityConfig {
                 .map(SecurityContext::getAuthentication)
                 .filter(Authentication::isAuthenticated)
                 .map(Authentication::getPrincipal)
+                .filter(User.class::isInstance)
                 .map(User.class::cast);
     }
 }

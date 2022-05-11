@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.service;
 
+import lv.id.jc.hotel.model.Reservation;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;

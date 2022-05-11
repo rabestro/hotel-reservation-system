@@ -32,4 +32,10 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             @Param("id") Long roomId,
             @Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date);
 
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_CUSTOMER')")
+    Optional<Room> findFirstFreeRoom(
+            @Param("typeId") Long typeId,
+            @Param("arrivingDate") LocalDate arrivingDate,
+            @Param("departureDate") LocalDate departureDate);
+
 }

@@ -103,5 +103,6 @@ public interface ReservationRepository extends JpaRepository<Reservation, Long> 
             @Param("typeId") Long typeId,
             @Param("arrivingDate") LocalDate arrivingDate,
             @Param("departureDate") LocalDate departureDate);
+
 }
 

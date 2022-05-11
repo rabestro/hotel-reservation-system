@@ -44,8 +44,20 @@ POST {{host}}/register
 Content-Type: application/json
 
 {
-  "name": "ogilvie",
+  "name": "Ogilvie",
   "email": "Ogilvie@guest.com",
   "password": "Pa55w@Rd"
+}
+
+### Marsha Preyscott
+
+POST {{host}}/register
+Content-Type: application/json
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+
+{
+  "name": "Marsha Preyscott",
+  "email": "marsha@GUEST.com",
+  "password": "MarPrey!09"
 }
 

@@ -28,23 +28,20 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .mvcMatchers("/employee")
-                .hasAnyRole(User.Role.EMPLOYEE.name())
-
                 .mvcMatchers("/api/**", "/schedule", "/statistics")
                 .hasRole(User.Role.EMPLOYEE.name())
 
                 .mvcMatchers(HttpMethod.GET, "/check/type")
                 .hasAnyRole(User.Role.EMPLOYEE.name(), User.Role.CUSTOMER.name())
 
-                .mvcMatchers(HttpMethod.POST, "/register", "/api")
+                .mvcMatchers("/employee")
+                .hasAnyRole(User.Role.EMPLOYEE.name())
+
+                .mvcMatchers(HttpMethod.POST, "/register")
                 .permitAll()
 
-                .mvcMatchers(HttpMethod.POST, "/reservation")
+                .mvcMatchers(HttpMethod.POST, "/book")
                 .hasAnyRole(User.Role.EMPLOYEE.name(), User.Role.CUSTOMER.name())
-
-                .mvcMatchers(HttpMethod.GET, "/reservation/check")
-                .hasRole(User.Role.EMPLOYEE.name())
 
                 .mvcMatchers(HttpMethod.GET, "/check")
                 .hasRole(User.Role.EMPLOYEE.name())

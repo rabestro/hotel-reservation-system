@@ -1,0 +1,58 @@
+#
+
+POST {{host}}/reservation
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "typeId": {{SingleRoom}},
+  "checkIn": "2022-05-11",
+  "checkOut": "2022-05-16"
+}
+
+###
+
+POST {{host}}/reservation
+Authorization: Basic curtis@guest.com Chain&O57
+Content-Type: application/json
+
+{
+  "typeId": {{SingleRoom}},
+  "checkIn": "2022-05-23",
+  "checkOut": "2022-05-24"
+}
+
+###
+
+POST {{host}}/reservation
+Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
+Content-Type: application/json
+
+{
+  "typeId": {{SingleRoom}},
+  "checkIn": "2022-08-11",
+  "checkOut": "2022-08-14"
+}
+###
+
+POST {{host}}/reservation
+Authorization: Basic curtis@guest.com Chain&O57
+Content-Type: application/json
+
+{
+  "typeId": {{DeluxeDoubleRoom}},
+  "checkIn": "2022-08-09",
+  "checkOut": "2022-08-11"
+}
+
+###
+
+POST {{host}}/reservation
+Authorization: Basic ogilvie@guest.com Pa55w@Rd
+Content-Type: application/json
+
+{
+  "typeId": {{DeluxeDoubleRoom}},
+  "checkIn": "2022-05-11",
+  "checkOut": "2022-05-23"
+}
