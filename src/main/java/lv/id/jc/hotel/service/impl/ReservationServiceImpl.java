@@ -30,17 +30,17 @@ public class ReservationServiceImpl implements ReservationService {
     public ReservationDetails book(UserDetails userDetails, BookingRequest request) {
         var guest = userRepository.findFirstByEmailIgnoreCase(userDetails.getUsername())
                 .orElseThrow();
-        var room = roomRepository.findFirstFreeRoom(request.typeId(), request.checkIn(), request.checkOut())
-                .orElseThrow();
+
+        var room = roomRepository
+                .findAvailableRooms(request.typeId(), request.checkIn(), request.checkOut())
+                .stream().findFirst().orElseThrow();
 
         var reservation = new Reservation();
         reservation.setGuest(guest);
         reservation.setRoom(room);
         reservation.setCheckIn(request.checkIn());
         reservation.setCheckOut(request.checkOut());
-        reservation = reservationRepository.save(reservation);
-
-        return new ReservationDetails(reservation);
+        return new ReservationDetails(reservationRepository.save(reservation));
     }
 
     @Override

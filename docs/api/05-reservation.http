@@ -56,3 +56,39 @@ Content-Type: application/json
   "checkIn": "2022-05-11",
   "checkOut": "2022-05-23"
 }
+
+### (1) Double Room reservation
+
+POST {{host}}/reservation
+Authorization: Basic Ogilvie@guest.com Pa55w@Rd
+Content-Type: application/json
+
+{
+  "typeId": {{DoubleRoom}},
+  "checkIn": "2022-05-11",
+  "checkOut": "2022-05-13"
+}
+
+### (2) Double Room reservation
+
+POST {{host}}/reservation
+Authorization: Basic curtis@guest.com Chain&O57
+Content-Type: application/json
+
+{
+  "typeId": {{DoubleRoom}},
+  "checkIn": "2022-05-11",
+  "checkOut": "2022-05-13"
+}
+
+### (3) Double Room reservation
+
+POST {{host}}/reservation
+Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
+Content-Type: application/json
+
+{
+  "typeId": {{DoubleRoom}},
+  "checkIn": "2022-05-11",
+  "checkOut": "2022-05-13"
+}
