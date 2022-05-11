@@ -25,34 +25,20 @@ import java.util.Set;
 public class User extends AbstractAuditable<User, Long> implements UserDetails {
     @Serial
     private static final long serialVersionUID = 1L;
-
-    public enum Role {
-        EMPLOYEE, CUSTOMER;
-
-        GrantedAuthority authority() {
-            return new SimpleGrantedAuthority("ROLE_" + name());
-        }
-    }
-
     @NotBlank
     @Column(nullable = false)
     private String name;
-
     @NotNull
     @Column(nullable = false)
     private User.Role role;
-
     @Email
     @Column(unique = true, nullable = false, length = 320, columnDefinition = "varchar_ignorecase(320)")
     private String email;
-
     @JsonIgnore
     @Column(length = 60, columnDefinition = "char(60)")
     private String password;
-
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean enabled;
-
     @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
     private Set<Reservation> reservations;
 
@@ -87,12 +73,20 @@ public class User extends AbstractAuditable<User, Long> implements UserDetails {
         return true;
     }
 
+    @Override
+    public boolean isEnabled() {
+        return enabled;
+    }
+
     public void setEnabled(boolean enabled) {
         this.enabled = enabled;
     }
 
-    @Override
-    public boolean isEnabled() {
-        return enabled;
+    public enum Role {
+        EMPLOYEE, CUSTOMER;
+
+        GrantedAuthority authority() {
+            return new SimpleGrantedAuthority("ROLE_" + name());
+        }
     }
 }

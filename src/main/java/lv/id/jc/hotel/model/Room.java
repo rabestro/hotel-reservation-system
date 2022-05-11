@@ -1,9 +1,7 @@
 package lv.id.jc.hotel.model;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import lv.id.jc.hotel.validator.RoomNumber;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
