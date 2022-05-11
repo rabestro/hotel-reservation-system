@@ -25,6 +25,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
+@EntityListeners(AuditingEntityListener.class)
 public class User extends AbstractAuditable<User, Long> implements UserDetails {
     @Serial
     private static final long serialVersionUID = 1L;
