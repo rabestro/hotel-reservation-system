@@ -3,7 +3,6 @@ package lv.id.jc.hotel.model;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.Accessors;
 import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
@@ -18,7 +17,6 @@ import java.time.LocalDate;
 
 @Getter
 @Setter
-@Accessors(chain = true)
 @ToString(callSuper = true)
 @Entity
 @EntityListeners(AuditingEntityListener.class)

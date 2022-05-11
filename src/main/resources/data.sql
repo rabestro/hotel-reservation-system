@@ -1,4 +1,4 @@
-create table USER
+create table if not exists USER
 (
     ID                  BIGINT               not null
         primary key,
@@ -19,4 +19,5 @@ create table USER
         foreign key (ID) references USER (ID)
 );
 
-INSERT INTO PUBLIC.USER (ID, CREATED_DATE, LAST_MODIFIED_DATE, EMAIL, ENABLED, NAME, PASSWORD, ROLE, CREATED_BY_ID, LAST_MODIFIED_BY_ID) VALUES (1, null, null, 'warren.trent@hotel.com', true, 'Warren Trent', '$2a$10$9dqIWWz9ztrPdCuj2Yyjwu/IVTHj1BDrAuJ8IecXrHZPLBit0nMGS', 0, null, null);
+
+MERGE INTO PUBLIC.USER (ID, CREATED_DATE, LAST_MODIFIED_DATE, EMAIL, ENABLED, NAME, PASSWORD, ROLE, CREATED_BY_ID, LAST_MODIFIED_BY_ID) KEY(ID) VALUES (1, null, null, 'warren.trent@hotel.com', true, 'Warren Trent', '$2a$10$9dqIWWz9ztrPdCuj2Yyjwu/IVTHj1BDrAuJ8IecXrHZPLBit0nMGS', 0, null, null);

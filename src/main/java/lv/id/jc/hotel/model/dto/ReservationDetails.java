@@ -4,7 +4,7 @@ import lv.id.jc.hotel.model.Reservation;
 
 import java.time.LocalDate;
 
-public record ReservationDetails(Long id, String guest, String email,
+public record ReservationDetails(Long reservationId, String guest, String email,
                                  String room, String type, String description,
                                  LocalDate checkIn, LocalDate checkOut) {
     public ReservationDetails(Reservation reservation) {

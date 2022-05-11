@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RestResource;
+import org.springframework.data.util.Streamable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
@@ -31,5 +32,11 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     boolean isRoomAvailableByDate(
             @Param("id") Long roomId,
             @Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date);
+
+    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_CUSTOMER')")
+    Streamable<Room> findAvailableRooms(
+            @Param("typeId") Long typeId,
+            @Param("arrivingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivingDate,
+            @Param("departureDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate);
 
 }
