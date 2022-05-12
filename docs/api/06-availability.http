@@ -1,0 +1,9 @@
+### Checks the availability of a certain type of hotel room for a given period of time
+
+GET {{host}}/availability
+Content-Type: application/json
+
+{
+  "checkIn": "2022-11-01",
+  "checkOut": "2022-12-01"
+}

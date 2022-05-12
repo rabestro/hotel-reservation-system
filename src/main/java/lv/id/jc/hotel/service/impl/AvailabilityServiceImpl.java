@@ -1,14 +1,12 @@
 package lv.id.jc.hotel.service.impl;
 
-import lv.id.jc.hotel.model.dto.BookingRequest;
-import lv.id.jc.hotel.model.dto.RoomResponse;
-import lv.id.jc.hotel.repository.ReservationRepository;
-import lv.id.jc.hotel.repository.RoomRepository;
+import lv.id.jc.hotel.model.dto.AvailabilityRequest;
+import lv.id.jc.hotel.model.dto.AvailabilityResponse;
+import lv.id.jc.hotel.repository.RoomTypeRepository;
 import lv.id.jc.hotel.service.AvailabilityService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -16,25 +14,12 @@ import java.util.List;
 public class AvailabilityServiceImpl implements AvailabilityService {
 
     @Autowired
-    ReservationRepository repository;
-    @Autowired
-    RoomRepository roomRepository;
+    RoomTypeRepository roomTypeRepository;
+
 
     @Override
-    public boolean isRoomTypeAvailable(BookingRequest request) {
-        return repository.isRoomTypeAvailable(request.typeId(), request.checkIn(), request.checkOut());
+    public List<AvailabilityResponse> getAvailability(AvailabilityRequest request) {
+        return roomTypeRepository.getAvailability(request.checkIn(), request.checkOut());
     }
 
-    @Override
-    public boolean isRoomAvailable(Long roomId, LocalDate arrivingDate, LocalDate departureDate) {
-        return repository.isRoomAvailable(roomId, arrivingDate, departureDate);
-    }
-
-    @Override
-    public List<RoomResponse> findAvailableRooms(BookingRequest request) {
-        return roomRepository
-                .findAvailableRooms(request.typeId(), request.checkIn(), request.checkOut())
-                .map(RoomResponse::new)
-                .toList();
-    }
 }

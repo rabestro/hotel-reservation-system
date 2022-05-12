@@ -88,7 +88,7 @@ Authorization: Basic albert.wells@guest.com ag1ngH0T@Lguest
 Content-Type: application/json
 
 {
-  "typeId": {{DoubleRoom}},
-  "checkIn": "2022-05-11",
-  "checkOut": "2022-05-13"
+  "typeId": 4,
+  "checkIn": "2022-07-11",
+  "checkOut": "2022-07-13"
 }
