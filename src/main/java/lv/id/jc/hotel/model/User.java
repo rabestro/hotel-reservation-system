@@ -14,6 +14,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -22,9 +23,10 @@ import java.util.Set;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class User extends AbstractAuditable<User, Long> implements UserDetails {
+public class User extends AbstractAuditable<User, Long> implements UserDetails, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
     @NotBlank
     @Column(nullable = false)
     private String name;
