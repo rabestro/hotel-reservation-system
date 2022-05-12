@@ -7,6 +7,8 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Title
 
+import java.time.LocalDate
+
 @DataJpaTest
 @Title("Room's type repository")
 class RoomTypeRepositorySpec extends Specification {
@@ -40,6 +42,31 @@ class RoomTypeRepositorySpec extends Specification {
 
         where: "the type names doesn't presented in the database"
         type_name << ['Single', 'Triple Room', 'Deluxe Single Room']
+    }
+
+    @Sql("/rooms.sql")
+    def "should return rooms availability on the specified period"() {
+        when: "we request rooms availability for a period"
+        def result = repository.getAvailability checkIn, checkOut
+
+        result.forEach({ println it })
+
+        then: "the query processed successfully and we got a result"
+        result
+
+        and: 'we got ids for available room types'
+        result*.typeId() == availableTypes
+
+        and: 'we got the number of free rooms of each type'
+        result*.availableRooms() == availableRooms
+
+        where:
+        arrivingDate | departurDate | availableTypes | availableRooms
+        '2022-05-22' | '2022-05-26' | [1, 2, 3]      | [3, 3, 2]
+
+        and:
+        checkIn = LocalDate.parse arrivingDate
+        checkOut = LocalDate.parse departurDate
     }
 
 }
