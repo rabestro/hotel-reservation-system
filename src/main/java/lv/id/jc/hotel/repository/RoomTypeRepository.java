@@ -28,6 +28,7 @@ public interface RoomTypeRepository extends JpaRepository<RoomType, Long> {
      * @param departureDate a guest departure date
      * @return list of available room types with number of free rooms for the given period
      */
+    @RestResource(exported = false)
     List<AvailabilityResponse> getAvailability(@Param("arrivalDate") LocalDate arrivalDate,
                                                @Param("departureDate") LocalDate departureDate);
 

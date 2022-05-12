@@ -1,5 +1,0 @@
-### List all employees with admin authentication
-
-GET {{host}}/employee
-Authorization: Basic admin@hotel.com {{admin_pass}}
-

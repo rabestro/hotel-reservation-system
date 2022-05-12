@@ -9,12 +9,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-
 public record AvailabilityServiceImpl(RoomTypeRepository roomTypeRepository) implements AvailabilityService {
 
     @Override
     public List<AvailabilityResponse> getAvailability(AvailabilityRequest request) {
         return roomTypeRepository.getAvailability(request.checkIn(), request.checkOut());
     }
-
 }

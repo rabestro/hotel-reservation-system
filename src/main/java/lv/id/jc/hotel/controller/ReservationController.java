@@ -21,10 +21,8 @@ public class ReservationController {
     ReservationService reservationService;
 
     @PostMapping
-    @Secured("ROLE_CUSTOMER")
     public ReservationDetails book(@AuthenticationPrincipal UserDetails userDetails,
                                    @RequestBody @Valid BookingRequest bookingRequest) {
-
         return reservationService.book(userDetails, bookingRequest);
     }
 

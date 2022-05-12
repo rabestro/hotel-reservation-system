@@ -36,7 +36,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_CUSTOMER')")
     Streamable<Room> findAvailableRooms(
             @Param("typeId") Long typeId,
-            @Param("arrivingDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivingDate,
+            @Param("arrivalDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivalDate,
             @Param("departureDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate);
 
 }
