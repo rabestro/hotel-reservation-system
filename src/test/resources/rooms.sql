@@ -11,3 +11,15 @@ INSERT INTO ROOM (ID, NUMBER, TYPE_ID) VALUES (6, '301', 1);
 INSERT INTO ROOM (ID, NUMBER, TYPE_ID) VALUES (7, '302', 1);
 INSERT INTO ROOM (ID, NUMBER, TYPE_ID) VALUES (8, '303', 3);
 
+-- Peter McDermott, manager
+INSERT INTO USER (ID, NAME, EMAIL, ROLE) VALUES (2, 'Peter McDermott', 'peter.mcdermott@hotel.com', 0);
+
+-- Marsha Preyscott, guest in the hotel
+INSERT INTO USER (ID, NAME, EMAIL, ROLE) VALUES (3, 'Marsha Preyscott', 'marsha@guest.com', 1);
+
+-- Albert Wells, aging hotel guest
+INSERT INTO USER (ID, NAME, EMAIL, ROLE) VALUES (4, 'Albert Wells', 'albert@guest.com', 1);
+
+INSERT INTO RESERVATION (ID, CHECK_IN, CHECK_OUT, GUEST_ID, ROOM_ID) VALUES (1, '2022-06-01', '2022-06-07', 2, 1);
+INSERT INTO RESERVATION (ID, CHECK_IN, CHECK_OUT, GUEST_ID, ROOM_ID) VALUES (2, '2022-06-03', '2022-06-09', 3, 6);
+INSERT INTO RESERVATION (ID, CHECK_IN, CHECK_OUT, GUEST_ID, ROOM_ID) VALUES (3, '2022-06-05', '2022-06-09', 4, 7);

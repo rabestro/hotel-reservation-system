@@ -7,6 +7,8 @@ import org.springframework.data.jpa.domain.AbstractAuditable;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 
 @Getter
@@ -15,7 +17,9 @@ import java.util.List;
 @EntityListeners(AuditingEntityListener.class)
 //@EqualsAndHashCode(callSuper = true)
 @Table(name = "ROOM", uniqueConstraints = @UniqueConstraint(columnNames = "NUMBER"))
-public class Room extends AbstractAuditable<User, Long> {
+public class Room extends AbstractAuditable<User, Long> implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     @RoomNumber
     @Column(unique = true, length = 20, nullable = false)

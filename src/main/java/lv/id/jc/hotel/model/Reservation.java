@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.FutureOrPresent;
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 
 @Getter
@@ -20,7 +22,10 @@ import java.time.LocalDate;
 @ToString(callSuper = true)
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Reservation extends AbstractAuditable<User, Long> {
+public class Reservation extends AbstractAuditable<User, Long> implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;

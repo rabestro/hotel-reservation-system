@@ -2,7 +2,6 @@ package lv.id.jc.hotel.config;
 
 import lv.id.jc.hotel.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -31,20 +30,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/api/**", "/schedule", "/statistics")
                 .hasRole(User.Role.EMPLOYEE.name())
 
-                .mvcMatchers(HttpMethod.GET, "/check/type")
-                .hasAnyRole(User.Role.EMPLOYEE.name(), User.Role.CUSTOMER.name())
+                .mvcMatchers("/reservation")
+                .hasRole(User.Role.CUSTOMER.name())
 
-                .mvcMatchers("/employee")
-                .hasAnyRole(User.Role.EMPLOYEE.name())
-
-                .mvcMatchers(HttpMethod.POST, "/register")
+                .mvcMatchers("/availability", "/register")
                 .permitAll()
-
-                .mvcMatchers(HttpMethod.POST, "/book")
-                .hasAnyRole(User.Role.EMPLOYEE.name(), User.Role.CUSTOMER.name())
-
-                .mvcMatchers(HttpMethod.GET, "/check")
-                .hasRole(User.Role.EMPLOYEE.name())
 
                 .mvcMatchers("/", "/public", "/hello").permitAll()
                 .anyRequest().authenticated()
