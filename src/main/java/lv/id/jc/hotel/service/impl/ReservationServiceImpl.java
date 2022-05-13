@@ -1,7 +1,6 @@
 package lv.id.jc.hotel.service.impl;
 
 import lv.id.jc.hotel.model.Reservation;
-import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
 import lv.id.jc.hotel.repository.ReservationRepository;
@@ -13,17 +12,14 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.LocalDate;
-import java.util.List;
-
 @Service
 public class ReservationServiceImpl implements ReservationService {
     @Autowired
     UserRepository userRepository;
     @Autowired
-    ReservationRepository reservationRepository;
-    @Autowired
     RoomRepository roomRepository;
+    @Autowired
+    ReservationRepository reservationRepository;
 
     @Override
     @Transactional
@@ -41,32 +37,6 @@ public class ReservationServiceImpl implements ReservationService {
         reservation.setCheckIn(request.checkIn());
         reservation.setCheckOut(request.checkOut());
         return new ReservationDetails(reservationRepository.save(reservation));
-    }
-
-    @Override
-    public boolean isRoomBooked(Long roomId, LocalDate date) {
-        return reservationRepository.existsReservationByRoomAndDate(roomId, date);
-    }
-
-    @Override
-    public boolean isRoomAvailable(Long roomId, LocalDate date) {
-
-        return reservationRepository.isRoomAvailableByDate(roomId, date);
-    }
-
-    @Override
-    public List<ReservationDetails> findAllReservations(User guest) {
-        throw new UnsupportedOperationException("This operation has not yet been implemented");
-    }
-
-    @Override
-    public List<ReservationDetails> findActualReservations(User guest) {
-        throw new UnsupportedOperationException("This operation has not yet been implemented");
-    }
-
-    @Override
-    public List<ReservationDetails> findPastReservations(User guest) {
-        throw new UnsupportedOperationException("This operation has not yet been implemented");
     }
 
 }

@@ -11,6 +11,7 @@ import java.time.temporal.ChronoUnit
 @DataJpaTest
 @Title("Room's Repository")
 class RoomRepositorySpec extends Specification {
+
     @Subject
     @Autowired
     RoomRepository roomRepository

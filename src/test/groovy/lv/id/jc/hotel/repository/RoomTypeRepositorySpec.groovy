@@ -13,6 +13,7 @@ import java.time.LocalDate
 @DataJpaTest
 @Title("Room type repository")
 class RoomTypeRepositorySpec extends Specification {
+
     @Subject
     @Autowired
     RoomTypeRepository repository

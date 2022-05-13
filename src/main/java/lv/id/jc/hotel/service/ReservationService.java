@@ -1,42 +1,21 @@
 package lv.id.jc.hotel.service;
 
-import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import java.time.LocalDate;
-import java.util.List;
-
+/**
+ * Hotel reservation service for registered customers
+ */
 public interface ReservationService {
+
+    /**
+     * Room reservation
+     *
+     * @param userDetails    details of a registered customer
+     * @param bookingRequest details of booking request
+     * @return confirmation of hotel room reservation
+     */
     ReservationDetails book(UserDetails userDetails, BookingRequest bookingRequest);
-
-    boolean isRoomBooked(Long roomId, LocalDate date);
-
-    boolean isRoomAvailable(Long roomId, LocalDate date);
-
-    /**
-     * Find all reservations for the given user
-     *
-     * @param guest a guest for whom the reservation is made
-     * @return all reservation for the given guest
-     */
-    List<ReservationDetails> findAllReservations(User guest);
-
-    /**
-     * Find all actual reservations for the given user
-     *
-     * @param guest a guest for whom the reservation is made
-     * @return all actual reservations for the given guest
-     */
-    List<ReservationDetails> findActualReservations(User guest);
-
-    /**
-     * Find all past reservations for the given user
-     *
-     * @param guest a guest for whom the reservation is made
-     * @return past reservations for the given guest
-     */
-    List<ReservationDetails> findPastReservations(User guest);
 
 }
