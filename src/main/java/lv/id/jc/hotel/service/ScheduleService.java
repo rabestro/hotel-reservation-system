@@ -5,6 +5,9 @@ import lv.id.jc.hotel.model.projection.BookingInfo;
 
 import java.util.List;
 
+/**
+ * Service for preparing schedule for hotel rooms
+ */
 public interface ScheduleService {
     /**
      * Get a schedule for a room for a period of time.
