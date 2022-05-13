@@ -2,16 +2,17 @@ package lv.id.jc.hotel.repository;
 
 import lv.id.jc.hotel.model.Room;
 import lv.id.jc.hotel.model.RoomType;
+import lv.id.jc.hotel.model.projection.Schedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.data.util.Streamable;
 import org.springframework.format.annotation.DateTimeFormat;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -20,7 +21,6 @@ import java.util.Optional;
  * @author Jegors Čemisovs
  */
 @Repository
-@PreAuthorize("hasRole('ROLE_EMPLOYEE')")
 public interface RoomRepository extends JpaRepository<Room, Long> {
 
     @RestResource(path = "byNumber")
@@ -33,10 +33,16 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             @Param("id") Long roomId,
             @Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date);
 
-    @PreAuthorize("hasAnyRole('ROLE_EMPLOYEE', 'ROLE_CUSTOMER')")
     Streamable<Room> findAvailableRooms(
             @Param("typeId") Long typeId,
             @Param("arrivalDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivalDate,
             @Param("departureDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate);
+
+    @Query(nativeQuery = true)
+    List<Schedule> getSchedule(
+            @Param("roomId") Long roomId,
+            @Param("startDate") LocalDate startDate,
+            @Param("endDate") LocalDate endDate);
+
 
 }

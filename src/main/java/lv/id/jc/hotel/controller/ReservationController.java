@@ -4,7 +4,6 @@ import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
 import lv.id.jc.hotel.service.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;

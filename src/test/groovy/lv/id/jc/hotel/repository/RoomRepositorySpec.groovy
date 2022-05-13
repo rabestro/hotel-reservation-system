@@ -36,4 +36,24 @@ class RoomRepositorySpec extends Specification {
         checkIn = LocalDate.parse(arrivingDate)
         checkOut = LocalDate.parse(departureDate)
     }
+
+    @Sql("/rooms.sql")
+    def "should get room's schedule"() {
+        when:
+        def schedule = roomRepository.getSchedule(room, checkIn, checkOut)
+
+        schedule.each { println it.getName() }
+
+        then:
+        schedule*.getName() == name
+
+        where:
+        room | arrivingDate | departureDate | name
+        1    | '2022-05-30' | '2022-06-02'  | [null, null, 'Peter McDermott', 'Peter McDermott']
+
+        and:
+        checkIn = LocalDate.parse(arrivingDate)
+        checkOut = LocalDate.parse(departureDate)
+    }
+
 }
