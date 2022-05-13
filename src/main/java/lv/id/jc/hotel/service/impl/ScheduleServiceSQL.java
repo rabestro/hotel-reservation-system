@@ -1,7 +1,7 @@
 package lv.id.jc.hotel.service.impl;
 
 import lv.id.jc.hotel.model.dto.ScheduleRequest;
-import lv.id.jc.hotel.model.projection.Schedule;
+import lv.id.jc.hotel.model.projection.BookingInfo;
 import lv.id.jc.hotel.repository.RoomRepository;
 import lv.id.jc.hotel.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +21,7 @@ public class ScheduleServiceSQL implements ScheduleService {
     RoomRepository roomRepository;
 
     @Override
-    public List<Schedule> getSchedule(ScheduleRequest request) {
+    public List<BookingInfo> getSchedule(ScheduleRequest request) {
         return roomRepository.getSchedule(request.roomId(), request.startDate(), request.endDate());
     }
 }

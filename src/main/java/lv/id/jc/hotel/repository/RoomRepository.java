@@ -1,8 +1,7 @@
 package lv.id.jc.hotel.repository;
 
 import lv.id.jc.hotel.model.Room;
-import lv.id.jc.hotel.model.RoomType;
-import lv.id.jc.hotel.model.projection.Schedule;
+import lv.id.jc.hotel.model.projection.BookingInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -46,7 +45,7 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
      */
     @Query(nativeQuery = true)
     @RestResource(exported = false)
-    List<Schedule> getSchedule(
+    List<BookingInfo> getSchedule(
             @Param("roomId") Long roomId,
             @Param("startDate") LocalDate startDate,
             @Param("endDate") LocalDate endDate);

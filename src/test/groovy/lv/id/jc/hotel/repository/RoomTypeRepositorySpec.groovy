@@ -3,6 +3,7 @@ package lv.id.jc.hotel.repository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.jdbc.Sql
+import spock.lang.Issue
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Title
@@ -12,7 +13,6 @@ import java.time.LocalDate
 @DataJpaTest
 @Title("Room type repository")
 class RoomTypeRepositorySpec extends Specification {
-
     @Subject
     @Autowired
     RoomTypeRepository repository
@@ -44,12 +44,11 @@ class RoomTypeRepositorySpec extends Specification {
         type_name << ['Single', 'Triple Room', 'Deluxe Single Room']
     }
 
-    @Sql("/rooms.sql")
+    @Issue('36')
+    @Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
     def "should return rooms availability during the specified period"() {
         when: "we request rooms availability for a period"
         def result = repository.getAvailability checkIn, checkOut
-
-        result.forEach({ println it })
 
         then: "the query is processed successfully and we get a non-empty result"
         result

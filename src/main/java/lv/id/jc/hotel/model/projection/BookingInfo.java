@@ -4,8 +4,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 
 import java.time.LocalDate;
 
+/**
+ * Booking information for a hotel room per day
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
-public interface Schedule {
+public interface BookingInfo {
     LocalDate getDate();
 
     Long getBookId();

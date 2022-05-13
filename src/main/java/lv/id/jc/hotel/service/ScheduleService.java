@@ -1,7 +1,7 @@
 package lv.id.jc.hotel.service;
 
 import lv.id.jc.hotel.model.dto.ScheduleRequest;
-import lv.id.jc.hotel.model.projection.Schedule;
+import lv.id.jc.hotel.model.projection.BookingInfo;
 
 import java.util.List;
 
@@ -12,5 +12,5 @@ public interface ScheduleService {
      * @param request a schedule request
      * @return a schedule for the given room and the given period
      */
-    List<Schedule> getSchedule(ScheduleRequest request);
+    List<BookingInfo> getSchedule(ScheduleRequest request);
 }

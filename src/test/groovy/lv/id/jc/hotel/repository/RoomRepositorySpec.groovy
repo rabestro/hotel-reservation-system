@@ -3,11 +3,7 @@ package lv.id.jc.hotel.repository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.jdbc.Sql
-import spock.lang.Issue
-import spock.lang.Specification
-import spock.lang.Subject
-import spock.lang.Title
-import spock.lang.Unroll
+import spock.lang.*
 
 import java.time.LocalDate
 import java.time.temporal.ChronoUnit
@@ -19,8 +15,8 @@ class RoomRepositorySpec extends Specification {
     @Autowired
     RoomRepository roomRepository
 
-    @Sql("/rooms.sql")
     @Unroll("#checkIn - #checkOut (#type) = #numbers")
+    @Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
     def 'should find available rooms'() {
         when:
         def rooms = roomRepository.findAvailableRooms(type, checkIn, checkOut) as List
@@ -40,7 +36,7 @@ class RoomRepositorySpec extends Specification {
     }
 
     @Issue('21')
-    @Sql('/rooms.sql')
+    @Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
     def "should get room's schedule"() {
         when: 'we calculate the timetable for a hotel room'
         def schedule = roomRepository.getSchedule(room, startDate, endDate)
