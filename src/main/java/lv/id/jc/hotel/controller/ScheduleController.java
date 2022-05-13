@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Hotel administrators should be able to:
+ * - See the schedule for each room
+ */
 @RestController
 @RequestMapping("/schedule")
 public class ScheduleController {

@@ -26,8 +26,6 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     @RestResource(path = "byNumber")
     Optional<Room> findByNumber(String number);
 
-    long countRoomsByType(RoomType type);
-
     @Query("SELECT COUNT(r) = 0 FROM Reservation r WHERE r.room.id = :id AND r.checkIn <= :date AND r.checkOut > :date")
     boolean isRoomAvailableByDate(
             @Param("id") Long roomId,
@@ -38,7 +36,16 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             @Param("arrivalDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivalDate,
             @Param("departureDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate departureDate);
 
+    /**
+     * This method calculates the timetable for a hotel room.
+     *
+     * @param roomId hotel room ID
+     * @param startDate schedule start date
+     * @param endDate last date of the schedule
+     * @return timetable for the hotel room
+     */
     @Query(nativeQuery = true)
+    @RestResource(exported = false)
     List<Schedule> getSchedule(
             @Param("roomId") Long roomId,
             @Param("startDate") LocalDate startDate,

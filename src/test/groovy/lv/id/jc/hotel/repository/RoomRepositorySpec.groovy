@@ -3,12 +3,14 @@ package lv.id.jc.hotel.repository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.jdbc.Sql
+import spock.lang.Issue
 import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Title
 import spock.lang.Unroll
 
 import java.time.LocalDate
+import java.time.temporal.ChronoUnit
 
 @DataJpaTest
 @Title("Room's Repository")
@@ -37,23 +39,33 @@ class RoomRepositorySpec extends Specification {
         checkOut = LocalDate.parse(departureDate)
     }
 
-    @Sql("/rooms.sql")
+    @Issue('21')
+    @Sql('/rooms.sql')
     def "should get room's schedule"() {
-        when:
-        def schedule = roomRepository.getSchedule(room, checkIn, checkOut)
+        when: 'we calculate the timetable for a hotel room'
+        def schedule = roomRepository.getSchedule(room, startDate, endDate)
 
-        schedule.each { println it.getName() }
+        then: 'we get the schedule for all days including the last one'
+        schedule.size() == 1 + ChronoUnit.DAYS.between(startDate, endDate) as int
 
-        then:
+        and: 'we get correct reservation ids'
+        schedule*.getBookId() == bookId as List<Long>
+
+        and: 'for each day we get the name of the guest'
         schedule*.getName() == name
 
         where:
-        room | arrivingDate | departureDate | name
-        1    | '2022-05-30' | '2022-06-02'  | [null, null, 'Peter McDermott', 'Peter McDermott']
+        room | start        | end          | bookId
+        1    | '2022-05-30' | '2022-06-02' | [null, null, 1, 1]
+        2    | '2022-07-01' | '2022-07-05' | [4, 4, 5, null, 6]
+        __
+        _ | name
+        _ | [null, null, 'Peter McDermott', 'Peter McDermott']
+        _ | ['Peter McDermott', 'Peter McDermott', 'Marsha Preyscott', null, 'Albert Wells']
 
         and:
-        checkIn = LocalDate.parse(arrivingDate)
-        checkOut = LocalDate.parse(departureDate)
+        startDate = LocalDate.parse(start)
+        endDate = LocalDate.parse(end)
     }
 
 }
