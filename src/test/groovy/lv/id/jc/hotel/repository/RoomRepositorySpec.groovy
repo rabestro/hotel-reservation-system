@@ -10,6 +10,7 @@ import java.time.temporal.ChronoUnit
 
 @DataJpaTest
 @Title("Room's Repository")
+@Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
 class RoomRepositorySpec extends Specification {
 
     @Subject
@@ -17,7 +18,6 @@ class RoomRepositorySpec extends Specification {
     RoomRepository roomRepository
 
     @Unroll("#checkIn - #checkOut (#type) = #numbers")
-    @Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
     def 'should find available rooms'() {
         when:
         def rooms = roomRepository.findAvailableRooms(type, checkIn, checkOut) as List
@@ -37,7 +37,6 @@ class RoomRepositorySpec extends Specification {
     }
 
     @Issue('21')
-    @Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
     def "should get room's schedule"() {
         when: 'we calculate the timetable for a hotel room'
         def schedule = roomRepository.getSchedule(room, startDate, endDate)

@@ -9,6 +9,7 @@ import spock.lang.Subject
 import spock.lang.Title
 
 @DataJpaTest
+@Sql("/users.sql")
 @Title("User's repository")
 class UserRepositorySpec extends Specification {
 
@@ -16,7 +17,6 @@ class UserRepositorySpec extends Specification {
     @Autowired
     UserRepository userRepository
 
-    @Sql("/users.sql")
     def 'should find a user by email'() {
         when: 'we search a user by wrong_email'
         def user = userRepository.findFirstByEmailIgnoreCase(email)
@@ -38,7 +38,6 @@ class UserRepositorySpec extends Specification {
         'MARSHA@GUEST.COM'          | 'Marsha Preyscott' | User.Role.CUSTOMER
     }
 
-    @Sql("/users.sql")
     def 'should return an empty object for wrong email'() {
         when: 'we search a user by wrong email'
         def user = userRepository.findFirstByEmailIgnoreCase(wrong_email)
@@ -49,6 +48,5 @@ class UserRepositorySpec extends Specification {
         where: 'wrong emails'
         wrong_email << ['peter.mcdermott', 'peter@hotel.com', 'marsha@guest']
     }
-
 
 }

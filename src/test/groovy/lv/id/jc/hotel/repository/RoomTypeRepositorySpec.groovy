@@ -3,6 +3,7 @@ package lv.id.jc.hotel.repository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
 import org.springframework.test.context.jdbc.Sql
+import org.springframework.test.context.jdbc.SqlMergeMode
 import spock.lang.Issue
 import spock.lang.Specification
 import spock.lang.Subject
@@ -11,6 +12,7 @@ import spock.lang.Title
 import java.time.LocalDate
 
 @DataJpaTest
+@Sql("/types.sql")
 @Title("Room type repository")
 class RoomTypeRepositorySpec extends Specification {
 
@@ -18,7 +20,6 @@ class RoomTypeRepositorySpec extends Specification {
     @Autowired
     RoomTypeRepository repository
 
-    @Sql("/types.sql")
     def "should find a room type by type name"() {
         when: "we search the room type by name"
         def roomType = repository.findFirstByName(type_name)
@@ -33,7 +34,6 @@ class RoomTypeRepositorySpec extends Specification {
         type_name << ['Single Room', 'Double Room', 'Deluxe Double Room']
     }
 
-    @Sql("/types.sql")
     def "should return an empty object for wrong type name"() {
         when: "we search the room type by wrong type name"
         def roomType = repository.findFirstByName(type_name)
@@ -46,7 +46,8 @@ class RoomTypeRepositorySpec extends Specification {
     }
 
     @Issue('36')
-    @Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
+    @SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
+    @Sql(['/users.sql', '/rooms.sql', '/reservations.sql'])
     def "should return rooms availability during the specified period"() {
         when: "we request rooms availability for a period"
         def result = repository.getAvailability checkIn, checkOut
