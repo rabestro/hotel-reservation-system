@@ -36,10 +36,9 @@ GET {{host}}/api/profile/roomTypes
 ### Count rooms by room type
 GET {{host}}/api/roomTypes?projection=count
 
-### Search options for room types (not found)
+### Search options for room types
 GET {{host}}/api/roomTypes/search
 
-> test/not-found.js
 
 
 

@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.function.Function;
 
 @Service
 public class StatisticsServiceImpl implements StatisticsService {
@@ -20,16 +21,17 @@ public class StatisticsServiceImpl implements StatisticsService {
 
     @Override
     public List<DailyStatistics> getStatistics(StatisticsRequest request) {
+        final var totalRooms = roomRepository.count();
+
+        Function<LocalDate, DailyStatistics> collectDailyStatistics = date -> {
+            var busy = reservationRepository.countBusyRooms(date);
+            return new DailyStatistics(date, totalRooms - busy, busy);
+        };
         return request
                 .startDate()
                 .datesUntil(request.endDate().plusDays(1))
-                .map(this::getDailyStatistics)
+                .map(collectDailyStatistics)
                 .toList();
     }
 
-    private DailyStatistics getDailyStatistics(LocalDate date) {
-        var busy = reservationRepository.countBusyRooms(date);
-        var free = roomRepository.count() - busy;
-        return new DailyStatistics(date, free, busy);
-    }
 }

@@ -33,11 +33,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .mvcMatchers("/reservation")
                 .hasRole(User.Role.CUSTOMER.name())
 
-                .mvcMatchers("/availability", "/register")
+                .mvcMatchers("/", "/public", "/availability", "/register")
                 .permitAll()
 
-                .mvcMatchers("/", "/public", "/hello").permitAll()
-                .anyRequest().authenticated()
+                .anyRequest()
+                .authenticated()
                 .and()
                 .httpBasic()
                 .and()
