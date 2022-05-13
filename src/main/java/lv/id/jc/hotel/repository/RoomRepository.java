@@ -38,9 +38,9 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     /**
      * This method calculates the timetable for a hotel room.
      *
-     * @param roomId hotel room ID
+     * @param roomId    hotel room ID
      * @param startDate schedule start date
-     * @param endDate last date of the schedule
+     * @param endDate   last date of the schedule
      * @return timetable for the hotel room
      */
     @Query(nativeQuery = true)

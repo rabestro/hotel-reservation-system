@@ -12,7 +12,7 @@ import java.util.List;
 /**
  * This service implementation uses the capabilities
  * of the SQL query language to generate a room schedule.
- *
+ * <p>
  * Thus, the request is redirected to the repository.
  */
 @Service("scheduleServiceSQL")

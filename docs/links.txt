@@ -1,4 +1,0 @@
-Test Data
-
-https://www.baeldung.com/spring-boot-data-sql-and-schema-sql#sqlannotation
-
