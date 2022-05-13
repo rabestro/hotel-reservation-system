@@ -10,9 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
+/**
+ * Registration of clients in the hotel reservation system.
+ */
 @RestController
 public class RegistrationController {
-
     @Autowired
     UserService userService;
 

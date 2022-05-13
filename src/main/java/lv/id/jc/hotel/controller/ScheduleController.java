@@ -5,6 +5,7 @@ import lv.id.jc.hotel.model.projection.BookingInfo;
 import lv.id.jc.hotel.service.ScheduleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,10 +15,11 @@ import javax.validation.Valid;
 import java.util.List;
 
 /**
- * Hotel administrators should be able to:
- * - See the schedule for each room
+ * Schedule of booking hotel rooms for the selected period of time.
+ * This request is available only to hotel employees.
  */
 @RestController
+@Secured("ROLE_EMPLOYEE")
 @RequestMapping("/schedule")
 public class ScheduleController {
     @Autowired

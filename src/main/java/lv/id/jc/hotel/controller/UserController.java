@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.validation.Valid;
 
+/**
+ * Registration of new employees of the hotel.
+ * This request is available only to registered employees of the hotel.
+ */
 @RepositoryRestController
 public class UserController {
     @Autowired

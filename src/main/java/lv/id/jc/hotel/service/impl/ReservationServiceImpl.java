@@ -69,9 +69,4 @@ public class ReservationServiceImpl implements ReservationService {
         throw new UnsupportedOperationException("This operation has not yet been implemented");
     }
 
-    @Override
-    public void cancel(Long id) {
-        throw new UnsupportedOperationException("This operation has not yet been implemented");
-    }
-
 }

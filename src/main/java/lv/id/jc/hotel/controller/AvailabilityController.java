@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 import java.util.List;
 
+/**
+ * Availability of hotel rooms by room type for the selected period.
+ */
 @RestController
 @RequestMapping("/availability")
 public class AvailabilityController {

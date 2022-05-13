@@ -39,10 +39,4 @@ public interface ReservationService {
      */
     List<ReservationDetails> findPastReservations(User guest);
 
-    /**
-     * Cancel a reservation
-     *
-     * @param id of the reservation
-     */
-    void cancel(Long id);
 }
