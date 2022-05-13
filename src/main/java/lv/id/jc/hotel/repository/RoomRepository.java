@@ -30,6 +30,14 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
             @Param("id") Long roomId,
             @Param("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date);
 
+    /**
+     * Find available rooms of certain room type for a period
+     *
+     * @param typeId        hotel room type
+     * @param arrivalDate   a guest arrival date (check-in)
+     * @param departureDate a departure date (check-out)
+     * @return stream of available rooms
+     */
     Streamable<Room> findAvailableRooms(
             @Param("typeId") Long typeId,
             @Param("arrivalDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate arrivalDate,

@@ -16,6 +16,12 @@ import java.time.LocalDate;
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation, Long> {
 
+    /**
+     * Calculate count of booked hotel rooms for a specific date
+     *
+     * @param date a date for check
+     * @return count of booked rooms
+     */
     @Query("SELECT COUNT(DISTINCT r.room) FROM Reservation r WHERE r.checkIn <= :date AND r.checkOut > :date")
     long countBusyRooms(@Param("date") LocalDate date);
 
