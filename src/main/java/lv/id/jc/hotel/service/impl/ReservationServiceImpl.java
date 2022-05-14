@@ -31,11 +31,7 @@ public class ReservationServiceImpl implements ReservationService {
                 .findAvailableRooms(request.typeId(), request.checkIn(), request.checkOut())
                 .stream().findFirst().orElseThrow();
 
-        var reservation = new Reservation();
-        reservation.setGuest(guest);
-        reservation.setRoom(room);
-        reservation.setCheckIn(request.checkIn());
-        reservation.setCheckOut(request.checkOut());
+        var reservation = new Reservation(room, guest, request.checkIn(), request.checkOut());
         return new ReservationDetails(reservationRepository.save(reservation));
     }
 

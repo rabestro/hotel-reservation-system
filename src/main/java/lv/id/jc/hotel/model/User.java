@@ -27,6 +27,16 @@ public class User extends AbstractAuditable<User, Long> implements UserDetails, 
     @Serial
     private static final long serialVersionUID = 1L;
 
+    public User() {
+    }
+
+    public User(Role role, String name, String email, String password) {
+        this.name = name;
+        this.role = role;
+        this.email = email;
+        this.password = password;
+    }
+
     @NotBlank
     @Column(nullable = false)
     private String name;

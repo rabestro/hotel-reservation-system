@@ -26,6 +26,16 @@ public class Reservation extends AbstractAuditable<User, Long> implements Serial
     @Serial
     private static final long serialVersionUID = 1L;
 
+    public Reservation() {
+    }
+
+    public Reservation(Room room, User guest, LocalDate checkIn, LocalDate checkOut) {
+        this.room = room;
+        this.guest = guest;
+        this.checkIn = checkIn;
+        this.checkOut = checkOut;
+    }
+
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
