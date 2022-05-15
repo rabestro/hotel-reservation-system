@@ -2,6 +2,7 @@ package lv.id.jc.hotel.repository
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.jdbc.Sql
 import spock.lang.Issue
 import spock.lang.Specification
@@ -11,7 +12,8 @@ import spock.lang.Title
 import java.time.LocalDate
 
 @DataJpaTest
-@Title("Reservation Repository")
+@ActiveProfiles('test')
+@Title('Reservation Repository')
 class ReservationRepositorySpec extends Specification {
 
     @Subject
