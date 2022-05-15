@@ -2,6 +2,7 @@ package lv.id.jc.hotel.repository
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.jdbc.Sql
 import org.springframework.test.context.jdbc.SqlMergeMode
 import spock.lang.Issue
@@ -13,6 +14,7 @@ import java.time.LocalDate
 
 @DataJpaTest
 @Sql("/types.sql")
+@ActiveProfiles('test')
 @Title("Room type repository")
 class RoomTypeRepositorySpec extends Specification {
 

@@ -2,6 +2,7 @@ package lv.id.jc.hotel.repository
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.jdbc.Sql
 import spock.lang.*
 
@@ -9,7 +10,8 @@ import java.time.LocalDate
 import java.time.temporal.ChronoUnit
 
 @DataJpaTest
-@Title("Room's Repository")
+@ActiveProfiles('test')
+@Title("Room Repository")
 @Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
 class RoomRepositorySpec extends Specification {
 
