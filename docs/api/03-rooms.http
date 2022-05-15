@@ -1,0 +1,80 @@
+### hotel room "101"
+
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "number": "101"
+}
+> test/room-add-successful.js
+
+### 101 - Single Room
+
+PUT {{host}}/api/rooms/{{last_room_id}}/type
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: text/uri-list
+
+{{host}}/api/roomTypes/{{SingleRoom}}
+
+### hotel room "102"
+
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "number": "102"
+}
+> test/room-add-successful.js
+
+### 102 - Single Room
+
+PUT {{host}}/api/rooms/{{last_room_id}}/type
+Authorization: Basic peter.mcdermott@hotel.com {{peter_pass}}
+Content-Type: text/uri-list
+
+{{host}}/api/roomTypes/{{SingleRoom}}
+
+### hotel room "201"
+
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "number": "201"
+}
+> test/room-add-successful.js
+
+### 201 - Double Room
+
+PUT {{host}}/api/rooms/{{last_room_id}}/type
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: text/uri-list
+
+{{host}}/api/roomTypes/{{DoubleRoom}}
+
+### hotel room "202"
+
+POST {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: application/json
+
+{
+  "number": "202"
+}
+> test/room-add-successful.js
+
+### 202 - Double Room
+
+PUT {{host}}/api/rooms/{{last_room_id}}/type
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+Content-Type: text/uri-list
+
+{{host}}/api/roomTypes/{{DoubleRoom}}
+
+### List all rooms
+
+GET {{host}}/api/rooms
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}

@@ -1,0 +1,23 @@
+### Request schedule for a room
+
+GET {{host}}/schedule
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "roomId": 13,
+  "startDate": "2022-05-08",
+  "endDate": "2022-05-15"
+}
+
+### Request schedule for a room 1
+
+GET {{host}}/schedule
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+Content-Type: application/json
+
+{
+  "roomId": 13,
+  "startDate": "2022-05-15",
+  "endDate": "2022-05-29"
+}

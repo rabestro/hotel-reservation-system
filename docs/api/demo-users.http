@@ -1,0 +1,16 @@
+#
+#
+#
+
+### User representation profile
+GET {{host}}/api/profile/users
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+### List all employees
+
+GET {{host}}/api/users/search/findByRole?role=EMPLOYEE
+
+### List all customers
+
+GET {{host}}/api/users/search/findByRole?role=CUSTOMER
+

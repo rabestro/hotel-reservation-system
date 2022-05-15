@@ -1,0 +1,44 @@
+#
+# Examples of requests to /api/roomTypes
+#
+# Hotel employees should be able to manage types of hotel rooms:
+# – view (include rooms count of the specific type)
+# - add
+# - remove
+# - edit
+#
+### Logout
+GET {{host}}/logout
+
+### should forbid request with no authentication
+GET {{host}}/api/roomTypes
+
+> test/unauthorized.js
+
+### should forbid request with USER authentication
+GET {{host}}/api/roomTypes
+Authorization: Basic marsha@guest.com {{marsha_pass}}
+
+> test/forbidden.js
+
+#
+# In order to manage room types you need employee rights
+#
+### List room types (with employee authentication)
+GET {{host}}/api/roomTypes
+Authorization: Basic warren.trent@hotel.com {{trent_pass}}
+
+> test/successful.js
+
+### Room Type representation profile
+GET {{host}}/api/profile/roomTypes
+
+### Count rooms by room type
+GET {{host}}/api/roomTypes?projection=count
+
+### Search options for room types
+GET {{host}}/api/roomTypes/search
+
+
+
+

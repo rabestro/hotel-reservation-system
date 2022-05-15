@@ -1,0 +1,63 @@
+#
+# Register several customers
+#
+
+### Logout
+GET {{host}}/logout
+
+### Send request with invalid parameters
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "name": "Albert Wells",
+  "email": "albert.wells-guest.com",
+  "password": "simple"
+}
+> test/bad-request.js
+
+### Albert Wells
+
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "name": "Albert Wells",
+  "email": "albert.wells@guest.com",
+  "password": "ag1ngH0T@Lguest"
+}
+
+### Curtis O'Keefe
+
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "name": "Curtis O'Keefe",
+  "email": "curtis@guest.com",
+  "password": "Chain&O57"
+}
+
+### Ogilvie
+
+POST {{host}}/register
+Content-Type: application/json
+
+{
+  "name": "Ogilvie",
+  "email": "Ogilvie@guest.com",
+  "password": "Pa55w@Rd"
+}
+
+### Marsha Preyscott
+
+POST {{host}}/register
+Content-Type: application/json
+Authorization: Basic warren.trent@hotel.com {{warren_pass}}
+
+{
+  "name": "Marsha Preyscott",
+  "email": "marsha@GUEST.com",
+  "password": "MarPrey!09"
+}
+
