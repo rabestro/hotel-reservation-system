@@ -25,6 +25,18 @@ import java.time.LocalDate;
 public class Reservation extends AbstractAuditable<User, Long> implements Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+    @ManyToOne
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
+    @ManyToOne
+    @JoinColumn(name = "guest_id", nullable = false)
+    private User guest;
+    @FutureOrPresent
+    @Column(nullable = false)
+    private LocalDate checkIn;
+    @Future
+    @Column(nullable = false)
+    private LocalDate checkOut;
 
     public Reservation() {
     }
@@ -35,20 +47,4 @@ public class Reservation extends AbstractAuditable<User, Long> implements Serial
         this.checkIn = checkIn;
         this.checkOut = checkOut;
     }
-
-    @ManyToOne
-    @JoinColumn(name = "room_id", nullable = false)
-    private Room room;
-
-    @ManyToOne
-    @JoinColumn(name = "guest_id", nullable = false)
-    private User guest;
-
-    @FutureOrPresent
-    @Column(nullable = false)
-    private LocalDate checkIn;
-
-    @Future
-    @Column(nullable = false)
-    private LocalDate checkOut;
 }
