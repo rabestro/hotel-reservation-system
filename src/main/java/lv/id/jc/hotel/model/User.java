@@ -35,6 +35,7 @@ public class User extends AbstractAuditable<User, Long> implements UserDetails, 
         this.role = role;
         this.email = email;
         this.password = password;
+        this.enabled = true;
     }
 
     @NotBlank
