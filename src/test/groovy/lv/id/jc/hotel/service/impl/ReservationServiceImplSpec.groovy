@@ -58,7 +58,7 @@ class ReservationServiceImplSpec extends Specification {
         def request = new BookingRequest(SINGLE_ROOM, checkIn, checkOut)
 
         when: 'we ask the service to process the request'
-        def response = service.book(userDetails, request)
+        def reservationDetails = service.book(userDetails, request)
 
         then: 'the service get the email of the customer registered in the system'
         1 * userDetails.getUsername() >> GUEST_EMAIL
@@ -80,7 +80,7 @@ class ReservationServiceImplSpec extends Specification {
         }) >> new Reservation(id: RESERVATION_ID, guest: guest, room: room, checkIn: checkIn, checkOut: checkOut)
 
         and: 'the booking confirmation contains expected data'
-        with(response) {
+        with(reservationDetails) {
             guest() == GUEST_NAME
             email() == GUEST_EMAIL
             room() == ROOM_NUMBER

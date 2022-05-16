@@ -41,7 +41,8 @@ public class ReservationServiceImpl implements ReservationService {
                 .orElseThrow(CUSTOMER_NOT_FOUND);
 
         var room = roomRepository
-                .findAvailableRooms(request.typeId(), request.checkIn(), request.checkOut()).stream()
+                .findAvailableRooms(request.typeId(), request.checkIn(), request.checkOut())
+                .stream()
                 .findFirst()
                 .orElseThrow(NO_FREE_ROOM);
 
