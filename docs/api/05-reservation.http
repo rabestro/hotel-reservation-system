@@ -18,8 +18,8 @@ Content-Type: application/json
 
 {
   "typeId": {{SingleRoom}},
-  "checkIn": "2022-05-23",
-  "checkOut": "2022-05-24"
+  "checkIn": "2022-05-27",
+  "checkOut": "2022-05-29"
 }
 
 ###
@@ -30,8 +30,8 @@ Content-Type: application/json
 
 {
   "typeId": {{SingleRoom}},
-  "checkIn": "2022-08-15",
-  "checkOut": "2022-08-20"
+  "checkIn": "2022-08-22",
+  "checkOut": "2022-08-24"
 }
 ###
 
