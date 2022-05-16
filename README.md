@@ -55,3 +55,9 @@ classDiagram
     User "0..1" <--> "0..*" Reservation 
 
 ```
+
+## Acceptance tests
+
+For functional testing, I used the [HTTP client](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html) built into the IntelliJ development environment. These tests can also be run from the command line and included in the CI process. The utility for running tests from the command line is located here.
+
+https://github.com/restcli/restcli
