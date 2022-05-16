@@ -106,10 +106,10 @@ class ReservationServiceImplSpec extends Specification {
         }
 
         and: 'an exception is thrown'
-        def message = thrown(NoSuchElementException)
+        def exception = thrown(NoSuchElementException)
 
         and: 'the reason is given in the error message'
-        message =~ 'no available rooms'
+        exception.message =~ 'no available rooms'
     }
 
     def 'should throw an exception if no customer'() {
@@ -123,10 +123,10 @@ class ReservationServiceImplSpec extends Specification {
         1 * userRepository.findFirstByEmailIgnoreCase(_) >> Optional.empty()
 
         and: 'an exception is thrown'
-        def message = thrown(NoSuchElementException)
+        def exception = thrown(NoSuchElementException)
 
         and: 'the reason is given in the error message'
-        message =~ 'Only registered customers can book a room'
+        exception.message =~ 'Only registered customers can book a room'
     }
 
 }
