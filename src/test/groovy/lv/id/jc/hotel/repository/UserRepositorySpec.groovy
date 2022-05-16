@@ -3,6 +3,7 @@ package lv.id.jc.hotel.repository
 
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest
+import org.springframework.test.context.ActiveProfiles
 import org.springframework.test.context.jdbc.Sql
 import spock.lang.Specification
 import spock.lang.Subject
@@ -13,7 +14,8 @@ import static lv.id.jc.hotel.model.User.Role.EMPLOYEE
 
 @DataJpaTest
 @Sql("/users.sql")
-@Title("User's repository")
+@ActiveProfiles('test')
+@Title("User repository")
 class UserRepositorySpec extends Specification {
 
     @Subject

@@ -26,6 +26,18 @@ import java.util.Set;
 public class User extends AbstractAuditable<User, Long> implements UserDetails, Serializable {
     @Serial
     private static final long serialVersionUID = 1L;
+
+    public User() {
+    }
+
+    public User(Role role, String name, String email, String password) {
+        this.name = name;
+        this.role = role;
+        this.email = email;
+        this.password = password;
+        this.enabled = true;
+    }
+
     @NotBlank
     @Column(nullable = false)
     private String name;
@@ -42,15 +54,6 @@ public class User extends AbstractAuditable<User, Long> implements UserDetails, 
     private boolean enabled;
     @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
     private Set<Reservation> reservations;
-    public User() {
-    }
-    public User(Role role, String name, String email, String password) {
-        this.name = name;
-        this.role = role;
-        this.email = email;
-        this.password = password;
-        this.enabled = true;
-    }
 
     @PreUpdate
     @PrePersist

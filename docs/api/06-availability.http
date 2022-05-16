@@ -7,3 +7,13 @@ Content-Type: application/json
   "checkIn": "2022-11-01",
   "checkOut": "2022-12-01"
 }
+
+### Wrong availability request
+
+GET {{host}}/availability
+Content-Type: application/json
+
+{
+  "checkIn": null,
+  "checkOut": "2022-12-01"
+}
