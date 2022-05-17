@@ -21,7 +21,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Import([TestConfig])
 @ActiveProfiles('test')
 @WebMvcTest(AvailabilityController)
-class AvailabilityControllerIT extends Specification {
+class AvailabilityControllerSpec extends Specification {
     @Autowired
     MockMvc mockMvc
 

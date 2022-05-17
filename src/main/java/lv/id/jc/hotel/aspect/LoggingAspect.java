@@ -17,6 +17,7 @@ import static java.util.stream.Collectors.joining;
 
 @Aspect
 @Component
+@SuppressWarnings("squid:S1186")
 public class LoggingAspect {
     private static final System.Logger LOG = System.getLogger(LoggingAspect.class.getName());
 
