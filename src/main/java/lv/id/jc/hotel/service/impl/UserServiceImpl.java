@@ -23,8 +23,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void createUser(Credentials credentials, User.Role role) {
+    public User createUser(Credentials credentials, User.Role role) {
         var user = new User(role, credentials.name(), credentials.email(), encoder.encode(credentials.password()));
-        userRepository.save(user);
+        return userRepository.save(user);
     }
 }

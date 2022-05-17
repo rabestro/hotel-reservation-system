@@ -12,7 +12,7 @@ public interface UserService {
      *
      * @param credentials of the new user
      */
-    void createUser(Credentials credentials, User.Role role);
+    User createUser(Credentials credentials, User.Role role);
 
     Optional<User> findByEmail(String email);
 }

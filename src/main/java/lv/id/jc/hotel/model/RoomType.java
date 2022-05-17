@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-@Accessors(chain = true)
+//@Accessors(chain = true)
 @EntityListeners(AuditingEntityListener.class)
 @Table(name = "ROOM_TYPE", uniqueConstraints = @UniqueConstraint(columnNames = "NAME"))
 public class RoomType extends AbstractAuditable<User, Long> implements Serializable {
