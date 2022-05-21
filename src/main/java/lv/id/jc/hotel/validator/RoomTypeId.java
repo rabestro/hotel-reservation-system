@@ -1,5 +1,7 @@
 package lv.id.jc.hotel.validator;
 
+import lv.id.jc.hotel.validator.impl.RoomTypeValidator;
+
 import javax.validation.Constraint;
 import javax.validation.Payload;
 import javax.validation.constraints.NotNull;
@@ -12,11 +14,11 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Documented
 @Retention(RUNTIME)
-@Constraint(validatedBy = {})
+@Constraint(validatedBy = {RoomTypeValidator.class})
 @Target({PARAMETER, METHOD, FIELD})
 @NotNull
-public @interface ExistingRoomType {
-    String message() default "room type should be present in the database";
+public @interface RoomTypeId {
+    String message() default "room type id must be present in the database";
 
     Class<?>[] groups() default {};
 

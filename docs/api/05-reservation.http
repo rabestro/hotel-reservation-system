@@ -6,8 +6,8 @@ Content-Type: application/json
 
 {
   "typeId": {{SingleRoom}},
-  "checkIn": "2022-05-11",
-  "checkOut": "2022-05-16"
+  "checkIn": "2022-06-01",
+  "checkOut": "2022-06-03"
 }
 
 ###
@@ -17,9 +17,9 @@ Authorization: Basic curtis@guest.com Chain&O57
 Content-Type: application/json
 
 {
-  "typeId": {{SingleRoom}},
-  "checkIn": "2022-05-27",
-  "checkOut": "2022-05-29"
+  "typeId": 1,
+  "checkIn": "2022-06-09",
+  "checkOut": "2022-06-12"
 }
 
 ###
