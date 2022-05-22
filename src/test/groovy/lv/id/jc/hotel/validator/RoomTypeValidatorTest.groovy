@@ -1,4 +1,4 @@
-package lv.id.jc.hotel.validator.impl
+package lv.id.jc.hotel.validator
 
 import lv.id.jc.hotel.repository.RoomTypeRepository
 import spock.lang.Specification
@@ -14,7 +14,7 @@ class RoomTypeValidatorTest extends Specification {
     def repository = Stub RoomTypeRepository
 
     @Subject
-    def roomTypeValidator = new RoomTypeValidator(repository: repository)
+    def roomTypeValidator = new RoomTypeValidator(repository)
 
     def 'should validate existing room type id'() {
 

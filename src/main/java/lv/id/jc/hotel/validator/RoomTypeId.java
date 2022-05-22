@@ -1,8 +1,10 @@
 package lv.id.jc.hotel.validator;
 
-import lv.id.jc.hotel.validator.impl.RoomTypeValidator;
+import lv.id.jc.hotel.repository.RoomTypeRepository;
 
 import javax.validation.Constraint;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import javax.validation.Payload;
 import javax.validation.constraints.NotNull;
 import java.lang.annotation.Documented;
@@ -23,5 +25,11 @@ public @interface RoomTypeId {
     Class<?>[] groups() default {};
 
     Class<? extends Payload>[] payload() default {};
+}
 
+record RoomTypeValidator(RoomTypeRepository repository) implements ConstraintValidator<RoomTypeId, Long> {
+    @Override
+    public boolean isValid(Long value, ConstraintValidatorContext context) {
+        return repository.existsById(value);
+    }
 }
