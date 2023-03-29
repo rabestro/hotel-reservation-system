@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller
 
+import lv.id.jc.hotel.TestConfig
 import lv.id.jc.hotel.config.AppConfig
 import lv.id.jc.hotel.model.dto.AvailabilityRequest
 import lv.id.jc.hotel.model.dto.AvailabilityResponse
@@ -17,10 +18,10 @@ import spock.lang.Specification
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status
 
-@Import([AppConfig])
+@Import([TestConfig])
 @ActiveProfiles('test')
 @WebMvcTest(AvailabilityController)
-class AvailabilityControllerIT extends Specification {
+class AvailabilityControllerSpec extends Specification {
     @Autowired
     MockMvc mockMvc
 
@@ -40,7 +41,8 @@ class AvailabilityControllerIT extends Specification {
                 get('/availability')
                         .contentType(MediaType.APPLICATION_JSON)
                         .characterEncoding("UTF-8")
-                        .accept(MediaType.APPLICATION_JSON).content(content))
+                        .accept(MediaType.APPLICATION_JSON)
+                        .content(content))
                 .andExpect(status().isOk())
     }
 
@@ -48,7 +50,7 @@ class AvailabilityControllerIT extends Specification {
         given: 'request with invalid data'
         def content = /{"checkIn": $checkIn, "checkOut": $checkOut}/ as String
 
-        when: 'when a request arrives with bad data'
+        when: 'we make a request with bad data'
         def result = mockMvc.perform(get('/availability')
                 .contentType(MediaType.APPLICATION_JSON)
                 .characterEncoding("UTF-8")

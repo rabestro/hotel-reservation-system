@@ -7,7 +7,7 @@ import spock.lang.Specification
 import spock.lang.Subject
 import spock.lang.Title
 
-@Title("Implementation of UserDetailsService")
+@Title("UserDetails Service")
 class UserDetailsServiceImplSpec extends Specification {
 
     def expectedUser = Mock(UserDetails)
@@ -38,7 +38,10 @@ class UserDetailsServiceImplSpec extends Specification {
         1 * userRepository.findFirstByEmailIgnoreCase(username) >> Optional.empty()
 
         and: 'an exception is thrown'
-        thrown(UsernameNotFoundException)
+        def message = thrown(UsernameNotFoundException)
+
+        and: 'the reason is given in the error message'
+        message =~ "Not found: $username"
 
         where: 'non-existent usernames such'
         username << ['peter', 'marsha@hot-girl']

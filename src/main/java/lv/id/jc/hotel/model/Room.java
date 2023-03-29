@@ -15,7 +15,6 @@ import java.util.List;
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-//@EqualsAndHashCode(callSuper = true)
 @Table(name = "ROOM", uniqueConstraints = @UniqueConstraint(columnNames = "NUMBER"))
 public class Room extends AbstractAuditable<User, Long> implements Serializable {
     @Serial

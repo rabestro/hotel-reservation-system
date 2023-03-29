@@ -17,11 +17,13 @@ import static java.util.stream.Collectors.joining;
 
 @Aspect
 @Component
+@SuppressWarnings("squid:S1186")
 public class LoggingAspect {
     private static final System.Logger LOG = System.getLogger(LoggingAspect.class.getName());
 
     @Pointcut("execution(public * *(..))")
-    private void anyPublicOperation() {}
+    private void anyPublicOperation() {
+    }
 
     /**
      * A join point is in the service layer if the method is defined
@@ -29,7 +31,8 @@ public class LoggingAspect {
      * under that.
      */
     @Pointcut("within(lv.id.jc.hotel.service..*)")
-    public void inServiceLayer() {}
+    public void inServiceLayer() {
+    }
 
     /**
      * A join point is in the data access layer if the method is defined
@@ -37,7 +40,8 @@ public class LoggingAspect {
      * under that.
      */
     @Pointcut("within(lv.id.jc.hotel.repository..*)")
-    public void inDataAccessLayer() {}
+    public void inDataAccessLayer() {
+    }
 
     /**
      * A data access operation is the execution of any method defined on a
@@ -45,7 +49,8 @@ public class LoggingAspect {
      * "dao" package, and that implementation types are in sub-packages.
      */
     @Pointcut("execution(* lv.id.jc.hotel.repository.*.*(..))")
-    public void dataAccessOperation() {}
+    public void dataAccessOperation() {
+    }
 
     /**
      * A business service is the execution of any method defined on a service
@@ -53,7 +58,8 @@ public class LoggingAspect {
      * "service" package, and that implementation types are in sub-packages.
      */
     @Pointcut("execution(* lv.id.jc.hotel.service.*.*(..))")
-    public void businessService() {}
+    public void businessService() {
+    }
 
     @Before("businessService()")
     public void beforeCommand(JoinPoint joinPoint) {

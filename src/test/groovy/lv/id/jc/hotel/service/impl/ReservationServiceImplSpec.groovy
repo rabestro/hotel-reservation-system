@@ -27,12 +27,12 @@ class ReservationServiceImplSpec extends Specification {
     static ROOM_NUMBER = '101'
     static RESERVATION_ID = 1L
 
-    def type = Mock(RoomType)
-    def room = Mock(Room) {
+    def room = Stub(Room) {
         getNumber() >> ROOM_NUMBER
-        getType() >> type
+        getType() >> Stub(RoomType)
     }
-    def guest = Mock(User) {
+    def guest = Stub(User) {
+        getRole() >> User.Role.CUSTOMER
         getName() >> GUEST_NAME
         getEmail() >> GUEST_EMAIL
     }
@@ -41,9 +41,8 @@ class ReservationServiceImplSpec extends Specification {
     def roomRepository = Mock RoomRepository
     def reservationRepository = Mock ReservationRepository
 
-    def databaseResult = Mock (Streamable) {
-        stream() >> Stream.of(room)
-    }
+    def checkIn = LocalDate.EPOCH
+    def checkOut = checkIn.plusDays(1)
 
     @Subject
     def service = new ReservationServiceImpl()
@@ -59,7 +58,7 @@ class ReservationServiceImplSpec extends Specification {
         def request = new BookingRequest(SINGLE_ROOM, checkIn, checkOut)
 
         when: 'we ask the service to process the request'
-        def response = service.book(userDetails, request)
+        def reservationDetails = service.book(userDetails, request)
 
         then: 'the service get the email of the customer registered in the system'
         1 * userDetails.getUsername() >> GUEST_EMAIL
@@ -67,8 +66,10 @@ class ReservationServiceImplSpec extends Specification {
         and: 'by the found email the service is looking for the user entity'
         1 * userRepository.findFirstByEmailIgnoreCase(GUEST_EMAIL) >> Optional.of(guest)
 
-        and: 'looking for a free room of the right type'
-        1 * roomRepository.findAvailableRooms(SINGLE_ROOM, checkIn, checkOut) >> databaseResult
+        and: 'looking for a free room of the right type and one room is found'
+        1 * roomRepository.findAvailableRooms(SINGLE_ROOM, checkIn, checkOut) >> Stub(Streamable) {
+            stream() >> Stream.of(room)
+        }
 
         and: 'create and save a booking request in the reservation repository'
         1 * reservationRepository.save({
@@ -79,7 +80,7 @@ class ReservationServiceImplSpec extends Specification {
         }) >> new Reservation(id: RESERVATION_ID, guest: guest, room: room, checkIn: checkIn, checkOut: checkOut)
 
         and: 'the booking confirmation contains expected data'
-        with(response) {
+        with(reservationDetails) {
             guest() == GUEST_NAME
             email() == GUEST_EMAIL
             room() == ROOM_NUMBER
@@ -87,9 +88,45 @@ class ReservationServiceImplSpec extends Specification {
             it.checkOut() == checkOut
             reservationId() == RESERVATION_ID
         }
-
-        where:
-        checkIn = LocalDate.EPOCH
-        checkOut = checkIn.plusDays(1)
     }
+
+    def 'should throw an exception if no free room is found'() {
+        given: 'request to book a certain type of room'
+        def request = new BookingRequest(SINGLE_ROOM, checkIn, checkOut)
+
+        when: 'we ask the service to process the request'
+        service.book(userDetails, request)
+
+        then: 'the guest entity is found'
+        1 * userRepository.findFirstByEmailIgnoreCase(_) >> Optional.of(guest)
+
+        and: 'looking for a free room and no room is found'
+        1 * roomRepository.findAvailableRooms(SINGLE_ROOM, checkIn, checkOut) >> Stub(Streamable) {
+            stream() >> Stream.empty()
+        }
+
+        and: 'an exception is thrown'
+        def exception = thrown(NoSuchElementException)
+
+        and: 'the reason is given in the error message'
+        exception.message =~ 'no available rooms'
+    }
+
+    def 'should throw an exception if no customer'() {
+        given: 'request to book a certain type of room'
+        def request = new BookingRequest(SINGLE_ROOM, checkIn, checkOut)
+
+        when: 'we ask the service to process the request'
+        service.book(userDetails, request)
+
+        then: 'the guest entity is not found'
+        1 * userRepository.findFirstByEmailIgnoreCase(_) >> Optional.empty()
+
+        and: 'an exception is thrown'
+        def exception = thrown(NoSuchElementException)
+
+        and: 'the reason is given in the error message'
+        exception.message =~ 'Only registered customers can book a room'
+    }
+
 }
