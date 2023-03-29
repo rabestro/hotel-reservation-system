@@ -52,7 +52,7 @@ dependencies {
     testImplementation 'org.spockframework:spock-spring'
 //    testImplementation 'io.github.joke:spock-mockable:1.5.1'
 
-    testRuntimeClasspath('com.athaydes:spock-reports:2.3.0-groovy-3.0')
+    testImplementation('com.athaydes:spock-reports:2.3.0-groovy-3.0')
 }
 
 tasks.named('test') {
