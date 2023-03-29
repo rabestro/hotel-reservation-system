@@ -1,6 +1,6 @@
 report {
     issueNamePrefix 'Issue #'
-    issueUrlPrefix 'https://github.com/rabestro/wandoo-hotel-reservation-system/issues/'
+    issueUrlPrefix 'https://github.com/rabestro/hotel-reservation-system/issues/'
 }
 
 spockReports {
