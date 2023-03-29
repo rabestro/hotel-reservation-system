@@ -1,6 +1,6 @@
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=rabestro_wandoo-hotel-reservation-system&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=rabestro_wandoo-hotel-reservation-system)
-# Small Hotel Reservation System
-## Story
+= Small Hotel Reservation System
+
+== Story
 
 Develop a small hotel reservation system. The application will use two types of users – hotel employees and customers.
 
@@ -15,9 +15,10 @@ Customers should be able to:
 - Check availability on the specified period
 - Make a reservation
 
-## Model UML diagram
+== Model UML diagram
 
-```mermaid
+[source,mermaid]
+----
 classDiagram
     direction BT
     class AbstractAuditable {
@@ -45,20 +46,20 @@ classDiagram
         String  password
         Role  role
     }
-    
-    AbstractAuditable  --|>  AbstractPersistable 
-    Reservation  --|>  AbstractAuditable 
-    Room  --|>  AbstractAuditable 
-    Room "0..1" <--> "0..*" Reservation 
-    Room "0..*" <--> "0..1" RoomType 
-    RoomType  --|>  AbstractAuditable 
-    User  --|>  AbstractAuditable 
-    User "0..1" <--> "0..*" Reservation 
 
-```
+    AbstractAuditable  --|>  AbstractPersistable
+    Reservation  --|>  AbstractAuditable
+    Room  --|>  AbstractAuditable
+    Room "0..1" <--> "0..*" Reservation
+    Room "0..*" <--> "0..1" RoomType
+    RoomType  --|>  AbstractAuditable
+    User  --|>  AbstractAuditable
+    User "0..1" <--> "0..*" Reservation
 
-## Acceptance tests
+----
 
-For functional testing, I used the [HTTP client](https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html) built into the IntelliJ development environment. These tests can also be run from the command line and included in the CI process. The utility for running tests from the command line is located here.
+== Acceptance tests
+
+For functional testing, I used the https://www.jetbrains.com/help/idea/http-client-in-product-code-editor.html[HTTP client] built into the IntelliJ development environment. These tests can also be run from the command line and included in the CI process. The utility for running tests from the command line is located here.
 
 https://github.com/restcli/restcli
