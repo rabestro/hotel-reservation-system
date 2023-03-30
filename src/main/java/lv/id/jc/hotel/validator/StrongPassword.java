@@ -27,7 +27,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @NonNull
 @Length(min = 8, max = 20)
 @SuppressWarnings("squid:S5852")
-@Pattern(regexp = "^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*\\d.*\\d)(?=.*[a-z].*[a-z].*[a-z]).+$")
+@Pattern(regexp = "^(?=.*?[A-Z][^A-Z]*+[A-Z])(?=.*[!@#$&*])(?=.*\\d.*\\d)(?=.*[a-z].*[a-z].*[a-z]).+$")
 public @interface StrongPassword {
     String message() default "{password.error}";
 
