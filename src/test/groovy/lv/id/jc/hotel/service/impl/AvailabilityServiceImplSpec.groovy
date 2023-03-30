@@ -16,7 +16,7 @@ class AvailabilityServiceImplSpec extends Specification {
     @Subject
     def availabilityService = new AvailabilityServiceImpl(roomTypeRepository: roomTypeRepository)
 
-    def 'should request the repository for the availability of hotel rooms'() {
+    def 'request the repository for the availability of hotel rooms'() {
 
         given: 'a request containing arrival and departure dates '
         def request = new AvailabilityRequest(checkIn, checkOut)

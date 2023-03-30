@@ -27,7 +27,7 @@ class RegisterAT extends Specification {
     @Autowired
     TestRestTemplate restTemplate
 
-    def 'should register a customer'() {
+    def 'register a customer with valid contact information'() {
         given: 'credentials of a new hotel customer'
         def credentials = new Credentials(name, email, password)
 
@@ -50,7 +50,7 @@ class RegisterAT extends Specification {
         "Curtis O'Keefe"   | 'CURTIS@GUEST.COM'       | 'Chain&O57'
     }
 
-    def 'should reject creating a user with an existing mail address'() {
+    def 'reject creating a user with an existing mail address'() {
         given: 'credentials with already registered email address'
         def credentials = new Credentials(name, duplicate_email, password)
 
@@ -69,7 +69,7 @@ class RegisterAT extends Specification {
     }
 
     @Unroll("should reject #comment")
-    def 'should reject invalid credentials'() {
+    def 'reject invalid credentials'() {
         given: 'credentials with invalid data'
         def credentials = new Credentials(name, email, password)
 
