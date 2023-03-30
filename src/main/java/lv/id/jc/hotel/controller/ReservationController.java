@@ -3,7 +3,6 @@ package lv.id.jc.hotel.controller;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
 import lv.id.jc.hotel.service.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -21,8 +20,11 @@ import javax.validation.Valid;
 @Secured("ROLE_CUSTOMER")
 @RequestMapping("/reservation")
 public class ReservationController {
-    @Autowired
-    ReservationService reservationService;
+    private final ReservationService reservationService;
+
+    public ReservationController(ReservationService reservationService) {
+        this.reservationService = reservationService;
+    }
 
     @PostMapping
     public ReservationDetails book(@AuthenticationPrincipal UserDetails userDetails,

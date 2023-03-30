@@ -3,7 +3,6 @@ package lv.id.jc.hotel.controller;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -20,8 +19,11 @@ import javax.validation.Valid;
  */
 @RepositoryRestController
 public class UserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("users")
     @Secured("ROLE_EMPLOYEE")
