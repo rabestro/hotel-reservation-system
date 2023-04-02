@@ -18,7 +18,7 @@ class UserServiceImpSpec extends Specification {
     @Subject
     UserService userService = new UserServiceImpl(userRepository, passwordEncoder)
 
-    def 'should create and save a user entity'() {
+    def 'create and save a user entity'() {
         given: 'a user credentials'
         def credentials = new Credentials(name, email, rawPassword)
 

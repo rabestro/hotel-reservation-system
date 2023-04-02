@@ -26,7 +26,7 @@ class RegistrationControllerSpec extends Specification {
     UserService userService = Mock()
 
     @Ignore("Need to change status code")
-    def 'should register a customer'() {
+    def 'register a customer'() {
         given: 'request with correct data'
         def content = /{"name": "$name", "email": "$email", "password": "$password"}/
 
@@ -51,7 +51,7 @@ class RegistrationControllerSpec extends Specification {
         'Marsha Preyscott' | 'marsha@guest.com' | 'MarPrey!09'
     }
 
-    def 'should validate registration request'() {
+    def 'validate registration request'() {
         given: 'request with invalid data'
         def content = /{"name": "$name", "email": "$email", "password": "$password"}/
 

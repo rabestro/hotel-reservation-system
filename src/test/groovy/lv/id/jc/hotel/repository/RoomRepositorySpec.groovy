@@ -20,7 +20,7 @@ class RoomRepositorySpec extends Specification {
     RoomRepository roomRepository
 
     @Unroll("#checkIn - #checkOut (#type) = #numbers")
-    def 'should find available rooms'() {
+    def 'find available rooms'() {
         when:
         def rooms = roomRepository.findAvailableRooms(type, checkIn, checkOut) as List
 
@@ -39,7 +39,7 @@ class RoomRepositorySpec extends Specification {
     }
 
     @Issue('21')
-    def "should get room's schedule"() {
+    def "get room's schedule"() {
         when: 'we calculate the timetable for a hotel room'
         def schedule = roomRepository.getSchedule(room, startDate, endDate)
 

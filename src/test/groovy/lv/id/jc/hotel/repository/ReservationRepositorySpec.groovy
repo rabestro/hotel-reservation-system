@@ -22,7 +22,7 @@ class ReservationRepositorySpec extends Specification {
 
     @Issue('23')
     @Sql(['/users.sql', '/types.sql', '/rooms.sql', '/reservations.sql'])
-    def 'should count busy hotel rooms'() {
+    def 'count busy hotel rooms'() {
         given:
         def date = LocalDate.parse check_date
 

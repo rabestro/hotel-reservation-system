@@ -32,7 +32,7 @@ class AvailabilityControllerSpec extends Specification {
         ]
     }
 
-    def 'should get rooms availability'() {
+    def 'request rooms availability'() {
         given: 'request with correct data'
         def content = '{"checkIn": "3022-05-22", "checkOut": "3022-05-25"}'
 
@@ -46,7 +46,7 @@ class AvailabilityControllerSpec extends Specification {
                 .andExpect(status().isOk())
     }
 
-    def 'should validate availability request'() {
+    def 'validate availability request'() {
         given: 'request with invalid data'
         def content = /{"checkIn": $checkIn, "checkOut": $checkOut}/ as String
 

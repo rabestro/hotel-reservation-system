@@ -22,7 +22,7 @@ class UserRepositorySpec extends Specification {
     @Autowired
     UserRepository userRepository
 
-    def 'should find a user by email'() {
+    def 'find a user by email'() {
         when: 'we search a user by wrong_email'
         def user = userRepository.findFirstByEmailIgnoreCase(email)
 
@@ -43,7 +43,7 @@ class UserRepositorySpec extends Specification {
         'MARSHA@GUEST.COM'          | 'Marsha Preyscott' | CUSTOMER
     }
 
-    def 'should return an empty object for wrong email'() {
+    def 'return an empty object for wrong email'() {
         when: 'we search a user by wrong email'
         def user = userRepository.findFirstByEmailIgnoreCase(wrong_email)
 
