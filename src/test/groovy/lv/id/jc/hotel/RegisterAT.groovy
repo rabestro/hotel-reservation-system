@@ -68,7 +68,7 @@ class RegisterAT extends Specification {
         "Curtis O'Keefe"   | 'curtis@guest.com' | 'Chain&O57'
     }
 
-    @Unroll("should reject #comment")
+    @Unroll("reject #comment")
     def 'reject invalid credentials'() {
         given: 'credentials with invalid data'
         def credentials = new Credentials(name, email, password)

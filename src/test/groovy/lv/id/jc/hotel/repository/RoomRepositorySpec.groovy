@@ -47,10 +47,10 @@ class RoomRepositorySpec extends Specification {
         schedule.size() == 1 + ChronoUnit.DAYS.between(startDate, endDate) as int
 
         and: 'we get correct reservation ids'
-        schedule*.getBookId() == bookId as List<Long>
+        schedule*.bookId == bookId as List<Long>
 
         and: 'for each day we get the name of the guest'
-        schedule*.getName() == name
+        schedule*.name == name
 
         where:
         room | start        | end          | bookId
