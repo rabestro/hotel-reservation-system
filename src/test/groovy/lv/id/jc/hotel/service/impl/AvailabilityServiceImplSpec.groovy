@@ -14,7 +14,7 @@ class AvailabilityServiceImplSpec extends Specification {
     def roomTypeRepository = Mock RoomTypeRepository
 
     @Subject
-    def availabilityService = new AvailabilityServiceImpl(roomTypeRepository: roomTypeRepository)
+    def availabilityService = new AvailabilityServiceImpl(roomTypeRepository)
 
     def 'request the repository for the availability of hotel rooms'() {
 
