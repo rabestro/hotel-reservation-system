@@ -14,7 +14,7 @@ class UserDetailsServiceImplSpec extends Specification {
     def userRepository = Mock(UserRepository)
 
     @Subject
-    def userDetailsService = new UserDetailsServiceImpl(userRepository: userRepository)
+    def userDetailsService = new UserDetailsServiceImpl(userRepository)
 
     def 'should load a user by username'() {
         when: 'we load a user by his username'

@@ -16,7 +16,7 @@ class UserServiceImpSpec extends Specification {
     def passwordEncoder = Mock PasswordEncoder
 
     @Subject
-    UserService userService = new UserServiceImpl(userRepository: userRepository, encoder: passwordEncoder)
+    UserService userService = new UserServiceImpl(userRepository, passwordEncoder)
 
     def 'should create and save a user entity'() {
         given: 'a user credentials'
