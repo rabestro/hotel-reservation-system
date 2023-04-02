@@ -45,13 +45,7 @@ class ReservationServiceImplSpec extends Specification {
     def checkOut = checkIn.plusDays(1)
 
     @Subject
-    def service = new ReservationServiceImpl()
-
-    void setup() {
-        service.reservationRepository = reservationRepository
-        service.userRepository = userRepository
-        service.roomRepository = roomRepository
-    }
+    def service = new ReservationServiceImpl(userRepository, roomRepository, reservationRepository)
 
     def 'process a room reservation'() {
         given: 'request to book a certain type of room'
