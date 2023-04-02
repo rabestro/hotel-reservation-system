@@ -1,11 +1,11 @@
 package lv.id.jc.hotel.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.dto.DailyStatistics;
 import lv.id.jc.hotel.model.dto.StatisticsRequest;
 import lv.id.jc.hotel.repository.ReservationRepository;
 import lv.id.jc.hotel.repository.RoomRepository;
 import lv.id.jc.hotel.service.StatisticsService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -13,11 +13,10 @@ import java.util.List;
 import java.util.function.Function;
 
 @Service
+@RequiredArgsConstructor
 public class StatisticsServiceImpl implements StatisticsService {
-    @Autowired
-    RoomRepository roomRepository;
-    @Autowired
-    ReservationRepository reservationRepository;
+    private final RoomRepository roomRepository;
+    private final ReservationRepository reservationRepository;
 
     @Override
     public List<DailyStatistics> getStatistics(StatisticsRequest request) {
