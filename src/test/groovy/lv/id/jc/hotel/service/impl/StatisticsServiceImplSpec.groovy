@@ -24,14 +24,9 @@ class StatisticsServiceImplSpec extends Specification {
     def reservationRepository = Mock ReservationRepository
 
     @Subject
-    def service = new StatisticsServiceImpl()
+    def service = new StatisticsServiceImpl(roomRepository, reservationRepository)
 
-    void setup() {
-        service.roomRepository = roomRepository
-        service.reservationRepository = reservationRepository
-    }
-
-    def 'should get statistics about free and busy rooms'() {
+    def 'request statistics about free and busy rooms'() {
         given: 'a request for a report on statistics for the period'
         def request = new StatisticsRequest(startDate, endDate)
 

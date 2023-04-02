@@ -16,7 +16,7 @@ class RoomTypeValidatorTest extends Specification {
     @Subject
     def roomTypeValidator = new RoomTypeValidator(repository)
 
-    def 'should validate existing room type id'() {
+    def 'validate existing room type id'() {
 
         when: 'the given id exists in the database'
         repository.existsById(ROOM_TYPE_ID) >> true
@@ -25,7 +25,7 @@ class RoomTypeValidatorTest extends Specification {
         roomTypeValidator.isValid(ROOM_TYPE_ID, _ as ConstraintValidatorContext)
     }
 
-    def 'should reject non existing room type id'() {
+    def 'reject non existing room type id'() {
 
         when: "the given id doesn't exist in the database"
         repository.existsById(ROOM_TYPE_ID) >> false

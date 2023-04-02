@@ -22,7 +22,7 @@ class RoomTypeRepositorySpec extends Specification {
     @Autowired
     RoomTypeRepository repository
 
-    def "should find a room type by type name"() {
+    def "find a room type by type name"() {
         when: "we search the room type by name"
         def roomType = repository.findFirstByName(type_name)
 
@@ -50,7 +50,7 @@ class RoomTypeRepositorySpec extends Specification {
     @Issue('36')
     @SqlMergeMode(SqlMergeMode.MergeMode.MERGE)
     @Sql(['/users.sql', '/rooms.sql', '/reservations.sql'])
-    def "should return rooms availability during the specified period"() {
+    def "return rooms availability during the specified period"() {
         when: "we request rooms availability for a period"
         def result = repository.getAvailability checkIn, checkOut
 

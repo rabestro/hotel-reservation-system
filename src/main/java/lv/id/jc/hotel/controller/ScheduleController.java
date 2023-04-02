@@ -3,7 +3,6 @@ package lv.id.jc.hotel.controller;
 import lv.id.jc.hotel.model.dto.ScheduleRequest;
 import lv.id.jc.hotel.model.projection.BookingInfo;
 import lv.id.jc.hotel.service.ScheduleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +21,11 @@ import java.util.List;
 @Secured("ROLE_EMPLOYEE")
 @RequestMapping("/schedule")
 public class ScheduleController {
-    @Autowired
-    @Qualifier("scheduleServiceSQL")
-    ScheduleService service;
+    private final ScheduleService service;
+
+    public ScheduleController(@Qualifier("scheduleServiceSQL") ScheduleService service) {
+        this.service = service;
+    }
 
     @GetMapping
     public List<BookingInfo> getRoomSchedule(@RequestBody @Valid ScheduleRequest request) {

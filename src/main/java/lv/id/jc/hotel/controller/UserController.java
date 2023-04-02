@@ -1,9 +1,9 @@
 package lv.id.jc.hotel.controller;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.rest.webmvc.RepositoryRestController;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.annotation.Secured;
@@ -19,9 +19,9 @@ import javax.validation.Valid;
  * This request is available only to registered employees of the hotel.
  */
 @RepositoryRestController
+@RequiredArgsConstructor
 public class UserController {
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("users")
     @Secured("ROLE_EMPLOYEE")

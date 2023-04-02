@@ -14,9 +14,9 @@ class UserDetailsServiceImplSpec extends Specification {
     def userRepository = Mock(UserRepository)
 
     @Subject
-    def userDetailsService = new UserDetailsServiceImpl(userRepository: userRepository)
+    def userDetailsService = new UserDetailsServiceImpl(userRepository)
 
-    def 'should load a user by username'() {
+    def 'load a user by username'() {
         when: 'we load a user by his username'
         def user = userDetailsService.loadUserByUsername(username)
 
@@ -30,7 +30,7 @@ class UserDetailsServiceImplSpec extends Specification {
         username << ['peter.mcdermott@hotel.com', 'marsha@guest.com']
     }
 
-    def 'should throw an exception for non-existent users'() {
+    def 'throw an exception for non-existent users'() {
         when: 'we are trying to load a user by a non-existent username'
         userDetailsService.loadUserByUsername(username)
 

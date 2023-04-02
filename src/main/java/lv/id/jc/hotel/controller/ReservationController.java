@@ -1,9 +1,9 @@
 package lv.id.jc.hotel.controller;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
 import lv.id.jc.hotel.service.ReservationService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -20,9 +20,9 @@ import javax.validation.Valid;
 @RestController
 @Secured("ROLE_CUSTOMER")
 @RequestMapping("/reservation")
+@RequiredArgsConstructor
 public class ReservationController {
-    @Autowired
-    ReservationService reservationService;
+    private final ReservationService reservationService;
 
     @PostMapping
     public ReservationDetails book(@AuthenticationPrincipal UserDetails userDetails,

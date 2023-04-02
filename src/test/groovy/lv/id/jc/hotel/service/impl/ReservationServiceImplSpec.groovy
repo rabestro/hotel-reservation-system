@@ -45,15 +45,9 @@ class ReservationServiceImplSpec extends Specification {
     def checkOut = checkIn.plusDays(1)
 
     @Subject
-    def service = new ReservationServiceImpl()
+    def service = new ReservationServiceImpl(userRepository, roomRepository, reservationRepository)
 
-    void setup() {
-        service.reservationRepository = reservationRepository
-        service.userRepository = userRepository
-        service.roomRepository = roomRepository
-    }
-
-    def 'should process a room reservation'() {
+    def 'process a room reservation'() {
         given: 'request to book a certain type of room'
         def request = new BookingRequest(SINGLE_ROOM, checkIn, checkOut)
 
@@ -90,7 +84,7 @@ class ReservationServiceImplSpec extends Specification {
         }
     }
 
-    def 'should throw an exception if no free room is found'() {
+    def 'throw an exception if no free room is found'() {
         given: 'request to book a certain type of room'
         def request = new BookingRequest(SINGLE_ROOM, checkIn, checkOut)
 
@@ -112,7 +106,7 @@ class ReservationServiceImplSpec extends Specification {
         exception.message =~ 'no available rooms'
     }
 
-    def 'should throw an exception if no customer'() {
+    def 'throw an exception if no customer'() {
         given: 'request to book a certain type of room'
         def request = new BookingRequest(SINGLE_ROOM, checkIn, checkOut)
 
