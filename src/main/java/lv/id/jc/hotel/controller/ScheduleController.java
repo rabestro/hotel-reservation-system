@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.dto.ScheduleRequest;
 import lv.id.jc.hotel.model.projection.BookingInfo;
 import lv.id.jc.hotel.service.ScheduleService;
@@ -20,13 +21,10 @@ import java.util.List;
 @RestController
 @Secured("ROLE_EMPLOYEE")
 @RequestMapping("/schedule")
+@RequiredArgsConstructor
 public class ScheduleController {
     @Qualifier("scheduleServiceSQL")
     private final ScheduleService service;
-
-    public ScheduleController(ScheduleService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public List<BookingInfo> getRoomSchedule(@RequestBody @Valid ScheduleRequest request) {

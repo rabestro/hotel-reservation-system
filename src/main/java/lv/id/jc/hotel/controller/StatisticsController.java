@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.dto.DailyStatistics;
 import lv.id.jc.hotel.model.dto.StatisticsRequest;
 import lv.id.jc.hotel.service.StatisticsService;
@@ -18,12 +19,9 @@ import java.util.List;
 @RestController
 @Secured("ROLE_EMPLOYEE")
 @RequestMapping("/statistics")
+@RequiredArgsConstructor
 public class StatisticsController {
     private final StatisticsService service;
-
-    public StatisticsController(StatisticsService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public List<DailyStatistics> getStatistics(@RequestBody @Valid StatisticsRequest request) {

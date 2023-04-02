@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.model.dto.Customer;
@@ -16,12 +17,9 @@ import javax.validation.Valid;
  * Registration of clients in the hotel reservation system.
  */
 @RestController
+@RequiredArgsConstructor
 public class RegistrationController {
     private final UserService userService;
-
-    public RegistrationController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)

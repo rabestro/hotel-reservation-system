@@ -1,10 +1,10 @@
 package lv.id.jc.hotel.service.impl;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.dto.ScheduleRequest;
 import lv.id.jc.hotel.model.projection.BookingInfo;
 import lv.id.jc.hotel.repository.RoomRepository;
 import lv.id.jc.hotel.service.ScheduleService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,9 +16,9 @@ import java.util.List;
  * Thus, the request is redirected to the repository.
  */
 @Service("scheduleServiceSQL")
+@RequiredArgsConstructor
 public class ScheduleServiceSQL implements ScheduleService {
-    @Autowired
-    RoomRepository roomRepository;
+    private final RoomRepository roomRepository;
 
     @Override
     public List<BookingInfo> getSchedule(ScheduleRequest request) {

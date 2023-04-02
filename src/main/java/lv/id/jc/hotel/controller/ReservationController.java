@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
 import lv.id.jc.hotel.service.ReservationService;
@@ -19,12 +20,9 @@ import javax.validation.Valid;
 @RestController
 @Secured("ROLE_CUSTOMER")
 @RequestMapping("/reservation")
+@RequiredArgsConstructor
 public class ReservationController {
     private final ReservationService reservationService;
-
-    public ReservationController(ReservationService reservationService) {
-        this.reservationService = reservationService;
-    }
 
     @PostMapping
     public ReservationDetails book(@AuthenticationPrincipal UserDetails userDetails,

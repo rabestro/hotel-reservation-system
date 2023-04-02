@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.User;
 import lv.id.jc.hotel.model.dto.Credentials;
 import lv.id.jc.hotel.service.UserService;
@@ -18,12 +19,9 @@ import javax.validation.Valid;
  * This request is available only to registered employees of the hotel.
  */
 @RepositoryRestController
+@RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
-
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
 
     @PostMapping("users")
     @Secured("ROLE_EMPLOYEE")

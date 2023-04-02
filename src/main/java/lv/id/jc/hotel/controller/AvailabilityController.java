@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller;
 
+import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.dto.AvailabilityRequest;
 import lv.id.jc.hotel.model.dto.AvailabilityResponse;
 import lv.id.jc.hotel.service.AvailabilityService;
@@ -16,12 +17,9 @@ import java.util.List;
  */
 @RestController
 @RequestMapping("/availability")
+@RequiredArgsConstructor
 public class AvailabilityController {
     private final AvailabilityService service;
-
-    public AvailabilityController(AvailabilityService service) {
-        this.service = service;
-    }
 
     @GetMapping
     public List<AvailabilityResponse> getAvailability(@RequestBody @Valid AvailabilityRequest request) {
