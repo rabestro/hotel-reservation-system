@@ -1,7 +1,6 @@
 package lv.id.jc.hotel.controller
 
 import lv.id.jc.hotel.TestConfig
-import lv.id.jc.hotel.config.AppConfig
 import lv.id.jc.hotel.model.dto.AvailabilityRequest
 import lv.id.jc.hotel.model.dto.AvailabilityResponse
 import lv.id.jc.hotel.service.AvailabilityService
