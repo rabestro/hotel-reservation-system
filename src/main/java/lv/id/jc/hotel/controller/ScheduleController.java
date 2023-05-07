@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.enums.ParameterIn;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lv.id.jc.hotel.model.dto.ScheduleRequest;
 import lv.id.jc.hotel.model.projection.BookingInfo;
@@ -39,6 +40,9 @@ public class ScheduleController {
     @Operation(
             summary = "Get a room schedule",
             description = "schedule of a given room for a specific period",
+            security = @SecurityRequirement(
+                    name = "BasicAuthentication"
+            ),
             parameters = @Parameter(
                     name = "scheduleRequest",
                     required = true
