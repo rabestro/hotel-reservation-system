@@ -1,5 +1,6 @@
 package lv.id.jc.hotel.controller;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import lv.id.jc.hotel.model.dto.BookingRequest;
 import lv.id.jc.hotel.model.dto.ReservationDetails;
@@ -14,9 +15,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 
-/**
- * Hotel room reservation for registered users.
- */
+@Tag(
+        name = "Room reservation",
+        description = "Hotel room reservation for registered users"
+)
 @RestController
 @Secured("ROLE_CUSTOMER")
 @RequestMapping("/reservation")
