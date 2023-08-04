@@ -12,22 +12,35 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.util.Optional;
 
+/**
+ * Configuration class for auditing and security.
+ */
 @Configuration
 @EnableJpaAuditing
 @EnableTransactionManagement
 public class AuditSecurityConfig {
+
     /**
-     * Lookup User instance corresponding to logged-in user
+     * Returns an instance of AuditorAware<User>.
      *
-     * @return Currently logged-in user or {@literal Optional#empty()} if none found.
+     * @return an instance of AuditorAware<User> that can provide the currently logged-in user as the auditor.
      */
     @Bean
     AuditorAware<User> auditorAware() {
-        return () -> Optional.ofNullable(SecurityContextHolder.getContext())
-                .map(SecurityContext::getAuthentication)
-                .filter(Authentication::isAuthenticated)
-                .map(Authentication::getPrincipal)
-                .filter(User.class::isInstance)
-                .map(User.class::cast);
+       return this::getCurrentUser;
     }
+
+   /**
+    * Lookup User instance corresponding to logged-in user
+    *
+    * @return Currently logged-in user or {@literal Optional#empty()} if none found.
+    */
+   private Optional<User> getCurrentUser() {
+      return Optional.ofNullable(SecurityContextHolder.getContext())
+            .map(SecurityContext::getAuthentication)
+            .filter(Authentication::isAuthenticated)
+            .map(Authentication::getPrincipal)
+            .filter(User.class::isInstance)
+            .map(User.class::cast);
+   }
 }
