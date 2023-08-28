@@ -9,7 +9,14 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+import javax.persistence.PrePersist;
+import javax.persistence.PreUpdate;
+import javax.validation.Valid;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
@@ -17,15 +24,17 @@ import java.io.Serial;
 import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
+import java.util.Objects;
 import java.util.Set;
 
 @Getter
 @Setter
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class User extends AbstractAuditable<User, Long> implements UserDetails, Serializable {
+public class User extends AbstractAuditable<User, Long> implements UserDetails {
     @Serial
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     @NotBlank
     @Column(nullable = false)
     private String name;
@@ -41,7 +50,7 @@ public class User extends AbstractAuditable<User, Long> implements UserDetails, 
     @Column(nullable = false, columnDefinition = "boolean default true")
     private boolean enabled;
     @OneToMany(mappedBy = "guest", fetch = FetchType.LAZY)
-    private Set<Reservation> reservations;
+    private Set<@Valid Reservation> reservations;
     public User() {
     }
     public User(Role role, String name, String email, String password) {
@@ -55,7 +64,7 @@ public class User extends AbstractAuditable<User, Long> implements UserDetails, 
     @PreUpdate
     @PrePersist
     private void prepare() {
-        email = email.toLowerCase();
+        email = email.toLowerCase(Locale.ENGLISH);
     }
 
     @Override
@@ -99,4 +108,24 @@ public class User extends AbstractAuditable<User, Long> implements UserDetails, 
             return new SimpleGrantedAuthority("ROLE_" + name());
         }
     }
+
+   @Override
+   public boolean equals(final Object o) {
+      if (this == o) {
+          return true;
+      }
+      if (o == null || getClass() != o.getClass()) {
+          return false;
+      }
+      if (!super.equals(o)) {
+          return false;
+      }
+      var user = (User) o;
+      return Objects.equals(email, user.email);
+   }
+
+   @Override
+   public int hashCode() {
+      return Objects.hash(super.hashCode(), email);
+   }
 }
