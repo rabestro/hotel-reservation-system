@@ -8,6 +8,8 @@ import lv.id.jc.hotel.service.UserService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
+
 import java.util.Optional;
 
 @Service
@@ -22,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User createUser(Credentials credentials, User.Role role) {
+    public User createUser(@Valid Credentials credentials, User.Role role) {
         var user = new User(role, credentials.name(), credentials.email(), encoder.encode(credentials.password()));
         return userRepository.save(user);
     }
