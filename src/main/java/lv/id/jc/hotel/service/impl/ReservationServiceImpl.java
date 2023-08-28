@@ -13,6 +13,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.validation.Valid;
+
 import java.util.NoSuchElementException;
 import java.util.function.Predicate;
 import java.util.function.Supplier;
@@ -25,7 +27,7 @@ public class ReservationServiceImpl implements ReservationService {
     private static final Supplier<RuntimeException> CUSTOMER_NOT_FOUND = () -> new NoSuchElementException(
             "Only registered customers can book a room");
 
-    private static final Predicate<User> isCustomer = user -> User.Role.CUSTOMER.equals(user.getRole());
+    private static final Predicate<@Valid User> isCustomer = user -> User.Role.CUSTOMER == user.getRole();
 
     private final UserRepository userRepository;
     private final RoomRepository roomRepository;
@@ -33,7 +35,7 @@ public class ReservationServiceImpl implements ReservationService {
 
     @Override
     @Transactional
-    public ReservationDetails book(UserDetails userDetails, BookingRequest request) {
+    public ReservationDetails book(UserDetails userDetails, @Valid BookingRequest request) {
         var guest = userRepository.findFirstByEmailIgnoreCase(userDetails.getUsername())
                 .filter(isCustomer)
                 .orElseThrow(CUSTOMER_NOT_FOUND);

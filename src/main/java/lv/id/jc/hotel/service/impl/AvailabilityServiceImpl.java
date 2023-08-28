@@ -7,6 +7,8 @@ import lv.id.jc.hotel.repository.RoomTypeRepository;
 import lv.id.jc.hotel.service.AvailabilityService;
 import org.springframework.stereotype.Service;
 
+import javax.validation.Valid;
+
 import java.util.List;
 
 @Service
@@ -15,7 +17,7 @@ public class AvailabilityServiceImpl implements AvailabilityService {
     private final RoomTypeRepository roomTypeRepository;
 
     @Override
-    public List<AvailabilityResponse> getAvailability(AvailabilityRequest request) {
+    public List<AvailabilityResponse> getAvailability(@Valid AvailabilityRequest request) {
         return roomTypeRepository.getAvailability(request.checkIn(), request.checkOut());
     }
 }
